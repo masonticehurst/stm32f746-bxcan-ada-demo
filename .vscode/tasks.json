@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Pretty Print",
+            "type": "shell",
+            "command": "gnatpp $(find ${workspaceFolder}/src/ -name \"*.adb\" -o -name \"*.ads\")",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "detail": "Pretty print Ada project files using gnatpp"
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "alr build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Build Ada program using alr",
+            "dependsOn": "Pretty Print"
+        },
+        {
+            "label": "Flash",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f", "/home/dev/Downloads/OpenOCD/tcl/board/stm32f746g-disco.cfg",
+                "-c", "program bin/bxcan verify reset exit"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Flash STM32 using OpenOCD",
+            "dependsOn": "Build"
+        }
+    ]
+}

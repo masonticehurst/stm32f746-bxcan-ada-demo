@@ -1,0 +1,187 @@
+# THIS FILE IS GENERATED. DO NOT EDIT.
+
+[solution]
+[solution.context]
+solved = true
+[[solution.state]]
+crate = "adl_middleware"
+fulfilment = "linked"
+pinned = false
+transitivity = "direct"
+versions = "0.4.0-dev"
+[solution.state.link]
+lockfiled = true
+path = "alire/cache/pins/adl_middleware"
+url = "https://github.com/Fabien-Chouteau/adl-middleware"
+[[solution.state]]
+crate = "cortex_m"
+fulfilment = "solved"
+pinned = false
+transitivity = "indirect"
+versions = "0.5.0"
+[solution.state.release]
+authors = [
+"AdaCore",
+]
+description = "Drivers for Cortex-M micro-controllers (NVIC, SysTick, etc.)"
+licenses = "BSD-3-Clause"
+long-description = "# cortex-m\n\nAda drivers for the peripherals of ARM Cortex-M micro-controllers\n(NVIC,\\nSysTick, etc.)\n\nThis crate is a snapshot of the `Cortex-M` support in [Ada Drivers\nLibrary](https://github.com/AdaCore/Ada_Drivers_Library/tree/master/arch/ARM/cortex_m).\n\nAny bug report, issue, contribution must be adressed to the [Ada Drivers\nLibrary](https://github.com/AdaCore/Ada_Drivers_Library/) repo.\n\n"
+maintainers = [
+"chouteau@adacore.com",
+]
+maintainers-logins = [
+"Fabien-Chouteau",
+]
+name = "cortex_m"
+tags = [
+"embedded",
+"arm",
+"nostd",
+]
+version = "0.5.0"
+website = "https://github.com/AdaCore/Ada_Drivers_Library/"
+[solution.state.release.configuration]
+auto_gpr_with = true
+disabled = false
+generate_ada = true
+generate_c = true
+generate_gpr = true
+output_dir = "config"
+[solution.state.release.configuration.variables]
+[solution.state.release.configuration.variables.core]
+type = "Enum"
+values = [
+"m0",
+"m0p",
+"m4",
+"m4f",
+"m7f",
+"m7df",
+]
+[solution.state.release.origin]
+commit = "39667d15f4df10da6ecfd94af47c463bb54ff2d6"
+url = "git+https://github.com/Fabien-Chouteau/cortex-m.git"
+[[solution.state.release.depends-on]]
+gnat_arm_elf = ">=12"
+hal = "~0.3"
+[[solution.state]]
+crate = "embedded_components"
+fulfilment = "solved"
+pinned = false
+transitivity = "indirect"
+versions = "0.2.0"
+[solution.state.release]
+authors = [
+"AdaCore",
+]
+description = "Platform agnostic drivers to interface external components"
+licenses = "BSD-3-Clause"
+long-description = "# embedded-components\n\nPlatform agnostic drivers to interface external components.\n\nThis crate is a snapshot of the `components` of [Ada Drivers\nLibrary](https://github.com/AdaCore/Ada_Drivers_Library/tree/master/components).\n\nAny bug report, issue, contribution must be adressed to the [Ada Drivers\nLibrary](https://github.com/AdaCore/Ada_Drivers_Library/) repo.\n\n"
+maintainers = [
+"chouteau@adacore.com",
+]
+maintainers-logins = [
+"Fabien-Chouteau",
+]
+name = "embedded_components"
+project-files = [
+"embedded_components.gpr",
+]
+tags = [
+"embedded",
+"nostd",
+]
+version = "0.2.0"
+website = "https://github.com/AdaCore/Ada_Drivers_Library/"
+[solution.state.release.build-switches]
+[solution.state.release.build-switches."*"]
+style_checks = "no"
+[solution.state.release.origin]
+commit = "37c39b23c2a235452401bb8d592f5121d836378b"
+url = "git+https://github.com/Fabien-Chouteau/embedded-components.git"
+[[solution.state.release.depends-on]]
+adl_middleware = "~0.2.0"
+hal = "~0.3.0"
+[[solution.state]]
+crate = "gnat_arm_elf"
+fulfilment = "solved"
+pin_version = "15.2.1"
+pinned = true
+transitivity = "direct"
+versions = "=15.2.1"
+[solution.state.release]
+auto-gpr-with = false
+description = "The GNAT Ada compiler - ARM cross-compiler"
+licenses = "GPL-3.0-or-later AND GPL-3.0-or-later WITH GCC-exception-3.1"
+maintainers = [
+"chouteau@adacore.com",
+"sagaert@adacore.com",
+]
+maintainers-logins = [
+"Fabien-Chouteau",
+"AldanTanneo",
+]
+name = "gnat_arm_elf"
+provides = [
+"gnat=15.2.1",
+]
+version = "15.2.1"
+website = "https://github.com/alire-project/GNAT-FSF-builds"
+[solution.state.release.configuration]
+auto_gpr_with = true
+disabled = true
+generate_ada = true
+generate_c = true
+generate_gpr = true
+output_dir = "config"
+[solution.state.release.environment]
+[solution.state.release.environment.PATH]
+prepend = "${CRATE_ROOT}/bin"
+[solution.state.release.origin]
+binary = true
+hashes = [
+"sha256:a5e9cfb14ffa1ad48af2ed86b47a2e756925b2dd57aed55aba78d34431a45404",
+]
+url = "https://github.com/alire-project/GNAT-FSF-builds/releases/download/gnat-15.2.0-1/gnat-arm-elf-linux64-x86_64-15.2.0-1.tar.gz"
+[[solution.state]]
+crate = "hal"
+fulfilment = "linked"
+pinned = false
+transitivity = "direct"
+versions = "~0.4.0"
+[solution.state.link]
+branch = "release/0.4"
+lockfiled = true
+path = "alire/cache/pins/hal"
+url = "https://github.com/Fabien-Chouteau/hal.git"
+[[solution.state]]
+crate = "stm32_gui"
+fulfilment = "linked"
+pinned = false
+transitivity = "direct"
+versions = "0.1.0"
+[solution.state.link]
+lockfiled = true
+path = "alire/cache/pins/stm32_gui"
+url = "https://github.com/GNAT-Academic-Program/stm32_gui.git"
+[[solution.state]]
+crate = "stm32_hal"
+fulfilment = "linked"
+pinned = false
+transitivity = "direct"
+versions = "0.1.0"
+[solution.state.link]
+lockfiled = true
+path = "alire/cache/pins/stm32_hal"
+url = "https://github.com/GNAT-Academic-Program/stm32_hal.git"
+[[solution.state]]
+crate = "stm32f746disco"
+fulfilment = "linked"
+pinned = false
+transitivity = "direct"
+versions = "0.1.0"
+[solution.state.link]
+lockfiled = true
+path = "alire/cache/pins/stm32f746disco"
+url = "https://github.com/GNAT-Academic-Program/stm32f746disco.git"
+

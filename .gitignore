@@ -1,0 +1,21 @@
+# No bmp files
+*.bmp
+
+# Object file
+*.o
+obj/
+bin/
+
+# Ada Library Information
+*.ali
+*.cswi
+*.stdout
+*.stderr
+*.bexch
+
+# Other
+.DS_Store
+*.DS_Store
+
+# Keeping alire cache for now as we have modified it
+# alire/

@@ -1,0 +1,29 @@
+name = "bxcan"
+description = "bxCAN driver implementation in Ada for STM32F746DISCO"
+version = "0.1.0"
+licenses = "BSD-3-Clause"
+
+authors = ["AdaCore, Mason Ticehurst"]
+maintainers = ["Mason Ticehurst <masonticehurst@me.com>"]
+maintainers-logins = ["mason.ticehurst"]
+website=""
+tags = ["embedded", "stm32"]
+
+executables = ["bxCAN"]
+
+[[depends-on]]
+stm32f746disco = "0.1.0"
+stm32_hal = "0.1.0"
+gnat_arm_elf = "15.2.1"
+adl_middleware = "0.4.0-dev"
+stm32_gui = "0.1.0"
+
+[build-switches]
+"*".optimization = ["-O0", "-g"]
+
+[[pins]]
+gnat_arm_elf = { version='15.2.1' }
+stm32_hal = { url='https://github.com/GNAT-Academic-Program/stm32_hal.git' }
+stm32f746disco = { url='https://github.com/GNAT-Academic-Program/stm32f746disco.git' }
+adl_middleware = { url='https://github.com/Fabien-Chouteau/adl-middleware' }
+stm32_gui = { url='https://github.com/GNAT-Academic-Program/stm32_gui.git' }

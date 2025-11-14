@@ -1,0 +1,2 @@
+last_build_profile = "adl_middleware=RELEASE,bxcan=DEVELOPMENT,cortex_m=RELEASE,embedded_components=RELEASE,gnat_arm_elf=RELEASE,hal=RELEASE,stm32_gui=RELEASE,stm32_hal=RELEASE,stm32f746disco=RELEASE"
+
