@@ -1,7 +1,6 @@
 with LED_Blinker;
 with Exception_Handler;
 with SDCard;
-with Bitmap;
 
 with Ada.Real_Time; use Ada.Real_Time;
 with STM32.Board;   use STM32.Board;
@@ -13,8 +12,10 @@ with File_IO;       use File_IO;
 with STM32.CAN;     use STM32.CAN;
 with HAL;           use HAL;
 with BMP_Fonts;     use BMP_Fonts;
-with LCD_Std_Out;   use LCD_Std_Out;
-with Bitmap;        use Bitmap;
+with GUI;           use GUI;
+with GUI.Bitmap;    use GUI.Bitmap;
+with GUI.Images;    use GUI.Images;
+with CAN_Handler;
 
 procedure bxcan is
    SD_Card_Info : HAL.SDMMC.Card_Information;
@@ -25,16 +26,17 @@ procedure bxcan is
    Loop_Iter    : Natural             := 0;
    Frame        : STM32.CAN.CAN_Frame (STM32.CAN.Standard);
    CAN_Status   : STM32.CAN.CAN_Status;
+   Ang          : Long_Float          := Long_Float (0.0);
 begin
    -- Stuff for LCD initialization
    Clear_Screen;
-   Set_Font (Font12x12);
+   Set_Font (Font8x8);
 
    -- Misc initialization
    Initialize_SDRAM;
 
    -- CAN Bus Initialization
-   STM32.CAN.Initialize (STM32.CAN.CAN_1, STM32.CAN.CAN_1M);
+   STM32.CAN.Initialize (STM32.CAN.CAN_1, STM32.CAN.CAN_500K);
 
    -- SD Card initialization
    STM32.Board.SDCard_Device.Initialize;
@@ -43,26 +45,34 @@ begin
 
    SDMMC_Status := STM32.SDMMC.Initialize (STM32.Device.SDMMC_1);
 
-   if (SDMMC_Status = OK) then
-      Put_Line ("SD Card Initialization Successful");
-   else
-      Put_Line
-        ("SD Card Initialization Failed: " & SD_Error'Image (SDMMC_Status));
-   end if;
+   --  if (SDMMC_Status = OK) then
+   --     Put_Line ("SD Card Initialization Successful");
+   --  else
+   --     Put_Line
+   --       ("SD Card Initialization Failed: " & SD_Error'Image (SDMMC_Status));
+   --  end if;
 
    FS_Status := Mount_Drive ("sdcard", STM32.Board.SDCard_Device'Access);
 
-   if (FS_Status = OK) then
-      Put_Line ("Mounted File System on /sdcard/");
-   else
-      Put_Line ("Failed to Mount File System on /sdcard/: " & FS_Status'Image);
-   end if;
+   --  if (FS_Status = OK) then
+   --     Put_Line ("Mounted File System on /sdcard/");
+   --  else
+   --     Put_Line ("Failed to Mount File System on /sdcard/: " & FS_Status'Image);
+   --  end if;
 
    FS_Status := File_IO.Open (FD, "/sdcard/m3.bmp", File_IO.Read_Write);
 
    if (FS_Status = OK) then
 
-      Put_Line ("Opened /sdcard/m3.bmp successfully.");
+      --  Put_Line ("Opened /sdcard/m3.bmp successfully.");
+
+      GUI.Current_Background_Color :=
+        (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+
+      Fill_Rounded_Rectangle
+        (Rect   => (Position => (7, 6), Width => 161, Height => 82),
+         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
+         Radius => 8);
 
       -- Read the BMP file header
       declare
@@ -116,7 +126,7 @@ begin
                ----------------------------------------------------------------
                declare
                   -- Pixel we draw with
-                  P : Bitmap.Pixel;
+                  P : GUI.Bitmap.Pixel;
 
                   -- Simple byte buffer for 512-byte chunks
                   Buffer  : aliased Byte_Array (0 .. 511);
@@ -209,8 +219,17 @@ begin
 
                            end if;
 
-                           Display.Hidden_Buffer (1).Set_Source (ARGB => Bitmap.Blend ((Alpha => P.A, Red => P.R, Green => P.G, Blue => P.B), (Alpha => Current_Background_Color.Alpha, Red => Current_Background_Color.Red, Green => Current_Background_Color.Green, Blue => Current_Background_Color.Blue)));
-                           Display.Hidden_Buffer (1).Set_Pixel (Pt => (X => X, Y => Y_Screen));
+                           Display.Hidden_Buffer (1).Set_Source
+                             (ARGB =>
+                                GUI.Bitmap.Blend
+                                  ((Alpha => P.A, Red => P.R, Green => P.G,
+                                    Blue  => P.B),
+                                   (Alpha => Current_Background_Color.Alpha,
+                                    Red   => Current_Background_Color.Red,
+                                    Green => Current_Background_Color.Green,
+                                    Blue  => Current_Background_Color.Blue)));
+                           Display.Hidden_Buffer (1).Set_Pixel
+                             (Pt => (X => X + 20, Y => Y_Screen + 20));
                         end loop;
 
                         -- After all pixels in this row are written to the hidden buffer:
@@ -239,53 +258,56 @@ begin
    --  Frame.Data (8)    := 16#08#;
    --  Frame.RTR         := False;
 
-   Put_Line ("Done!");
+   Add_Info (Point => (X => 9, Y => 198), Text => "Speed (MPH)");
+   Add_Info (Point => (X => 128, Y => 198), Text => "Charge (%)");
+   Add_Info (Point => (X => 248, Y => 198), Text => "Gear");
+   Add_Info (Point => (X => 367, Y => 198), Text => "Power (kW)");
+   GUI.Current_Background_Color := GUI.Default_Background_Color;
+
+   Put (X => 173, Y => 9, Msg => "Make:");
+   Put (X => 228, Y => 9, Msg => "Tesla");
+   Put (X => 173, Y => 19, Msg => "Model:");
+   Put (X => 228, Y => 19, Msg => "Model 3");
+   Put (X => 173, Y => 29, Msg => "VIN:");
+   Put (X => 228, Y => 29, Msg => "XXXXXXXXXXXXXXXXX");
 
    Fill_Rounded_Rectangle
-     (Rect   => (Position => (100, 100), Width => 75, Height => 75),
+     (Rect   => (Position => (7, 92), Width => 161, Height => 20),
       Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-      Radius => 8);
+      Radius => 4);
+
+   GUI.Current_Background_Color :=
+     (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+
+   GUI.Current_Text_Color :=
+     (Alpha => 255, Red => 76, Green => 174, Blue => 80);
+   Put
+     (X =>
+        7 + 161 - (161 / 2) -
+        (MeasureText ("CAN Connected", Font8x8).Width - 12) / 2,
+      Y => 98, Msg => "CAN Connected");
+
+   GUI.Images.Draw_Image (X0 => 24, Y0 => 94, Image => GUI.Images.Link_On);
+
+   GUI.Current_Background_Color := GUI.Default_Background_Color;
 
    loop
+      Ang := Long_Float (Natural (Ang + 1.0) mod 360);
+
+      GUI.Images.Draw_Image
+        (X0            => 173, Y0 => 50, Image => GUI.Images.Steering_Wheel,
+         Angle_Degrees => Ang);
+
+      CAN_Status := STM32.CAN.Receive (STM32.CAN.CAN_1, Frame);
+
+      if CAN_Status = Ok then
+         CAN_Handler.On_Test (Frame);
+      end if;
+
+      Put (X => 7, Y => 140, Msg => "Recv: " & CAN_Handler.Recv_Counter'Image);
+
       Display.Update_Layer (1, True);
-      delay 1.0;
+      delay until Clock + Milliseconds (33);
    end loop;
-
-   --  loop
-   --     --  declare
-   --     --     Received_Frame : STM32.CAN.CAN_Frame;
-   --     --  begin
-   --     --     CAN_Status := STM32.CAN.Receive (STM32.CAN.CAN_1, Received_Frame);
-   --     --     if CAN_Status = STM32.CAN.OK then
-   --     --        if Received_Frame.ID_Type = STM32.CAN.Standard then
-   --     --           Put_Line
-   --     --             ("Received Standard CAN Frame with ID: " &
-   --     --              Received_Frame.Standard_ID'Image);
-   --     --        else
-   --     --           Put_Line
-   --     --             ("Received Extended CAN Frame with ID: " &
-   --     --              Received_Frame.Extended_ID'Image);
-   --     --        end if;
-   --     --     end if;
-   --     --  end;
-
-   --     --  CAN_Status := STM32.CAN.Transmit (STM32.CAN.CAN_1, Frame);
-   --     --  Put_Line (CAN_Status'Image);
-
-   --     --  if FS_Status = OK then
-   --     --     declare
-   --     --        FSize : File_Size := 0;
-   --     --        Hello_World : aliased constant String := Loop_Iter'Image & ASCII.LF;
-   --     --     begin
-   --     --        if FS_Status = OK then
-   --     --              FSize := Write (FD, Hello_World'Address, Hello_World'Length);
-   --     --              FS_Status := Flush (FD);
-   --     --        end if;
-   --     --     end;
-   --     --  else
-   --     --     All_LEDs_Off;
-   --     --  end if;
-   --  end loop;
-
    -- Close (FD);
 end bxcan;

@@ -1,7 +1,7 @@
-with HAL; use HAL;
+with HAL;        use HAL;
 with HAL.Bitmap; use HAL.Bitmap;
 
-package Bitmap is
+package GUI.Bitmap is
    type Bitmap_Format is (Bmp_RGB_24, Bmp_ARGB_32, Bmp_Unknown);
 
    type Bitmap_Header is record
@@ -63,7 +63,8 @@ package Bitmap is
    type Byte is new Uint8;
    type Byte_Array is array (Natural range <>) of aliased Byte;
 
-   type Color_Table_Array is array (Natural range <>) of aliased Color_Table_Entry;
+   type Color_Table_Array is
+     array (Natural range <>) of aliased Color_Table_Entry;
 
    type Pixel is record
       B, G, R, A : Uint8;
@@ -84,8 +85,7 @@ package Bitmap is
    end record;
 
    function Blend
-   (Foreground : HAL.Bitmap.Bitmap_Color;
-      Background : HAL.Bitmap.Bitmap_Color)
-      return HAL.Bitmap.Bitmap_Color;
+     (Foreground : HAL.Bitmap.Bitmap_Color;
+      Background : HAL.Bitmap.Bitmap_Color) return HAL.Bitmap.Bitmap_Color;
 
-end Bitmap;
+end GUI.Bitmap;

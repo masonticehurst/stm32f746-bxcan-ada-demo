@@ -2,6 +2,7 @@ with STM32_SVD;          use STM32_SVD;
 with STM32_SVD.CAN;      use STM32_SVD.CAN;
 with STM32.CAN_Internal; use STM32.CAN_Internal;
 with Ada.Interrupts.Names;
+with Ada.Containers.Vectors;
 
 package STM32.CAN is
 
@@ -46,6 +47,8 @@ package STM32.CAN is
       end case;
    end record;
 
+   type CAN_Callback is access procedure (Frame : CAN_Frame);
+
    procedure Reset (This : aliased in out CAN_Port'Class);
 
    procedure Initialize
@@ -59,13 +62,35 @@ package STM32.CAN is
      (This : aliased in out CAN_Port'Class; Frame : out CAN_Frame)
       return CAN_Status;
 
+   type Handler_Entry (ID_Type : CAN_ID_Type := Standard) is record
+      CB : CAN_Callback;
+      case ID_Type is
+         when Standard =>
+            Standard_ID : CAN_Standard_ID;
+         when Extended =>
+            Extended_ID : CAN_Extended_ID;
+      end case;
+   end record;
+
+   package Handler_Vectors is new Ada.Containers.Vectors
+     (Index_Type => Positive, Element_Type => Handler_Entry);
+
    protected Receiver is
-      pragma Interrupt_Priority;
+      --  pragma Interrupt_Priority;
+
+      procedure Register_Handler (ID : CAN_Standard_ID; CB : CAN_Callback);
+
+      procedure Register_Handler (ID : CAN_Extended_ID; CB : CAN_Callback);
    private
       procedure Interrupt_Handler;
 
-      pragma Attach_Handler
-        (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX0_Interrupt);
+      --  pragma Attach_Handler
+      --    (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX0_Interrupt);
+
+      --  pragma Attach_Handler
+      --    (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX1_Interrupt);
+
+      Handlers : Handler_Vectors.Vector;
    end Receiver;
 
 private

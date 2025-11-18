@@ -38,9 +38,8 @@ with HAL.Bitmap;
 with HAL.Framebuffer;
 with Ada.Containers.Vectors;
 with HAL.Touch_Panel;
-with Bitmap; use Bitmap;
 
-package LCD_Std_Out is
+package GUI is
 
    type Size is record
       Width  : Natural;
@@ -148,6 +147,8 @@ package LCD_Std_Out is
      Pre => Rect.Position.X - Thickness >= 0;
    pragma Assertion_Policy (Pre => Check);
 
+   procedure Add_Info (Point : HAl.Bitmap.Point; Text : String);
+
    procedure Fill_Rounded_Rectangle
      (Rect   : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
       Radius : Natural);
@@ -157,4 +158,4 @@ package LCD_Std_Out is
    function MeasureText
      (Text : in String; Font : in BMP_Fonts.BMP_Font) return Size;
 
-end LCD_Std_Out;
+end GUI;

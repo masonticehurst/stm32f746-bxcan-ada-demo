@@ -1,6 +1,6 @@
 with STM32.Device;  use STM32.Device;
 with System;        use System;
-with LCD_Std_Out;   use LCD_Std_Out;
+with GUI;           use GUI;
 with STM32_SVD.RCC; use STM32_SVD.RCC;
 with STM32.GPIO;
 
@@ -141,7 +141,7 @@ package body STM32.CAN is
             exit when CAN1_Periph.MSR.INAK = False;
          end loop;
 
-         Put_Line ("Initialized CAN1 Peripheral");
+         --  Put_Line ("Initialized CAN1 Peripheral");
       end if;
    end Initialize;
 
@@ -159,18 +159,18 @@ package body STM32.CAN is
       else
          raise Unknown_Device;
       end if;
-      Put_Line ("Configured CAN I/O pins");
+      --  Put_Line ("Configured CAN I/O pins");
    end Configure_IO;
 
    procedure Enable_Clock (This : aliased in out CAN_Port'Class) is
    begin
       if This.Periph.all'Address = STM32_SVD.CAN1_Base then
-         Put_Line ("Enabling CAN1 Clock");
+         --  Put_Line ("Enabling CAN1 Clock");
          Enable_Clock (PB8);
          Enable_Clock (PB9);
          RCC_Periph.APB1ENR.CAN1EN := True;
       elsif This.Periph.all'Address = STM32_SVD.CAN2_Base then
-         Put_Line ("Enabling CAN2 Clock");
+         --  Put_Line ("Enabling CAN2 Clock");
          RCC_Periph.APB1ENR.CAN2EN := True;
       else
          raise Unknown_Device;
@@ -202,11 +202,11 @@ package body STM32.CAN is
    procedure Reset (This : aliased in out CAN_Port'Class) is
    begin
       if This.Periph.all'Address = STM32_SVD.CAN1_Base then
-         Put_Line ("Resetting CAN1");
+         --  Put_Line ("Resetting CAN1");
          RCC_Periph.APB1RSTR.CAN1RST := True;
          RCC_Periph.APB1RSTR.CAN1RST := False;
       elsif This.Periph.all'Address = STM32_SVD.CAN2_Base then
-         Put_Line ("Resetting CAN2");
+         --  Put_Line ("Resetting CAN2");
          RCC_Periph.APB1RSTR.CAN2RST := True;
          RCC_Periph.APB1RSTR.CAN2RST := False;
       else
@@ -215,15 +215,33 @@ package body STM32.CAN is
    end Reset;
 
    protected body Receiver is
+
+      procedure Register_Handler (ID : CAN_Standard_ID; CB : CAN_Callback) is
+      begin
+         Handlers.Append
+           (Handler_Entry'(ID_Type => Standard, CB => CB, Standard_ID => ID));
+      end Register_Handler;
+
+      procedure Register_Handler (ID : CAN_Extended_ID; CB : CAN_Callback) is
+      begin
+         Handlers.Append
+           (Handler_Entry'(ID_Type => Extended, CB => CB, Extended_ID => ID));
+      end Register_Handler;
+
       procedure Interrupt_Handler is
          Frame  : CAN_Frame;
          Status : CAN_Status;
       begin
          Status := Receive (CAN_1, Frame);
-         Put_Line
-           ("ISR! " & Status'Image & " ID: " &
-            (if Frame.ID_Type = Standard then Frame.Standard_ID'Image
-             else Frame.Extended_ID'Image));
+
+         if Status = OK then
+            declare
+               Hdlr : Handler_Entry;
+            begin
+               Hdlr := Handlers.First_Element;
+               Hdlr.CB (Frame);
+            end;
+         end if;
       end Interrupt_Handler;
    end Receiver;
 
@@ -236,39 +254,34 @@ package body STM32.CAN is
          raise Unknown_Device;
       end if;
 
-      if CAN1_Periph.RF0R.FMP0 /= 0 then
-         if CAN1_Periph.RI0R.IDE then
-            Frame :=
-              (ID_Type     => STM32.CAN.Extended, RTR => CAN1_Periph.RI0R.RTR,
-               DLC         => CAN1_Periph.RDT0R.DLC, Data => (others => 0),
-               Extended_ID =>
-                 To_Extended_ID
-                   (CAN1_Periph.RI0R.STID, CAN1_Periph.RI0R.EXID));
-         else
-            Frame :=
-              (ID_Type     => STM32.CAN.Standard, RTR => CAN1_Periph.RI0R.RTR,
-               DLC         => CAN1_Periph.RDT0R.DLC, Data => (others => 0),
-               Standard_ID => CAN1_Periph.RI0R.STID);
-         end if;
-
-         for I in 0 .. 3 loop
-            Frame.Data (I + 1) := CAN1_Periph.RDL0R.Arr (I);
-         end loop;
-
-         for I in 4 .. 7 loop
-            Frame.Data (I + 1) := CAN1_Periph.RDH0R.Arr (I);
-         end loop;
-      else
+      if CAN1_Periph.RF0R.FMP0 = 0 then
          return No_Message;
       end if;
 
-      CAN1_Periph.RF0R.RFOM0 := True;
-
-      if CAN1_Periph.RF0R.FMP0 /= 0 then
-         return Ok;
+      if CAN1_Periph.RI0R.IDE then
+         Frame :=
+           (ID_Type     => STM32.CAN.Extended, RTR => CAN1_Periph.RI0R.RTR,
+            DLC         => CAN1_Periph.RDT0R.DLC, Data => (others => 0),
+            Extended_ID =>
+              To_Extended_ID (CAN1_Periph.RI0R.STID, CAN1_Periph.RI0R.EXID));
+      else
+         Frame :=
+           (ID_Type     => STM32.CAN.Standard, RTR => CAN1_Periph.RI0R.RTR,
+            DLC         => CAN1_Periph.RDT0R.DLC, Data => (others => 0),
+            Standard_ID => CAN1_Periph.RI0R.STID);
       end if;
 
-      return No_Message;
+      for I in 0 .. 3 loop
+         Frame.Data (I + 1) := CAN1_Periph.RDL0R.Arr (I);
+      end loop;
+
+      for I in 4 .. 7 loop
+         Frame.Data (I + 1) := CAN1_Periph.RDH0R.Arr (I);
+      end loop;
+
+      CAN1_Periph.RF0R.RFOM0 := True;
+
+      return Ok;
    end Receive;
 
    function Transmit

@@ -1,5 +1,5 @@
 with System;
-with LCD_Std_Out;         use LCD_Std_Out;
+with GUI;                 use GUI;
 with Ada.Exceptions;      use Ada.Exceptions;
 with System.Machine_Code; use System.Machine_Code;
 with Partitions;          use Partitions;

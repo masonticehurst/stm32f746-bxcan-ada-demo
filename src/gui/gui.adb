@@ -33,7 +33,7 @@ with STM32.Board;             use STM32.Board;
 with Bitmapped_Drawing;
 with Bitmap_Color_Conversion; use Bitmap_Color_Conversion;
 
-package body LCD_Std_Out is
+package body GUI is
 
    --  We don't make the current font visible to clients because changing it
    --  requires recomputation of the screen layout (eg the char height) and
@@ -329,6 +329,20 @@ package body LCD_Std_Out is
       Buttons.Append (Btn);
    end Add_Button;
 
+   procedure Add_Info (Point : HAl.Bitmap.Point; Text : String) is
+      Text_Size : Size := (0, 0);
+   begin
+      Fill_Rounded_Rectangle
+        (Rect => (Position => (Point.X, Point.Y), Width => 103, Height => 66),
+         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
+         Radius => 8);
+
+      Text_Size := MeasureText (Text, Font8x8);
+      Put
+        (X   => Point.X + 103 / 2 - Text_Size.Width / 2, Y => Point.Y + 6,
+         Msg => Text);
+   end Add_Info;
+
    function MeasureText
      (Text : in String; Font : in BMP_Fonts.BMP_Font) return Size
    is
@@ -338,4 +352,4 @@ package body LCD_Std_Out is
          BMP_Fonts.Char_Height (Font));
    end MeasureText;
 
-end LCD_Std_Out;
+end GUI;
