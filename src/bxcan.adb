@@ -26,7 +26,8 @@ procedure bxcan is
    Loop_Iter    : Natural             := 0;
    Frame        : STM32.CAN.CAN_Frame (STM32.CAN.Standard);
    CAN_Status   : STM32.CAN.CAN_Status;
-   Ang          : Long_Float          := Long_Float (0.0);
+   Period       : constant Time_Span  := Milliseconds (333);
+   Next_Release : Time                := Clock;
 begin
    -- Stuff for LCD initialization
    Clear_Screen;
@@ -258,10 +259,10 @@ begin
    --  Frame.Data (8)    := 16#08#;
    --  Frame.RTR         := False;
 
-   Add_Info (Point => (X => 9, Y => 198), Text => "Speed (MPH)");
-   Add_Info (Point => (X => 128, Y => 198), Text => "Charge (%)");
-   Add_Info (Point => (X => 248, Y => 198), Text => "Gear");
-   Add_Info (Point => (X => 367, Y => 198), Text => "Power (kW)");
+   Draw_Info (Point => (X => 9, Y => 198), Text => "Speed (MPH)");
+   Draw_Info (Point => (X => 128, Y => 198), Text => "Charge (%)");
+   Draw_Info (Point => (X => 248, Y => 198), Text => "Gear");
+   Draw_Info (Point => (X => 367, Y => 198), Text => "Power (kW)");
    GUI.Current_Background_Color := GUI.Default_Background_Color;
 
    Put (X => 173, Y => 9, Msg => "Make:");
@@ -289,25 +290,28 @@ begin
 
    GUI.Images.Draw_Image (X0 => 24, Y0 => 94, Image => GUI.Images.Link_On);
 
+   Display.Update_Layer (1, True);
+
    GUI.Current_Background_Color := GUI.Default_Background_Color;
+   GUI.Current_Text_Color       := GUI.Default_Text_Color;
+
+   GUI.Current_Background_Color :=
+    (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+
+   Receiver.Register_Handler
+     (ID => CAN_Standard_ID (16#129#),
+      CB => CAN_Handler.On_SteeringAngle'Access);
+
+   Receiver.Register_Handler
+     (ID => CAN_Standard_ID (16#257#), CB => CAN_Handler.On_Speed'Access);
 
    loop
-      Ang := Long_Float (Natural (Ang + 1.0) mod 360);
-
-      GUI.Images.Draw_Image
-        (X0            => 173, Y0 => 50, Image => GUI.Images.Steering_Wheel,
-         Angle_Degrees => Ang);
-
-      CAN_Status := STM32.CAN.Receive (STM32.CAN.CAN_1, Frame);
-
-      if CAN_Status = Ok then
-         CAN_Handler.On_Test (Frame);
-      end if;
-
-      Put (X => 7, Y => 140, Msg => "Recv: " & CAN_Handler.Recv_Counter'Image);
+      --  Put (X => 7, Y => 140, Msg => "Recv: " & Receiver.Get'Image);
 
       Display.Update_Layer (1, True);
-      delay until Clock + Milliseconds (33);
+
+      Next_Release := Next_Release + Period;
+      delay until Next_Release;
    end loop;
    -- Close (FD);
 end bxcan;
