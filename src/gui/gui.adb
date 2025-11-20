@@ -329,27 +329,44 @@ package body GUI is
       Buttons.Append (Btn);
    end Add_Button;
 
-   procedure Add_Info (Point : HAl.Bitmap.Point; Text : String) is
+   procedure Draw_Info
+     (Point : HAl.Bitmap.Point; Text : String; Val : String := "")
+   is
       Text_Size : Size := (0, 0);
    begin
-      Fill_Rounded_Rectangle
-        (Rect => (Position => (Point.X, Point.Y), Width => 103, Height => 66),
-         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-         Radius => 8);
+      if Val /= "" then
+         Set_Font (Font16x24);
+         Text_Size := MeasureText (Val, Font16x24);
+         Put
+           (X   => Point.X + 103 / 2 - Text_Size.Width / 2, Y => Point.Y + 20,
+            Msg => Val);
+         Set_Font (Font8x8);
+      else
+         Fill_Rounded_Rectangle
+           (Rect   =>
+              (Position => (Point.X, Point.Y), Width => 103, Height => 66),
+            Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
+            Radius => 8);
 
-      Text_Size := MeasureText (Text, Font8x8);
-      Put
-        (X   => Point.X + 103 / 2 - Text_Size.Width / 2, Y => Point.Y + 6,
-         Msg => Text);
-   end Add_Info;
+         Text_Size := MeasureText (Text, Font8x8);
 
-   function MeasureText
-     (Text : in String; Font : in BMP_Fonts.BMP_Font) return Size
+         Put
+           (X   => Point.X + 103 / 2 - Text_Size.Width / 2, Y => Point.Y + 6,
+            Msg => Text);
+      end if;
+   end Draw_Info;
+
+   function MeasureText (Text : String; Font : BMP_Fonts.BMP_Font) return Size
    is
    begin
       return
         (Text'Length * BMP_Fonts.Char_Width (Font),
          BMP_Fonts.Char_Height (Font));
    end MeasureText;
+
+   procedure Redraw is
+   begin
+      Display.Update_layer (1, True);
+   end Redraw;
 
 end GUI;

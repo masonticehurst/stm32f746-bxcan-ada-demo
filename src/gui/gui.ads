@@ -147,7 +147,8 @@ package GUI is
      Pre => Rect.Position.X - Thickness >= 0;
    pragma Assertion_Policy (Pre => Check);
 
-   procedure Add_Info (Point : HAl.Bitmap.Point; Text : String);
+   procedure Draw_Info
+     (Point : HAl.Bitmap.Point; Text : String; Val : String := "");
 
    procedure Fill_Rounded_Rectangle
      (Rect   : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
@@ -155,7 +156,6 @@ package GUI is
    procedure Add_Button
      (Rect : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
       T    : Access_String);
-   function MeasureText
-     (Text : in String; Font : in BMP_Fonts.BMP_Font) return Size;
-
+   function MeasureText (Text : String; Font : BMP_Fonts.BMP_Font) return Size;
+   procedure Redraw;
 end GUI;
