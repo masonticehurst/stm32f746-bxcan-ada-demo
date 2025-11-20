@@ -2,32 +2,34 @@ with LED_Blinker;
 with Exception_Handler;
 with SDCard;
 
-with Ada.Real_Time; use Ada.Real_Time;
-with STM32.Board;   use STM32.Board;
-with STM32.Device;  use STM32.Device;
+with Ada.Strings.Fixed; use Ada.Strings.Fixed;
+with Ada.Real_Time;     use Ada.Real_Time;
+with STM32.Board;       use STM32.Board;
+with STM32.Device;      use STM32.Device;
 with HAL.Bitmap;
-with HAL.SDMMC;     use HAL.SDMMC;
+with HAL.SDMMC;         use HAL.SDMMC;
 with STM32.SDMMC;
-with File_IO;       use File_IO;
-with STM32.CAN;     use STM32.CAN;
-with HAL;           use HAL;
-with BMP_Fonts;     use BMP_Fonts;
-with GUI;           use GUI;
-with GUI.Bitmap;    use GUI.Bitmap;
-with GUI.Images;    use GUI.Images;
+with File_IO;           use File_IO;
+with STM32.CAN;         use STM32.CAN;
+with HAL;               use HAL;
+with BMP_Fonts;         use BMP_Fonts;
+with GUI;               use GUI;
+with GUI.Bitmap;        use GUI.Bitmap;
+with GUI.Images;        use GUI.Images;
 with CAN_Handler;
 
 procedure bxcan is
-   SD_Card_Info : HAL.SDMMC.Card_Information;
-   SDMMC_Status : HAL.SDMMC.SD_Error;
-   FS_Status    : File_IO.Status_Code := Disk_Error;
-   FD           : File_IO.File_Descriptor;
-   File_Size    : File_IO.File_Size   := -1;
-   Loop_Iter    : Natural             := 0;
-   Frame        : STM32.CAN.CAN_Frame (STM32.CAN.Standard);
-   CAN_Status   : STM32.CAN.CAN_Status;
-   Period       : constant Time_Span  := Milliseconds (333);
-   Next_Release : Time                := Clock;
+   SD_Card_Info        : HAL.SDMMC.Card_Information;
+   SDMMC_Status        : HAL.SDMMC.SD_Error;
+   FS_Status           : File_IO.Status_Code := Disk_Error;
+   FD                  : File_IO.File_Descriptor;
+   File_Size           : File_IO.File_Size   := -1;
+   Loop_Iter           : Natural             := 0;
+   Frame               : STM32.CAN.CAN_Frame (STM32.CAN.Standard);
+   CAN_Status          : STM32.CAN.CAN_Status;
+   Period              : constant Time_Span  := Milliseconds (555);
+   Next_Release        : Time                := Clock;
+   Last_Steering_Angle : Long_Float := CAN_Handler.Steering_Angle_Degrees;
 begin
    -- Stuff for LCD initialization
    Clear_Screen;
@@ -296,7 +298,7 @@ begin
    GUI.Current_Text_Color       := GUI.Default_Text_Color;
 
    GUI.Current_Background_Color :=
-    (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+     (Alpha => 255, Red => 26, Green => 36, Blue => 46);
 
    Receiver.Register_Handler
      (ID => CAN_Standard_ID (16#129#),
@@ -305,8 +307,32 @@ begin
    Receiver.Register_Handler
      (ID => CAN_Standard_ID (16#257#), CB => CAN_Handler.On_Speed'Access);
 
+   Receiver.Register_Handler
+     (ID => CAN_Standard_ID (16#118#),
+      CB => CAN_Handler.On_DriverSystemStatus'Access);
+
    loop
       --  Put (X => 7, Y => 140, Msg => "Recv: " & Receiver.Get'Image);
+      Draw_Info
+        (Point => (X => 9, Y => 205), Text => "Speed (MPH)",
+         Val   => CAN_Handler.Vehicle_Speed_MPH'Image & " ");
+
+      declare
+         Current_Angle : constant Long_Float :=
+           CAN_Handler.Steering_Angle_Degrees;
+      begin
+         if abs (Current_Angle - Last_Steering_Angle) >= 0.5 then
+            GUI.Images.Draw_Image
+              (X0 => 190, Y0 => 50, Image => GUI.Images.Steering_Wheel,
+               Angle_Degrees => Current_Angle);
+
+            Last_Steering_Angle := Current_Angle;
+         end if;
+      end;
+
+      Draw_Info
+        (Point => (X => 248, Y => 205), Text => "Gear",
+         Val   => CAN_Handler.To_String (CAN_Handler.Vehicle_Gear));
 
       Display.Update_Layer (1, True);
 
