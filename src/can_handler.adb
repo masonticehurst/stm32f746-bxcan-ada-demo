@@ -1,5 +1,7 @@
 with GUI;        use GUI;
+with GUI.Images;
 with Interfaces; use Interfaces;
+with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 
 package body CAN_Handler is
    function Extract_LE_Signal
@@ -43,6 +45,12 @@ package body CAN_Handler is
       Scaled : constant Long_Float := Long_Float (Raw) * 0.1 - 819.2;
    begin
       Steering_Angle := Scaled;
+
+      GUI.Images.Draw_Image
+        (X0            => 190, Y0 => 50, Image => GUI.Images.Steering_Wheel,
+         Angle_Degrees => Steering_Angle);
+
+      GUI.Redraw;
    end On_SteeringAngle;
 
    --  BO_ 599 ID257DIspeed: 8 VehicleBus
@@ -60,6 +68,12 @@ package body CAN_Handler is
       Scaled : constant Long_Float := Long_Float (Raw) * 0.08 - 40.0;
    begin
       Vehicle_Speed := Natural (abs Scaled);
+
+      Draw_Info
+            (Point => (X => 9, Y => 205), Text => "Speed (MPH)",
+               Val   =>
+               Trim
+                  (CAN_Handler.Vehicle_Speed'Image, Ada.Strings.Both));
    end On_Speed;
 
 end CAN_Handler;
