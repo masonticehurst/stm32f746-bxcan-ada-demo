@@ -4,6 +4,9 @@ with GUI;           use GUI;
 with STM32_SVD.RCC; use STM32_SVD.RCC;
 with STM32.GPIO;
 
+with Ada.Containers.Indefinite_Hashed_Maps;
+with Ada.Strings.Hash;
+
 package body STM32.CAN is
 
    type CAN_Timing is record
@@ -214,35 +217,70 @@ package body STM32.CAN is
       end if;
    end Reset;
 
+   function Hash (K : Handler_Key) return Ada.Containers.Hash_Type is
+   begin
+      case K.Kind is
+         when Standard =>
+            return Ada.Containers.Hash_Type (K.SID);
+         when Extended =>
+            return Ada.Containers.Hash_Type (K.XID);
+      end case;
+   end Hash;
+
+   function "=" (L, R : Handler_Key) return Boolean is
+   begin
+      if L.Kind /= R.Kind then
+         return False;
+      end if;
+
+      case L.Kind is
+         when Standard =>
+            return L.SID = R.SID;
+         when Extended =>
+            return L.XID = R.XID;
+      end case;
+   end "=";
+
    protected body Receiver is
 
       procedure Register_Handler (ID : CAN_Standard_ID; CB : CAN_Callback) is
+         Key : constant Handler_Key := (Kind => Standard, SID => ID);
       begin
-         Handlers.Append
-           (Handler_Entry'(ID_Type => Standard, CB => CB, Standard_ID => ID));
+         Handlers.Include (Key, CB);
       end Register_Handler;
 
       procedure Register_Handler (ID : CAN_Extended_ID; CB : CAN_Callback) is
+         Key : constant Handler_Key := (Kind => Extended, XID => ID);
       begin
-         Handlers.Append
-           (Handler_Entry'(ID_Type => Extended, CB => CB, Extended_ID => ID));
+         Handlers.Include (Key, CB);
       end Register_Handler;
 
       procedure Interrupt_Handler is
          Frame  : CAN_Frame;
          Status : CAN_Status;
+         Key    : Handler_Key;
+         CB     : CAN_Callback;
       begin
          Status := Receive (CAN_1, Frame);
 
          if Status = OK then
-            declare
-               Hdlr : Handler_Entry;
-            begin
-               Hdlr := Handlers.First_Element;
-               Hdlr.CB (Frame);
-            end;
+            if Frame.ID_Type = Standard then
+               Key := (Kind => Standard, SID => Frame.Standard_ID);
+            else
+               Key := (Kind => Extended, XID => Frame.Extended_ID);
+            end if;
+
+            if Handlers.Contains (Key) then
+               CB := Handlers.Element (Key);
+               CB (Frame);
+            end if;
          end if;
       end Interrupt_Handler;
+
+      function Get return Natural is
+      begin
+         return Count_Received;
+      end Get;
    end Receiver;
 
    function Receive

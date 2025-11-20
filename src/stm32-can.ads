@@ -2,7 +2,7 @@ with STM32_SVD;          use STM32_SVD;
 with STM32_SVD.CAN;      use STM32_SVD.CAN;
 with STM32.CAN_Internal; use STM32.CAN_Internal;
 with Ada.Interrupts.Names;
-with Ada.Containers.Vectors;
+with Ada.Containers.Hashed_Maps;
 
 package STM32.CAN is
 
@@ -47,7 +47,23 @@ package STM32.CAN is
       end case;
    end record;
 
+   type Handler_Key (Kind : CAN_ID_Type := Standard) is record
+      case Kind is
+         when Standard =>
+            SID : CAN_Standard_ID;
+         when Extended =>
+            XID : CAN_Extended_ID;
+      end case;
+   end record;
+
    type CAN_Callback is access procedure (Frame : CAN_Frame);
+
+   function "=" (L, R : Handler_Key) return Boolean;
+   function Hash (K : Handler_Key) return Ada.Containers.Hash_Type;
+
+   package Handler_Map is new Ada.Containers.Hashed_Maps
+     (Key_Type => Handler_Key, Element_Type => CAN_Callback, Hash => Hash,
+      Equivalent_Keys => "=");
 
    procedure Reset (This : aliased in out CAN_Port'Class);
 
@@ -72,25 +88,25 @@ package STM32.CAN is
       end case;
    end record;
 
-   package Handler_Vectors is new Ada.Containers.Vectors
-     (Index_Type => Positive, Element_Type => Handler_Entry);
-
    protected Receiver is
-      --  pragma Interrupt_Priority;
+      pragma Interrupt_Priority;
 
       procedure Register_Handler (ID : CAN_Standard_ID; CB : CAN_Callback);
 
       procedure Register_Handler (ID : CAN_Extended_ID; CB : CAN_Callback);
+
+      function Get return Natural;
    private
       procedure Interrupt_Handler;
 
-      --  pragma Attach_Handler
-      --    (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX0_Interrupt);
+      pragma Attach_Handler
+        (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX0_Interrupt);
 
-      --  pragma Attach_Handler
-      --    (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX1_Interrupt);
+      pragma Attach_Handler
+        (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX1_Interrupt);
 
-      Handlers : Handler_Vectors.Vector;
+      Handlers       : Handler_Map.Map;
+      Count_Received : Natural := 0;
    end Receiver;
 
 private
