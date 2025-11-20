@@ -47,6 +47,8 @@ package STM32.CAN is
       end case;
    end record;
 
+   type CAN_Frame_Buffer is array (Natural range <>) of CAN_Frame;
+
    type Handler_Key (Kind : CAN_ID_Type := Standard) is record
       case Kind is
          when Standard =>
@@ -88,14 +90,22 @@ package STM32.CAN is
       end case;
    end record;
 
+   task CAN_Dispatcher;
+
    protected Receiver is
       pragma Interrupt_Priority;
 
       procedure Register_Handler (ID : CAN_Standard_ID; CB : CAN_Callback);
-
       procedure Register_Handler (ID : CAN_Extended_ID; CB : CAN_Callback);
 
-      function Get return Natural;
+      procedure Get_Next_Frame (F : out CAN_Frame; Has_Frame : out Boolean);
+
+      -- New: used by dispatcher task to wait until at least one frame is queued
+      entry Wait_For_Frame;
+
+      -- New: resolve a frame to a callback (if any)
+      procedure Get_Callback
+        (Frame : in CAN_Frame; Found : out Boolean; CB : out CAN_Callback);
    private
       procedure Interrupt_Handler;
 
@@ -105,10 +115,12 @@ package STM32.CAN is
       pragma Attach_Handler
         (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX1_Interrupt);
 
-      Handlers       : Handler_Map.Map;
+      Buffer         : CAN_Frame_Buffer (0 .. 15);
+      Head           : Natural := 0;
+      Tail           : Natural := 0;
       Count_Received : Natural := 0;
+      Handlers       : Handler_Map.Map;
    end Receiver;
-
 private
    procedure Enable_Clock (This : aliased in out CAN_Port'Class);
    procedure Configure_IO (This : aliased in out CAN_Port'Class);

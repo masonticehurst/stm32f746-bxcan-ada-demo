@@ -4,9 +4,6 @@ with GUI;           use GUI;
 with STM32_SVD.RCC; use STM32_SVD.RCC;
 with STM32.GPIO;
 
-with Ada.Containers.Indefinite_Hashed_Maps;
-with Ada.Strings.Hash;
-
 package body STM32.CAN is
 
    type CAN_Timing is record
@@ -242,7 +239,6 @@ package body STM32.CAN is
    end "=";
 
    protected body Receiver is
-
       procedure Register_Handler (ID : CAN_Standard_ID; CB : CAN_Callback) is
          Key : constant Handler_Key := (Kind => Standard, SID => ID);
       begin
@@ -255,11 +251,35 @@ package body STM32.CAN is
          Handlers.Include (Key, CB);
       end Register_Handler;
 
+      entry Wait_For_Frame when Count_Received > 0 is
+      begin
+         -- Nothing to do inside; the barrier is the signal.
+         null;
+      end Wait_For_Frame;
+
+      procedure Get_Callback
+        (Frame : in CAN_Frame; Found : out Boolean; CB : out CAN_Callback)
+      is
+         Key : Handler_Key;
+      begin
+         if Frame.ID_Type = Standard then
+            Key := (Kind => Standard, SID => Frame.Standard_ID);
+         else
+            Key := (Kind => Extended, XID => Frame.Extended_ID);
+         end if;
+
+         if Handlers.Contains (Key) then
+            CB    := Handlers.Element (Key);
+            Found := True;
+         else
+            Found := False;
+         end if;
+      end Get_Callback;
+
       procedure Interrupt_Handler is
          Frame  : CAN_Frame;
          Status : CAN_Status;
          Key    : Handler_Key;
-         CB     : CAN_Callback;
       begin
          Status := Receive (CAN_1, Frame);
 
@@ -270,18 +290,50 @@ package body STM32.CAN is
                Key := (Kind => Extended, XID => Frame.Extended_ID);
             end if;
 
-            if Handlers.Contains (Key) then
-               CB := Handlers.Element (Key);
-               CB (Frame);
+            -- Only add frames to queue we care about
+            if Handlers.Contains (Key) and Count_Received < Buffer'Length then
+               Buffer (Tail)  := Frame;
+               Tail           := (Tail + 1) mod Buffer'Length;
+               Count_Received := Count_Received + 1;
             end if;
          end if;
       end Interrupt_Handler;
 
-      function Get return Natural is
+      procedure Get_Next_Frame (F : out CAN_Frame; Has_Frame : out Boolean) is
       begin
-         return Count_Received;
-      end Get;
+         if Count_Received = 0 then
+            Has_Frame := False;
+         else
+            F              := Buffer (Head);
+            Head           := (Head + 1) mod Buffer'Length;
+            Count_Received := Count_Received - 1;
+            Has_Frame      := True;
+         end if;
+      end Get_Next_Frame;
    end Receiver;
+
+   task body CAN_Dispatcher is
+      Frame     : CAN_Frame;
+      Has_Frame : Boolean;
+      Found     : Boolean;
+      CB        : CAN_Callback;
+   begin
+      loop
+         -- Block here until at least one frame is in the queue
+         Receiver.Wait_For_Frame;
+
+         -- Drain the queue
+         loop
+            Receiver.Get_Next_Frame (Frame, Has_Frame);
+            exit when not Has_Frame;
+
+            Receiver.Get_Callback (Frame, Found, CB);
+            if Found then
+               CB (Frame);
+            end if;
+         end loop;
+      end loop;
+   end CAN_Dispatcher;
 
    function Receive
      (This : aliased in out CAN_Port'Class; Frame : out CAN_Frame)
