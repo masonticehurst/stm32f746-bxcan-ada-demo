@@ -363,10 +363,4 @@ package body GUI is
         (Text'Length * BMP_Fonts.Char_Width (Font),
          BMP_Fonts.Char_Height (Font));
    end MeasureText;
-
-   procedure Redraw is
-   begin
-      Display.Update_layer (1, True);
-   end Redraw;
-
 end GUI;

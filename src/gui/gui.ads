@@ -157,5 +157,4 @@ package GUI is
      (Rect : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
       T    : Access_String);
    function MeasureText (Text : String; Font : BMP_Fonts.BMP_Font) return Size;
-   procedure Redraw;
 end GUI;
