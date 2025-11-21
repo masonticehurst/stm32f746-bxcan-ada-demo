@@ -127,4 +127,87 @@ package body CAN_Handler is
       end case;
    end On_DriverSystemStatus;
 
+   --  BO_ 1013 ID3F5VCFRONT_lighting: 8 VehicleBus
+   --   SG_ VCFRONT_DRLLeftStatus : 36|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_DRLRightStatus : 38|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_ambientLightingBrightnes : 8|8@1+ (0.5,0) [0|127] "%"  Receiver
+   --   SG_ VCFRONT_approachLightingRequest : 25|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_courtesyLightingRequest : 24|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_fogLeftStatus : 40|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_fogRightStatus : 42|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_hazardLightRequest : 4|4@1+ (1,0) [0|8] ""  Receiver
+   --   SG_ VCFRONT_hazardSwitchBacklight : 27|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_highBeamLeftStatus : 32|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_highBeamRightStatus : 34|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_highBeamSwitchActive : 58|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_indicatorLeftRequest : 0|2@1+ (1,0) [0|2] ""  Receiver
+   --   SG_ VCFRONT_indicatorRightRequest : 2|2@1+ (1,0) [0|2] ""  Receiver
+   --   SG_ VCFRONT_lowBeamLeftStatus : 28|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_lowBeamRightStatus : 30|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_lowBeamsCalibrated : 62|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_lowBeamsOnForDRL : 61|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_parkLeftStatus : 54|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_parkRightStatus : 56|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_seeYouHomeLightingReq : 26|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCFRONT_sideMarkersStatus : 44|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_sideRepeaterLeftStatus : 46|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_sideRepeaterRightStatus : 48|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_simLatchingStalk : 59|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_switchLightingBrightness : 16|8@1+ (0.5,0) [0|127] "%"  Receiver
+   --   SG_ VCFRONT_turnSignalLeftStatus : 50|2@1+ (1,0) [0|3] ""  Receiver
+   --   SG_ VCFRONT_turnSignalRightStatus : 52|2@1+ (1,0) [0|3] ""  Receiver
+   procedure On_Lighting (F : CAN_Frame) is
+      Raw_TurnSignalLeftStatus : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 50, Length => 2);
+
+      Raw_TurnSignalRightStatus : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 52, Length => 2);
+   begin
+      if Raw_TurnSignalLeftStatus = 1 then
+         Left_Turn_Signal := True;
+      else
+         Left_Turn_Signal := False;
+      end if;
+
+      if Raw_TurnSignalRightStatus = 1 then
+         Right_Turn_Signal := True;
+      else
+         Right_Turn_Signal := False;
+      end if;
+   end On_Lighting;
+
+   --  BO_ 1029 ID405VIN: 8 VehicleBus
+   --   SG_ VINB405 m17 : 8|56@1+ (1,0) [0|7.20576E+016] ""  Receiver
+   --   SG_ VINC405 m18 : 8|56@1+ (1,0) [0|7.20576E+016] ""  Receiver
+   --   SG_ VINA405 m16 : 8|56@1+ (1,0) [0|7.20576E+016] ""  Receiver
+   --   SG_ mux405 M : 0|8@1+ (1,0) [0|255] ""  Receiver
+   procedure On_VIN (F : CAN_Frame) is
+      Mux : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 8);
+   begin
+      case Mux is
+         -- VINA405: first 3 characters
+         when 16 =>
+            for I in 4 .. 6 loop
+               VIN_Number (I - 3) := Character'Val (Natural (F.Data (2 + I)));
+            end loop;
+
+            -- VINB405: middle 7 characters
+         when 17 =>
+            for I in 1 .. 7 loop
+               VIN_Number (3 + I) := Character'Val (Natural (F.Data (1 + I)));
+            end loop;
+
+            -- VINC405: last 7 characters
+         when 18 =>
+            for I in 1 .. 7 loop
+               VIN_Number (10 + I) := Character'Val (Natural (F.Data (1 + I)));
+            end loop;
+
+         when others =>
+            null;
+
+      end case;
+   end On_VIN;
+
 end CAN_Handler;
