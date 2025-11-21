@@ -31,6 +31,8 @@ procedure bxcan is
    Next_Release        : Time                := Clock;
    Last_Steering_Angle : Long_Float := CAN_Handler.Steering_Angle_Degrees;
 begin
+   Cortex_M.Cache.Disable_D_Cache;
+
    -- Stuff for LCD initialization
    Clear_Screen;
    Set_Font (Font8x8);
