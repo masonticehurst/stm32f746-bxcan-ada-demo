@@ -541,4 +541,104 @@ package body STM32.CAN is
       return Ok;
    end Transmit;
 
+   procedure Configure_Filter
+     (This : aliased in out CAN_Port'Class; Filter : CAN_Filter_Config)
+   is
+      Bank_Index : constant Natural := Natural (Filter.Bank);
+      -- Compute bank bit in UInt32 (where Shift_Left overload exists),
+      --  then convert to UInt28 for the FS1R/FM1R/FFA1R/FA1R .Val fields.
+      Bank_Bit_32 : constant UInt32 := Shift_Left (UInt32 (1), Bank_Index);
+      Bank_Bit : constant HAL.UInt28 := HAL.UInt28 (Bank_Bit_32);
+
+      type Filter_Reg_Array is
+        array (Natural range <>) of aliased F0R_Register;
+
+      Filter_Regs : Filter_Reg_Array (0 .. 2 * 28 - 1) with
+        Import, Address => Periph.F0R1'Address;
+
+      FR1_Idx : constant Natural := 2 * Bank_Index;
+      FR2_Idx : constant Natural := 2 * Bank_Index + 1;
+
+      function Std_Id_To_Reg (Id : CAN_Standard_ID) return UInt32 is
+      begin
+         -- 11-bit ID -> bits [31:21], IDE/RTR = 0
+         return Shift_Left (UInt32 (Id), 21);
+      end Std_Id_To_Reg;
+
+      function Ext_Id_To_Reg (Id : CAN_Extended_ID) return UInt32 is
+      begin
+         -- 29-bit ID -> bits [31:3], IDE/RTR = 0
+         return Shift_Left (UInt32 (Id), 3);
+      end Ext_Id_To_Reg;
+
+   begin
+      Periph.FMR.FINIT     := True;
+      Periph.FA1R.FACT.Val := Periph.FA1R.FACT.Val and not Bank_Bit;
+
+      if Filter.Use_32_Bit then
+         -- 1 = 32-bit scale
+         Periph.FS1R.FSC.Val := Periph.FS1R.FSC.Val or Bank_Bit;
+      else
+         -- 0 = dual 16-bit scale
+         Periph.FS1R.FSC.Val := Periph.FS1R.FSC.Val and not Bank_Bit;
+      end if;
+
+      case Filter.Mode is
+         when Mask =>
+            Periph.FM1R.FBM.Val :=
+              Periph.FM1R.FBM.Val and not Bank_Bit;  -- mask mode
+         when List =>
+            Periph.FM1R.FBM.Val :=
+              Periph.FM1R.FBM.Val or Bank_Bit;       -- list mode
+      end case;
+
+      if Filter.FIFO = 0 then
+         Periph.FFA1R.FFA.Val :=
+           Periph.FFA1R.FFA.Val and not Bank_Bit;    -- FIFO0
+      else
+         Periph.FFA1R.FFA.Val :=
+           Periph.FFA1R.FFA.Val or Bank_Bit;         -- FIFO1
+      end if;
+
+      declare
+         Id1_Reg   : UInt32 := Filter.Id1;
+         Id2_Reg   : UInt32 := Filter.Id2;
+         Mask1_Reg : UInt32 := Filter.Mask1;
+         Mask2_Reg : UInt32 := Filter.Mask2;
+      begin
+         -- Encode IDs / masks in bxCAN filter format
+         if Filter.ID_Type = Standard then
+            Id1_Reg   := Std_Id_To_Reg (CAN_Standard_ID (Filter.Id1));
+            Id2_Reg   := Std_Id_To_Reg (CAN_Standard_ID (Filter.Id2));
+            Mask1_Reg := Std_Id_To_Reg (CAN_Standard_ID (Filter.Mask1));
+            Mask2_Reg := Std_Id_To_Reg (CAN_Standard_ID (Filter.Mask2));
+         else
+            Id1_Reg   := Ext_Id_To_Reg (CAN_Extended_ID (Filter.Id1));
+            Id2_Reg   := Ext_Id_To_Reg (CAN_Extended_ID (Filter.Id2));
+            Mask1_Reg := Ext_Id_To_Reg (CAN_Extended_ID (Filter.Mask1));
+            Mask2_Reg := Ext_Id_To_Reg (CAN_Extended_ID (Filter.Mask2));
+         end if;
+
+         if Filter.Use_32_Bit then
+            -- 32-bit scale: FR1/FR2 are full 32-bit registers
+            Filter_Regs (FR1_Idx).Val := HAL.UInt32 (Id1_Reg);
+
+            if Filter.Mode = Mask then
+               -- Mask mode: FR1 = Id1, FR2 = Mask1
+               Filter_Regs (FR2_Idx).Val := HAL.UInt32 (Mask1_Reg);
+            else
+               -- List mode: FR1 = Id1, FR2 = Id2
+               Filter_Regs (FR2_Idx).Val := HAL.UInt32 (Id2_Reg);
+            end if;
+         else
+            -- Dual 16-bit scale (not implemented here)
+            null;
+         end if;
+      end;
+
+      Periph.FA1R.FACT.Val := Periph.FA1R.FACT.Val or Bank_Bit;
+
+      Periph.FMR.FINIT := False;
+   end Configure_Filter;
+
 end STM32.CAN;

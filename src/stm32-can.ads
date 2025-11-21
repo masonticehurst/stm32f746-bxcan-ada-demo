@@ -26,7 +26,21 @@ package STM32.CAN is
 
    type CAN_Status is
      (Ok, No_Mailbox, No_Message, Transmission_Error, Arbitration_Loss);
+
    type CAN_Filter_Type is (Mask, List);
+   type CAN_Filter_Bank is range 0 .. 27;
+
+   type CAN_Filter_Config is record
+      Bank       : CAN_Filter_Bank;
+      FIFO       : Natural range 0 .. 1 := 0;
+      Mode       : CAN_Filter_Type;
+      ID_Type    : CAN_ID_Type;
+      Id1        : UInt32;
+      Id2        : UInt32               := 0;
+      Mask1      : UInt32               := 0;
+      Mask2      : UInt32               := 0;
+      Use_32_Bit : Boolean := True;
+   end record;
 
    --  11-bit and 29-bit ID subtypes
    subtype CAN_Standard_ID is HAL.UInt11;
@@ -48,6 +62,7 @@ package STM32.CAN is
    end record;
 
    type CAN_Frame_Buffer is array (Natural range <>) of CAN_Frame;
+   type CAN_Callback is access procedure (Frame : CAN_Frame);
 
    type Handler_Key (Kind : CAN_ID_Type := Standard) is record
       case Kind is
@@ -58,27 +73,12 @@ package STM32.CAN is
       end case;
    end record;
 
-   type CAN_Callback is access procedure (Frame : CAN_Frame);
-
    function "=" (L, R : Handler_Key) return Boolean;
    function Hash (K : Handler_Key) return Ada.Containers.Hash_Type;
 
    package Handler_Map is new Ada.Containers.Hashed_Maps
      (Key_Type => Handler_Key, Element_Type => CAN_Callback, Hash => Hash,
       Equivalent_Keys => "=");
-
-   procedure Reset (This : aliased in out CAN_Port'Class);
-
-   procedure Initialize
-     (This : aliased in out CAN_Port'Class; Speed : CAN_Speed);
-
-   function Transmit
-     (This : aliased in out CAN_Port'Class; Frame : CAN_Frame)
-      return CAN_Status;
-
-   function Receive
-     (This : aliased in out CAN_Port'Class; Frame : out CAN_Frame)
-      return CAN_Status;
 
    type Handler_Entry (ID_Type : CAN_ID_Type := Standard) is record
       CB : CAN_Callback;
@@ -90,6 +90,22 @@ package STM32.CAN is
       end case;
    end record;
 
+   procedure Reset (This : aliased in out CAN_Port'Class);
+
+   procedure Initialize
+     (This : aliased in out CAN_Port'Class; Speed : CAN_Speed);
+
+   procedure Configure_Filter
+     (This : aliased in out CAN_Port'Class; Filter : CAN_Filter_Config);
+
+   function Transmit
+     (This : aliased in out CAN_Port'Class; Frame : CAN_Frame)
+      return CAN_Status;
+
+   function Receive
+     (This : aliased in out CAN_Port'Class; Frame : out CAN_Frame)
+      return CAN_Status;
+
    task CAN_Dispatcher;
 
    protected Receiver is
@@ -100,10 +116,10 @@ package STM32.CAN is
 
       procedure Get_Next_Frame (F : out CAN_Frame; Has_Frame : out Boolean);
 
-      -- New: used by dispatcher task to wait until at least one frame is queued
+      -- Used by dispatcher task to wait until at least one frame is queued
       entry Wait_For_Frame;
 
-      -- New: resolve a frame to a callback (if any)
+      -- Resolve a frame to a callback (if any)
       procedure Get_Callback
         (Frame : in CAN_Frame; Found : out Boolean; CB : out CAN_Callback);
    private
@@ -115,7 +131,7 @@ package STM32.CAN is
       pragma Attach_Handler
         (Interrupt_Handler, Ada.Interrupts.Names.CAN1_RX1_Interrupt);
 
-      Buffer         : CAN_Frame_Buffer (0 .. 15);
+      Buffer         : CAN_Frame_Buffer (0 .. 31);
       Head           : Natural := 0;
       Tail           : Natural := 0;
       Count_Received : Natural := 0;
