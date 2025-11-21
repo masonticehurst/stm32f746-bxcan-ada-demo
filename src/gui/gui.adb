@@ -266,7 +266,6 @@ package body GUI is
    procedure Put (X, Y : Natural; Msg : Character) is
    begin
       Draw_Char (X, Y, Msg);
-      Display.Update_Layer (1, True);
    end Put;
 
    ---------
@@ -282,8 +281,6 @@ package body GUI is
          Draw_Char (Next_X, Y, C);
          Count := Count + 1;
       end loop;
-
-      Display.Update_Layer (1, True);
    end Put;
 
    procedure Draw_Rectangle
