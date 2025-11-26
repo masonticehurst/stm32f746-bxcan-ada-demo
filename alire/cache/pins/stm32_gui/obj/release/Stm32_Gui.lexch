@@ -1,0 +1,13 @@
+[LIBRARY PATH]
+/home/dev/Projects/bxcan/alire/cache/pins/stm32_gui/lib/libStm32_Gui.a
+[OBJECT FILES]
+/home/dev/Projects/bxcan/alire/cache/pins/stm32_gui/obj/release/bitmapped_drawing.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/stm32_gui/obj/release/bmp_fonts.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/stm32_gui/obj/release/hershey_fonts-futural.o
+20251121163652
+/home/dev/Projects/bxcan/alire/cache/pins/stm32_gui/obj/release/hershey_fonts.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/stm32_gui/obj/release/stm32_gui_config.o
+20251121163652

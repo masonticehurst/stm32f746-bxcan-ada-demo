@@ -1,0 +1,46 @@
+name = "stm32_hal"
+description = "stm32 : devices, drivers, svd"
+version = "0.1.0"
+licenses = "BSD-3-Clause"
+
+authors = ["AdaCore"]
+maintainers = ["Olivier Henley <olivier.henley@gmail.com>"]
+maintainers-logins = ["ohenley"]
+website="https://github.com/GNAT-Academic-Program/stm32_hal"
+tags = ["embedded", "stm32", "devices", "drivers", "svd"]
+
+[[depends-on]]
+cortex_m = "0.5.0"
+adl_middleware = "0.4.0-dev"
+#hal = "0.3.0"
+
+[configuration]
+auto_gpr_with = true
+disabled = false
+generate_ada = true
+generate_c = true
+generate_gpr = true
+output_dir = "config"
+
+[configuration.variables]
+[configuration.variables.device]
+default = "stm32f746"
+type = "Enum"
+values = [
+    "stm32f746",
+    "stm32f429",
+    "stm32f407xx",
+]
+
+[build-switches]
+"*".style_checks = "no"
+"*".optimization = ["-O0", "-g"]
+
+[configuration.values]
+#cortex_m.core = "m4f"
+cortex_m.core = "m7f"
+
+[[pins]]
+gnat_arm_elf = { version='15.2.1' }
+hal = { url="https://github.com/Fabien-Chouteau/hal.git", branch="release/0.4" }
+adl_middleware = { url='https://github.com/Fabien-Chouteau/adl-middleware' }

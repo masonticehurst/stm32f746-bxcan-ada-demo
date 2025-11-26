@@ -1,0 +1,38 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sdmmc_svd%s		sdmmc_svd.ads		aaabd7ac NE OO PR IU
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.sdmmc%s	stm32_svd-sdmmc.ads	stm32_svd-sdmmc.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D sdmmc_svd.ads		20251114185305 4f22cf9b sdmmc_svd%s
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-sdmmc.ads	20251114185427 e5891837 stm32_svd.sdmmc%s
+D system.ads		20250828113339 00104290 system%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+G a e
+X 3 sdmmc_svd.ads
+37K9*SDMMC_SVD=37:37
+X 4 stm32_svd.ads
+10K9*STM32_SVD 3|32r6 37r27 4|196e14
+X 5 stm32_svd-sdmmc.ads
+10K19*SDMMC 3|32w16 37r37 5|634e20
+

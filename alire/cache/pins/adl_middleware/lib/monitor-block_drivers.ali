@@ -1,0 +1,173 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF SS ZX
+
+RN
+RV NO_ACCESS_SUBPROGRAMS
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U monitor.block_drivers%b  monitor-block_drivers.adb  53afb0b4 OO PK
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hex_dump%s		hex_dump.adb		hex_dump.ali
+W monitor%s		monitor.ads		monitor.ali
+Z system.img_lli%s	s-imglli.ads		s-imglli.ali
+Z system.img_llu%s	s-imgllu.ads		s-imgllu.ali
+Z system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+
+U monitor.block_drivers%s  monitor-block_drivers.ads  b8654afc EE OO PF PK
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W hal.block_drivers%s	hal-block_drivers.ads	hal-block_drivers.ali
+W monitor%s		monitor.ads		monitor.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-block_drivers.ads	20251114185538 b52a3c11 hal.block_drivers%s
+D hex_dump.ads		20250929021426 bcf26d97 hex_dump%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D monitor.ads		20250929021426 bf804365 monitor%s
+D monitor-block_drivers.ads  20250929021426 998dfd86 monitor.block_drivers%s
+D monitor-block_drivers.adb  20250929021426 76d020a5 monitor.block_drivers%b
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-imagei.ads		20250828113339 5e131ce0 system.image_i%s
+D s-imageu.ads		20250828113339 b0b50650 system.image_u%s
+D s-imglli.ads		20250828113339 d88f4f3b system.img_lli%s
+D s-imgllu.ads		20250828113339 55ba53d8 system.img_llu%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-retsta.ads		20250828113339 0f6b06cb system.return_stack%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20250828113339 516607ae system.stream_attributes%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+D s-valspe.ads		20250828113339 f810d31c system.val_spec%s
+D s-vaispe.ads		20250828113339 8280550e system.value_i_spec%s
+D s-vaispe.adb		20250828113339 dbcabb05 system.value_i_spec%b
+D s-vauspe.ads		20250828113339 89269ba5 system.value_u_spec%s
+D s-vauspe.adb		20250828113339 8524adb4 system.value_u_spec%b
+D s-vs_lli.ads		20250828113339 b945cf7d system.vs_lli%s
+D s-vs_llu.ads		20250828113339 8f3536c5 system.vs_llu%s
+G a e
+G c Z s b [read monitor__block_drivers 45 13 none]
+G c Z s b [write monitor__block_drivers 52 13 none]
+G c Z s b [enable monitor__block_drivers 58 14 none]
+G c Z s b [disable monitor__block_drivers 61 14 none]
+G c Z s s [block_driver_monitorDA monitor__block_drivers 66 9 none]
+G c Z s s [block_driver_monitorDF monitor__block_drivers 66 9 none]
+G c Z s s [block_driver_monitorIP monitor__block_drivers 66 9 none]
+G r c none [read monitor__block_drivers 45 13 none] [hex_dump hex_dump 38 14 none]
+G r c none [write monitor__block_drivers 52 13 none] [hex_dump hex_dump 38 14 none]
+X 10 hal.ads
+34K9*HAL 166e8 17|32w6 32r29 33r6 33r29
+53M9*UInt8<13|81M9>
+160M9*UInt64<13|95M9> 17|47r22 54r22 18|42r22 77r22
+162A9*UInt8_Array(53M9)<integer>
+X 11 hal-block_drivers.ads
+32K13*Block_Drivers 57e22 17|33w10 33r33
+35h9*Block_Driver 17|42r11 69r11
+36P9*Any_Block_Driver(35R9) 17|40r42 67r42
+38A12*Block{10|162A9}<integer> 17|48r26 55r22 18|43r26 78r22
+43y13*Read{boolean} 18|53R43
+50y13*Write{boolean} 18|88R43
+X 12 hex_dump.ads
+34K9*Hex_Dump 42e13 18|32w6 59r13 98r10
+38U14*Hex_Dump 18|59s22 98s19
+40m24 Base_Addr{10|160M9} 18|61r32 100r29
+X 13 interfac.ads
+81M9*Unsigned_8
+95M9*Unsigned_64
+X 16 monitor.ads
+32K9*Monitor 34e12 17|35r9 72r5 18|34r14 123r5
+X 17 monitor-block_drivers.ads
+35K17*Block_Drivers 16|32k9 17|66E9 72l13 72e26 18|34b22 123l13 123t26
+37P9*Put_Line_Procedure 37>49 41r42 68r42
+37a49 Str{string}
+39R9*Block_Driver_Monitor<11|35R9> 40d7 41d7 45P13 46r29 52P13 53r29 58p14
+. 58r36 61p14 61r37 66c9 71e14 18|41r29 76r29 109r36 118r37
+40p7*Driver_Under_Monitoring{11|36P9} 67r7 18|53r19 88r19
+41p7*Put_Line{37P9} 68r7 18|49r15 57r18 60r37 63r18 84r15 92r18 95r18 99r34
+45V13*Read{boolean}<11|43p13> 46=7 47>7 48<7 18|40b24 69l8 69t12
+46r7 This{39R9} 18|41b7 48r10 49r10 53r14 55r10 57r13 60r32 63r13
+47m7 Block_Number{10|160M9} 18|42b7 50r27 53r49 58r30 61r45 64r30
+48a7 Data{11|38A12} 18|43b7 50r57 53m63 53r63 59r32
+52V13*Write{boolean}<11|50p13> 53=7 54>7 55>7 18|75b24 103l8 103t13
+53r7 This{39R9} 18|76b7 83r10 84r10 88r14 90r10 92r13 95r13 99r29
+54m7 Block_Number{10|160M9} 18|77b7 85r27 88r50 93r30 96r30 100r42
+55a7 Data{11|38A12} 18|78b7 85r57 88r64 98r29
+58U14*Enable 58=22 18|109b14 112l8 112t14
+58r22 This{39R9} 18|109b22 111m7
+61U14*Disable 61=23 18|118b14 121l8 121t15
+61r23 This{39R9} 18|118b23 120m7
+70b7 Enabled{boolean} 18|48r15 55r15 83r15 90r15 111m12 120m12
+X 18 monitor-block_drivers.adb
+46b7 Ret{boolean} 53m7 56r13 68r14
+81b7 Ret{boolean} 88m7 91r13 102r14
+X 43 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 51 s-taskin.ads
+398V13*Get_Sec_Stack{43|102P9} 399i<c,__gnat_get_secondary_stack>22
+

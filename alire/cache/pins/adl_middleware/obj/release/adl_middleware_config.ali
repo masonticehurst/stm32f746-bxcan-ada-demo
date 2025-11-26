@@ -1,0 +1,48 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_ELABORATION_CODE
+
+U adl_middleware_config%s  adl_middleware_config.ads  d1d6f650 NE OO PU PK
+
+D adl_middleware_config.ads  20251121163515 d1d6f650 adl_middleware_config%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+X 1 adl_middleware_config.ads
+5K9*Adl_Middleware_Config 32l5 32e26
+8a4*Crate_Version{string}
+9a4*Crate_Name{string}
+11a4*Alire_Host_OS{string}
+13a4*Alire_Host_Arch{string}
+15a4*Alire_Host_Distro{string}
+17E9*Build_Profile_Kind 17e65 18r29
+17n32*release{17E9} 18r51
+17n41*validation{17E9}
+17n53*development{17E9}
+18e4*Build_Profile{17E9}
+20N4*Max_Mount_Points_First
+21N4*Max_Mount_Points_Last
+22N4*Max_Mount_Points
+24N4*Max_Path_Length_First
+25N4*Max_Path_Length_Last
+26N4*Max_Path_Length
+28N4*Max_Mount_Name_Length_First
+29N4*Max_Mount_Name_Length_Last
+30N4*Max_Mount_Name_Length
+

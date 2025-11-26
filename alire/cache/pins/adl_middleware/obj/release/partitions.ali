@@ -1,0 +1,188 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCHING_CALLS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U partitions%b		partitions.adb		23ecab5f NE OO PK
+Z ada.tags%s		a-tags.adb		a-tags.ali
+
+U partitions%s		partitions.ads		13f7746c EE NE OO PK
+W hal%s			hal.ads			hal.ali
+W hal.block_drivers%s	hal-block_drivers.ads	hal-block_drivers.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-block_drivers.ads	20251114185538 b52a3c11 hal.block_drivers%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D partitions.ads	20251114185412 8d9f8073 partitions%s
+D partitions.adb	20251114185412 ae732b2c partitions%b
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [get_partition_entry partitions 71 13 none]
+G c Z s b [number_of_partitions partitions 76 13 none]
+G c Z s s [is_valid partitions 78 13 none]
+G c Z s s [chs_addressIP partitions 54 9 none]
+G c Z s s [partition_entryIP partitions 60 9 none]
+G c Z b b [read_entry_in_mbr partitions 41 14 none]
+G c Z b b [number_of_logical_partitions partitions 46 13 none]
+G c Z b b [get_logical_partition_entry partitions 50 13 none]
+G c Z b b [partition_entry_block_mappingIP partitions 34 9 none]
+X 10 hal.ads
+34K9*HAL 166e8 15|32w6 32r15 33r6 33r29
+47M9*UInt6 15|57r11
+53M9*UInt8<12|81M9> 15|37r31 56r11 61r27
+54M9*UInt10 15|55r11
+97M9*UInt32<12|92M9> 15|52r37 66r27
+160M9*UInt64<12|95M9> 16|91r28 125r28
+162A9*UInt8_Array(53M9)<integer>
+X 11 hal-block_drivers.ads
+32K13*Block_Drivers 57e22 15|33w10 33r33
+35h9*Block_Driver
+36P9*Any_Block_Driver(35R9) 15|71r58 76r42 16|46r66 50r66 81r66 114r66 155r58
+. 205r42
+38A12*Block{10|162A9}<integer> 16|36r30 41r43 61r43 85r19 121r17 160r21 206r19
+43y13*Read{boolean} 16|91R22 125R22 164R19 210R19
+X 12 interfac.ads
+81M9*Unsigned_8
+92M9*Unsigned_32
+95M9*Unsigned_64
+X 15 partitions.ads
+35K9*Partitions 80l5 80e15 16|32b14 234l5 234t15
+37M9*Partition_Kind<10|53M9> 39r37 40r37 41r37 42r37 43r37 44r37 45r37 46r37
+. 47r37 48r37 49r37 50r37 63r27
+39m4*Empty_Partition{37M9}
+40m4*Fat12_Parition{37M9}
+41m4*Fat16_Parition{37M9}
+42m4*Extended_Parition{37M9} 16|181r34 225r28
+43m4*Fat16B_Parition{37M9}
+44m4*NTFS_Partition{37M9}
+45m4*Fat32_CHS_Parition{37M9}
+46m4*Fat32_LBA_Parition{37M9}
+47m4*Fat16B_LBA_Parition{37M9}
+48m4*Extended_LBA_Parition{37M9}
+49m4*Linux_Swap_Partition{37M9}
+50m4*Linux_Partition{37M9}
+52M12*Logical_Block_Address{10|97M9} 65r27 16|47r57 51r57 82r57 87r19 115r57
+. 122r17 162r21
+54R9*CHS_Address 58e15 62r27 64r27
+55m7*C{10|54M9}
+56m7*H{10|53M9}
+57m7*S{10|47M9}
+60R9*Partition_Entry 67e15 73r53 78r33 16|37r34 43r47 54r61 63r47 88r19 118r61
+. 157r53 208r19
+61m7*Status{10|53M9} 79r15 79r47 16|70m18
+62r7*First_Sector_CHS{54R9}
+63m7*Kind{37M9} 16|181r27 225r21
+64r7*Last_Sector_CHS{54R9}
+65m7*First_Sector_LBA{52M12} 16|103r28 104r43 144r28 145r43 183r39 227r59
+66m7*Number_Of_Sectors{10|97M9}
+69E9*Status_Code 69e65 74r41 16|55r49 119r49 158r41
+69n25*Status_Ok{69E9} 16|138r23 180r23 190r59 192r26
+69n36*Disk_Error{69E9} 16|165r17 169r17
+69n48*Invalid_Parition{69E9} 16|129r20 148r14 198r14
+71V13*Get_Partition_Entry{69E9} 71>34 72>34 73<34 16|155b13 199l8 199t27
+71p34 Disk{11|36P9} 16|155b34 164r14 186r48
+72i34 Entry_Number{positive} 16|156b34 179r28 188r48
+73r34 P_Entry{60R9} 16|157b34 173m43 175r23 181r19 183r31 190m48 190r48
+76V13*Number_Of_Partitions{natural} 76>35 16|205b13 232l8 232t28
+76p35 Disk{11|36P9} 16|205b35 210r14 227r45
+78V13*Is_Valid{boolean} 78b13 78>23 16|97s13 134s13 175s13 221s13
+78r23 P_Entry{60R9} 79r7 79r39
+X 16 partitions.adb
+34R9 Partition_Entry_Block_Mapping 34d40 39e15 65r26
+34b40*Kind{boolean} 35r12
+36a23*Data{10|162A9} 73m24
+37r24*P_Entry{15|60R9} 74r35
+41U14 Read_Entry_In_MBR 41>33 42>33 43<33 61b14 75l8 75t25 95s10 101s10 132s10
+. 142s10 173s10 219s10
+41a33 MBR{11|38A12} 61b33 66r46 69r10 73r32
+42i33 Index{integer} 44r18 62b33 66r64
+43r33 P_Entry{15|60R9} 63b33 70m10 74m7
+46V13 Number_Of_Logical_Partitions{natural} 46>43 47>43 81b13 108l8 108t36
+. 227s15
+46p43 Disk{11|36P9} 81b43 91r17
+47m43 EBR_Address{15|52M12} 82b43 87r44 104r21
+50V13 Get_Logical_Partition_Entry{15|69E9} 50>42 51>42 52>42 53=42 54<42
+. 114b13 149l8 149t35 186s19
+50p42 Disk{11|36P9} 114b42 125r17
+51m42 EBR_Address{15|52M12} 115b42 122r42 145r21
+52i42 Entry_Number{positive} 116b42 137r28
+53i42 Entry_Cnt{natural} 117b42 135m13 135r26 137r16
+54r42 P_Entry{15|60R9} 118b42 132m37 134r23 142m37 144r20 145r35
+65r7 Entry_Block_Conv{34R9} 73m7 74r18
+66i7 First{integer} 67r46 73r37
+67i7 Last{integer} 73r46
+85a7 EBR{11|38A12} 91m46 91r46 91r59 95r29 101r29
+86i7 Entry_Cnt{natural} 92r20 98m13 98r26 107r14
+87m7 Address{15|52M12} 91r36 104m10
+88r7 P_Entry{15|60R9} 95m37 97r23 101m37 103r20 104r35
+121a7 EBR{11|38A12} 125m46 125r46 127r14 132r29 142r29
+122m7 Address{15|52M12} 125r36 145m10
+160a7 MBR{11|38A12} 164m28 164r28 168r10 173r29
+161i7 Entry_Cnt{natural} 176m13 176r26 179r16 189m48 189r48
+162m7 EBR_Address{15|52M12} 183m16 187r48
+172i11 P_Index{integer} 173r34
+206a7 MBR{11|38A12} 210m28 210r28 214r10 219r29
+207i7 Entry_Cnt{natural} 222m13 222r26 226m13 226r26 231r14
+208r7 P_Entry{15|60R9} 219m43 221r23 225r13 227r51
+218i11 P_Index{integer} 219r34
+X 36 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 43 s-taskin.ads
+398V13*Get_Sec_Stack{36|102P9} 399i<c,__gnat_get_secondary_stack>22
+

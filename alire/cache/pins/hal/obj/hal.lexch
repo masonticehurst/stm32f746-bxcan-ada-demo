@@ -1,0 +1,35 @@
+[LIBRARY PATH]
+/home/dev/Projects/bxcan/alire/cache/pins/hal/lib/libhal.a
+[OBJECT FILES]
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-audio.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-bitmap.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-block_drivers.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-dsi.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-filesystem.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-flash.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-framebuffer.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-gpio.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-i2c.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-real_time_clock.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-sdmmc.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-spi.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-time.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-touch_panel.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal-uart.o
+20251121163653
+/home/dev/Projects/bxcan/alire/cache/pins/hal/obj/hal.o
+20251121163652

@@ -1,0 +1,27 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U monitor%s		monitor.ads		bf804365 NE OO PK
+
+D monitor.ads		20250929021426 bf804365 monitor%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+X 1 monitor.ads
+32K9*Monitor 34l5 34e12
+

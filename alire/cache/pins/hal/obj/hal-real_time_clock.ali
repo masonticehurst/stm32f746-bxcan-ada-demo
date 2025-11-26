@@ -1,0 +1,139 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U hal.real_time_clock%s	hal-real_time_clock.ads	f87e2806 EE OO PF PR PK IU
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-real_time_clock.ads  20251114185538 d33ce008 hal.real_time_clock%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [rtc_timeIP hal__real_time_clock 39 9 none]
+G c Z s s [rtc_dateIP hal__real_time_clock 52 9 none]
+X 10 hal.ads
+34K9*HAL 166e8 11|32r9 93r30 97r30 100r5
+X 11 hal-real_time_clock.ads
+32K13*Real_Time_Clock 10|34k9 11|93r34 97r34 100l9 100e24
+35M9*RTC_Hour 40r14
+36M9*RTC_Minute 41r14
+37M9*RTC_Second 42r14
+39R9*RTC_Time 43e14 84r26 88r30 93r50
+40m7*Hour{35M9}
+41m7*Min{36M9}
+42m7*Sec{37M9}
+45E9*RTC_Month 46e62 55r21 67r8
+45n23*January{45E9} 67r23
+45n32*February{45E9} 68r23
+45n42*March{45E9} 69r23
+45n49*April{45E9} 70r23
+45n56*May{45E9} 71r23
+45n61*June{45E9} 72r23
+45n67*July{45E9} 73r23
+45n73*August{45E9} 74r23
+46n23*September{45E9} 75r23
+46n34*October{45E9} 76r23
+46n43*November{45E9} 77r23
+46n53*December{45E9} 78r23
+47E9*RTC_Day_Of_Week 48e46 53r21 59r8
+47n29*Monday{47E9} 59r29
+47n37*Tuesday{47E9} 60r29
+47n46*Wednesday{47E9} 61r29
+47n57*Thursday{47E9} 62r29
+47n67*Friday{47E9} 63r29
+48n29*Saturday{47E9} 64r29
+48n39*Sunday{47E9} 65r29
+49I9*RTC_Day<short_short_integer> 54r21
+50I9*RTC_Year<short_short_integer> 56r21
+52R9*RTC_Date 57e14 85r26 89r30 97r50
+53e7*Day_Of_Week{47E9}
+54i7*Day{49I9}
+55e7*Month{45E9}
+56i7*Year{50I9}
+80h9*RTC_Device 81r38 83p14 83r33 87p14 87r33 92p13 92r30 96p13 96r30
+81P9*Any_RTC_Device(80R9)
+83x14*Set 83=19 84>19 85>19
+83r19 This{80R9}
+84r19 Time{39R9}
+85r19 Date{52R9}
+87x14*Get 87=19 88<19 89<19
+87r19 This{80R9}
+88r19 Time{39R9}
+89r19 Date{52R9}
+92y13*Get_Time{39R9} 92>23
+92r23 This{80R9}
+96y13*Get_Date{52R9} 96>23
+96r23 This{80R9}
+X 34 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 41 s-taskin.ads
+398V13*Get_Sec_Stack{34|102P9} 399i<c,__gnat_get_secondary_stack>22
+

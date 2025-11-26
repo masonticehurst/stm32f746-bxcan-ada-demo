@@ -1,0 +1,197 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DELAY
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U stm32.sdram%b		stm32-sdram.adb		a68d0697 NE OO PK IU
+W ada%s			ada.ads			ada.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+Z ada.real_time.delays%s  a-retide.adb		a-retide.ali
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.rcc%s	stm32_svd-rcc.ads	stm32_svd-rcc.ali
+Z system%s		system.ads		system.ali
+
+U stm32.sdram%s		stm32-sdram.ads		d076dc2d EE NE OO PK IU
+W stm32%s		stm32.ads		stm32.ali
+W stm32.fmc%s		stm32-fmc.adb		stm32-fmc.ali
+W system%s		system.ads		system.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-reatim.ads		20250828113339 cfe92427 ada.real_time%s
+D a-retide.ads		20250828113339 081cdaa4 ada.real_time.delays%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D stm32.ads		20251114185847 698e2c3b stm32%s
+D stm32-fmc.ads		20251114185853 cbc3a468 stm32.fmc%s
+D stm32-sdram.ads	20251114185711 722b16ee stm32.sdram%s
+D stm32-sdram.adb	20251114185711 afb22457 stm32.sdram%b
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-rcc.ads	20251114185427 b4fd1009 stm32_svd.rcc%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [initialize stm32__sdram 37 13 none]
+G c Z s b [base_address stm32__sdram 49 12 none]
+G c Z s b [reserve stm32__sdram 51 12 none]
+G c Z b b [sdram_initsequence stm32__sdram 72 14 none]
+G r c none [initialize stm32__sdram 37 13 none] [fmc_sdram_init stm32__fmc 179 14 none]
+G r c none [initialize stm32__sdram 37 13 none] [fmc_sdram_busy stm32__fmc 241 13 none]
+G r c none [initialize stm32__sdram 37 13 none] [fmc_sdram_cmd stm32__fmc 239 14 none]
+G r c none [initialize stm32__sdram 37 13 none] [fmc_set_refresh_count stm32__fmc 246 14 none]
+G r c none [sdram_initsequence stm32__sdram 72 14 none] [fmc_sdram_busy stm32__fmc 241 13 none]
+G r c none [sdram_initsequence stm32__sdram 72 14 none] [fmc_sdram_cmd stm32__fmc 239 14 none]
+G r c none [sdram_initsequence stm32__sdram 72 14 none] [fmc_set_refresh_count stm32__fmc 246 14 none]
+X 1 ada.ads
+18K9*Ada 22e8 11|32r6 32r27
+X 2 a-reatim.ads
+52K13*Real_Time 193e18 11|32w10 32r31
+62M9*Time<24|46M9>
+72I9*Time_Span<24|81I9>
+79V13*Clock{62M9}<24|134p13> 11|90s19
+83V14*"+"{62M9} 11|90s25
+139V13*Milliseconds{72I9} 11|90s27
+X 4 hal.ads
+97M9*UInt32<5|92M9> 10|38r29 38r50 41r29 42r29 52r14 52r30 11|44r18 74r54
+. 140r35 141r39 144r46 145r50 154r34 156r34 157r25 245r16 246r16 250r22
+X 5 interfac.ads
+92M9*Unsigned_32
+X 8 stm32.ads
+39K9*STM32 48e10 10|33r6 33r21 35r9 55r5 11|41r14 264r5
+X 9 stm32-fmc.ads
+42K15*FMC 249e14 10|33w12 33r27
+44E9*FMC_SDRAM_Cmd_Target_Bank 48e6 10|39r29 11|72r47 142r39
+46n7*FMC_Bank1_SDRAM{44E9} 11|222r29 223r29
+65E9*FMC_SDRAM_Row_Address_Bits 69e6 10|43r29 11|146r43
+72n7*FMC_ColumnBits_Number_8b{71E9} 11|209r32
+78E9*FMC_SDRAM_Memory_Bus_Width 82e6 10|44r29 11|147r44
+86n7*FMC_InternalBank_Number_4{84E9} 11|212r32
+89E9*FMC_SDRAM_CAS_Latency 93e6 10|40r29 11|73r54 143r46
+90n7*FMC_CAS_Latency_1{89E9} 11|110r15
+91n7*FMC_CAS_Latency_2{89E9} 11|110r35
+92n7*FMC_CAS_Latency_3{89E9} 11|112r15
+100n7*FMC_Write_Protection_Disable{99E9} 11|214r32
+104E9*FMC_SDRAM_Clock_Configuration 108e6 10|45r29 11|148r47
+114E9*FMC_SDRAM_Burst_Read 117e6 10|46r29 11|149r45
+119E9*FMC_SDRAM_Read_Pipe_Delay 123e6 10|47r29 11|150r44
+127n7*FMC_Command_Mode_CLK_Enabled{125E9} 11|83r21
+128n7*FMC_Command_Mode_PALL{125E9} 11|93r21
+129n7*FMC_Command_Mode_AutoRefresh{125E9} 11|101r34
+130n7*FMC_Command_Mode_LoadMode{125E9} 11|117r28
+153I9*FMC_SDRAM_Timing<short_short_integer> 11|194r34 200r34
+155R9*FMC_SDRAM_TimingInit_Config 163e14 11|152r25
+156i7*LoadToActiveDelay{153I9} 11|191m10
+157i7*ExitSelfRefreshDelay{153I9} 11|194m10
+158i7*SelfRefreshTime{153I9} 11|197m10
+159i7*RowCycleDelay{153I9} 11|200m10
+160i7*WriteRecoveryTime{153I9} 11|203m10
+161i7*RPDelay{153I9} 11|204m10
+162i7*RCDDelay{153I9} 11|205m10
+165R9*FMC_SDRAM_Init_Config 177e14 11|153r25
+166e7*Bank{54E12} 11|208m10 222r21 223m21
+167e7*ColumnBitsNumber{71E9} 11|209m10
+168e7*RowBitsNumber{65E9} 11|210m10
+169e7*SDMemoryDataWidth{78E9} 11|211m10
+170e7*InternalBankNumber{84E9} 11|212m10
+171e7*CASLatency{89E9} 11|213m10
+172e7*WriteProtection{99E9} 11|214m10
+173e7*SDClockPeriod{104E9} 11|215m10
+174e7*ReadBurst{114E9} 11|216m10
+175e7*ReadPipeDelay{119E9} 11|217m10
+176r7*Timing_Conf{155R9} 11|218m10
+179U14*FMC_SDRAM_Init 11|220s7 224s10
+186n7*SDRAM_Mode_Burst_Length_1{185E9} 11|120r13
+198n7*SDRAM_Mode_Burst_Sequential{197E9} 11|121r13
+202E9*SDRAM_Mode_CAS_Latency 205e6 11|76r13
+203n7*SDRAM_Mode_CAS_Latency_2{202E9} 11|111r20
+204n7*SDRAM_Mode_CAS_Latency_3{202E9} 11|113r20
+212n7*SDRAM_Mode_Writeburst_Mode_Single{210E9} 11|123r13
+227e24*Mode{125E9} 11|83m11 93m11 101m11 117m11
+228e7*Target{44E9} 11|84m11 94m11 102m11 118m11
+231i13*Auto_Refresh_Number{153I9} 11|103m11
+233r13*Mode_Register{214R9} 11|119m11
+239U14*FMC_SDRAM_Cmd 11|82s7 92s7 100s7 116s7
+241V13*FMC_SDRAM_Busy{boolean} 11|79s24 87s24 97s24 106s24 126s24 132s24
+246U14*FMC_Set_Refresh_Count 11|129s7
+X 10 stm32-sdram.ads
+35K15*SDRAM 8|39k9 10|55l11 55e16 11|41b20 264l11 264t16
+37U13*Initialize 38>5 38>37 39>5 40>5 41>5 42>5 43>5 44>5 45>5 46>5 47>5
+. 11|140b14 228l8 228t18
+38m5 Sysclk{4|97M9} 11|140b26 154r44
+38m37 SDRAM_Base{4|97M9} 11|141b26 166r22
+39e5 SDRAM_Bank{9|44E9} 11|142b26 208r32 227r27
+40e5 SDRAM_CAS_Latency{9|89E9} 11|143b26 213r32 227r39
+41m5 SDRAM_Refresh_Cnt{4|97M9} 11|144b26 227r58
+42m5 SDRAM_Min_Delay_In_ns{4|97M9} 11|145b26 186r10
+43e5 SDRAM_Row_Bits{9|65E9} 11|146b26 210r32
+44e5 SDRAM_Mem_Width{9|78E9} 11|147b26 211r32
+45e5 SDRAM_CLOCK_Period{9|104E9} 11|148b26 215r32
+46e5 SDRAM_Read_Burst{9|114E9} 11|149b26 216r32
+47e5 SDRAM_Read_Pipe{9|119E9} 11|150b26 217r32
+49V12*Base_Address{14|80M9} 11|234b13 238l8 238t20
+51V12*Reserve{14|80M9} 52>5 52>22 11|244b13 261l8 261t15
+52m5 Amount{4|97M9} 11|245b7 254r23
+52m22 Align{4|97M9} 11|246b7 254r32 256r41
+X 11 stm32-sdram.adb
+43b4 Initialized{boolean} 160r10 164m7
+44m4 G_Base_Addr{4|97M9} 166m7 237r33 249r43 258m7 258r22
+72U14 SDRAM_InitSequence 72b14 72>34 73>34 74>34 134l8 134t26 227s7
+72e34 SDRAM_Bank{9|44E9} 84r21 94r21 102r34 118r28
+73e34 SDRAM_CAS_Latency{9|89E9} 109r12
+74m34 SDRAM_Refresh_Cnt{4|97M9} 129r30
+76e7 CAS{9|202E9} 111m13 113m13 122r13
+152r7 Timing_Conf{9|155R9} 188m7 218r32
+153r7 SDRAM_Conf{9|165R9} 207m7 220r23 222r10 223m10 224r26
+154m7 SDCLK{4|97M9} 156r60
+156m7 SDPeriod_In_ns{4|97M9} 186r34 186r56
+157m7 Refresh_Delay{4|97M9} 185m7 194r52 200r52
+248m7 Ret{14|80M9} 260r14
+250m7 Rounded_Size{4|97M9} 254m7 255m7 256r9 256r24 258r36
+X 12 stm32_svd.ads
+10K9*STM32_SVD 11|39r6 39r27 12|196e14
+X 13 stm32_svd-rcc.ads
+10K19*RCC 11|39w16 39r37 13|1665e18
+393b7*FMCRST{boolean} 11|179m27 180m27
+717b7*FMCEN{boolean} 11|178m26
+1590r7*AHB3RSTR{391R9} 11|179m18 180m18
+1600r7*AHB3ENR{715R9} 11|178m18
+1662r4*RCC_Periph{1576R9} 11|178m7 179m7 180m7
+X 14 system.ads
+50K9*System 10|32w6 49r32 53r12 11|234r33 237r14 246r61 248r31 249r24 14|167e11
+80M9*Address 10|49r39 53r19 11|234r40 237r14 246r68 248r38 249r24
+X 24 s-bbtime.ads
+46M9*Time
+81I9*Time_Span<long_long_integer>
+

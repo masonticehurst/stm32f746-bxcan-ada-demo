@@ -1,0 +1,342 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_ELABORATION_CODE
+
+U stm32_svd.cryp%s	stm32_svd-cryp.ads	3d324e8e NE OO PR PK IU
+W hal%s			hal.ads			hal.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W system%s		system.ads		system.ali
+Z system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-cryp.ads	20250912141839 0d652e8f stm32_svd.cryp%s
+D system.ads		20250828113339 00104290 system%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [cr_registerIP stm32_svd__cryp 23 9 none]
+G c Z s s [sr_registerIP stm32_svd__cryp 68 9 none]
+G c Z s s [dmacr_registerIP stm32_svd__cryp 95 9 none]
+G c Z s s [imscr_registerIP stm32_svd__cryp 113 9 none]
+G c Z s s [risr_registerIP stm32_svd__cryp 131 9 none]
+G c Z s s [misr_registerIP stm32_svd__cryp 149 9 none]
+G c Z s s [Tk0lr_b_field_arrayBIP stm32_svd__cryp 167 4 none]
+G c Z s s [k0lr_registerIP stm32_svd__cryp 171 9 none]
+G c Z s s [Tk0rr_b_field_arrayBIP stm32_svd__cryp 192 4 none]
+G c Z s s [k0rr_registerIP stm32_svd__cryp 196 9 none]
+G c Z s s [Tk1lr_b_field_arrayBIP stm32_svd__cryp 217 4 none]
+G c Z s s [k1lr_registerIP stm32_svd__cryp 221 9 none]
+G c Z s s [Tk1rr_b_field_arrayBIP stm32_svd__cryp 242 4 none]
+G c Z s s [k1rr_registerIP stm32_svd__cryp 246 9 none]
+G c Z s s [Tk2lr_b_field_arrayBIP stm32_svd__cryp 267 4 none]
+G c Z s s [k2lr_registerIP stm32_svd__cryp 271 9 none]
+G c Z s s [Tk2rr_b_field_arrayBIP stm32_svd__cryp 292 4 none]
+G c Z s s [k2rr_registerIP stm32_svd__cryp 296 9 none]
+G c Z s s [Tk3lr_b_field_arrayBIP stm32_svd__cryp 317 4 none]
+G c Z s s [k3lr_registerIP stm32_svd__cryp 321 9 none]
+G c Z s s [Tk3rr_b_field_arrayBIP stm32_svd__cryp 342 4 none]
+G c Z s s [k3rr_registerIP stm32_svd__cryp 346 9 none]
+G c Z s s [iv0lr_registerIP stm32_svd__cryp 367 9 none]
+G c Z s s [iv0rr_registerIP stm32_svd__cryp 472 9 none]
+G c Z s s [iv1lr_registerIP stm32_svd__cryp 577 9 none]
+G c Z s s [iv1rr_registerIP stm32_svd__cryp 682 9 none]
+G c Z s s [cryp_peripheralIP stm32_svd__cryp 791 9 none]
+X 1 hal.ads
+34K9*HAL 166e8 4|7w6 17r34 18r33 19r32 20r34 25r24 35r24 43r24 47r24 80r23
+. 101r23 119r23 137r23 155r23 177r19 202r19 227r19 252r19 277r19 302r19 327r19
+. 352r19 797r28 799r28 833r28 835r28 837r28 839r28 841r28 843r28 845r28 847r28
+. 849r28 851r28 853r28 855r28 857r28 859r28 861r28 863r28
+37M9*Bit 4|43r28
+39M9*UInt2 4|18r37 19r36 20r38 25r28
+41M9*UInt3 4|17r38
+43M9*UInt4 4|35r28
+58M9*UInt12 4|47r28
+87M9*UInt27 4|80r27
+93M9*UInt30 4|101r27 119r27 137r27 155r27
+97M9*UInt32<2|92M9> 4|177r23 202r23 227r23 252r23 277r23 302r23 327r23 352r23
+. 797r32 799r32 833r32 835r32 837r32 839r32 841r32 843r32 845r32 847r32 849r32
+. 851r32 853r32 855r32 857r32 859r32 861r32 863r32
+X 2 interfac.ads
+92M9*Unsigned_32
+X 3 stm32_svd.ads
+10K9*STM32_SVD 196e14 4|10r9 910r5
+X 4 stm32_svd-cryp.ads
+10K19*CRYP 3|10k9 4|910l15 910e19
+17M12*CR_ALGOMODE0_Field{1|41M9} 29r24
+18M12*CR_DATATYPE_Field{1|39M9} 31r24
+19M12*CR_KEYSIZE_Field{1|39M9} 33r24
+20M12*CR_GCM_CCMPH_Field{1|39M9} 41r24
+23R9*CR_Register 49e6 52r8 793r28
+25m7*Reserved_0_1{1|39M9} 53r7
+27b7*ALGODIR{boolean} 54r7
+29m7*ALGOMODE0{17M12} 55r7
+31m7*DATATYPE{18M12} 56r7
+33m7*KEYSIZE{19M12} 57r7
+35m7*Reserved_10_13{1|43M9} 58r7
+37b7*FFLUSH{boolean} 59r7
+39b7*CRYPEN{boolean} 60r7
+41m7*GCM_CCMPH{20M12} 61r7
+43m7*Reserved_18_18{1|37M9} 62r7
+45b7*ALGOMODE3{boolean} 63r7
+47m7*Reserved_20_31{1|58M9} 64r7
+68R9*SR_Register 82e6 85r8 795r28
+70b7*IFEM{boolean} 86r7
+72b7*IFNF{boolean} 87r7
+74b7*OFNE{boolean} 88r7
+76b7*OFFU{boolean} 89r7
+78b7*BUSY{boolean} 90r7
+80m7*Reserved_5_31{1|87M9} 91r7
+95R9*DMACR_Register 103e6 106r8 801r28
+97b7*DIEN{boolean} 107r7
+99b7*DOEN{boolean} 108r7
+101m7*Reserved_2_31{1|93M9} 109r7
+113R9*IMSCR_Register 121e6 124r8 803r28
+115b7*INIM{boolean} 125r7
+117b7*OUTIM{boolean} 126r7
+119m7*Reserved_2_31{1|93M9} 127r7
+131R9*RISR_Register 139e6 142r8 805r28
+133b7*INRIS{boolean} 143r7
+135b7*OUTRIS{boolean} 144r7
+137m7*Reserved_2_31{1|93M9} 145r7
+149R9*MISR_Register 157e6 160r8 807r28
+151b7*INMIS{boolean} 161r7
+153b7*OUTMIS{boolean} 162r7
+155m7*Reserved_2_31{1|93M9} 163r7
+167A9*K0LR_b_Field_Array(boolean)<integer> 180r19
+171R9*K0LR_Register 172d7 183e6 186r8 809r28
+172b7*As_Array{boolean} 174r12
+177m13*Val{1|97M9} 187r7
+180a13*Arr{167A9} 188r7
+192A9*K0RR_b_Field_Array(boolean)<integer> 205r19
+196R9*K0RR_Register 197d7 208e6 211r8 811r28
+197b7*As_Array{boolean} 199r12
+202m13*Val{1|97M9} 212r7
+205a13*Arr{192A9} 213r7
+217A9*K1LR_b_Field_Array(boolean)<integer> 230r19
+221R9*K1LR_Register 222d7 233e6 236r8 813r28
+222b7*As_Array{boolean} 224r12
+227m13*Val{1|97M9} 237r7
+230a13*Arr{217A9} 238r7
+242A9*K1RR_b_Field_Array(boolean)<integer> 255r19
+246R9*K1RR_Register 247d7 258e6 261r8 815r28
+247b7*As_Array{boolean} 249r12
+252m13*Val{1|97M9} 262r7
+255a13*Arr{242A9} 263r7
+267A9*K2LR_b_Field_Array(boolean)<integer> 280r19
+271R9*K2LR_Register 272d7 283e6 286r8 817r28
+272b7*As_Array{boolean} 274r12
+277m13*Val{1|97M9} 287r7
+280a13*Arr{267A9} 288r7
+292A9*K2RR_b_Field_Array(boolean)<integer> 305r19
+296R9*K2RR_Register 297d7 308e6 311r8 819r28
+297b7*As_Array{boolean} 299r12
+302m13*Val{1|97M9} 312r7
+305a13*Arr{292A9} 313r7
+317A9*K3LR_b_Field_Array(boolean)<integer> 330r19
+321R9*K3LR_Register 322d7 333e6 336r8 821r28
+322b7*As_Array{boolean} 324r12
+327m13*Val{1|97M9} 337r7
+330a13*Arr{317A9} 338r7
+342A9*K3RR_b_Field_Array(boolean)<integer> 355r19
+346R9*K3RR_Register 347d7 358e6 361r8 823r28
+347b7*As_Array{boolean} 349r12
+352m13*Val{1|97M9} 362r7
+355a13*Arr{342A9} 363r7
+367R9*IV0LR_Register 433e6 436r8 825r28
+369b7*IV31{boolean} 437r7
+371b7*IV30{boolean} 438r7
+373b7*IV29{boolean} 439r7
+375b7*IV28{boolean} 440r7
+377b7*IV27{boolean} 441r7
+379b7*IV26{boolean} 442r7
+381b7*IV25{boolean} 443r7
+383b7*IV24{boolean} 444r7
+385b7*IV23{boolean} 445r7
+387b7*IV22{boolean} 446r7
+389b7*IV21{boolean} 447r7
+391b7*IV20{boolean} 448r7
+393b7*IV19{boolean} 449r7
+395b7*IV18{boolean} 450r7
+397b7*IV17{boolean} 451r7
+399b7*IV16{boolean} 452r7
+401b7*IV15{boolean} 453r7
+403b7*IV14{boolean} 454r7
+405b7*IV13{boolean} 455r7
+407b7*IV12{boolean} 456r7
+409b7*IV11{boolean} 457r7
+411b7*IV10{boolean} 458r7
+413b7*IV9{boolean} 459r7
+415b7*IV8{boolean} 460r7
+417b7*IV7{boolean} 461r7
+419b7*IV6{boolean} 462r7
+421b7*IV5{boolean} 463r7
+423b7*IV4{boolean} 464r7
+425b7*IV3{boolean} 465r7
+427b7*IV2{boolean} 466r7
+429b7*IV1{boolean} 467r7
+431b7*IV0{boolean} 468r7
+472R9*IV0RR_Register 538e6 541r8 827r28
+474b7*IV63{boolean} 542r7
+476b7*IV62{boolean} 543r7
+478b7*IV61{boolean} 544r7
+480b7*IV60{boolean} 545r7
+482b7*IV59{boolean} 546r7
+484b7*IV58{boolean} 547r7
+486b7*IV57{boolean} 548r7
+488b7*IV56{boolean} 549r7
+490b7*IV55{boolean} 550r7
+492b7*IV54{boolean} 551r7
+494b7*IV53{boolean} 552r7
+496b7*IV52{boolean} 553r7
+498b7*IV51{boolean} 554r7
+500b7*IV50{boolean} 555r7
+502b7*IV49{boolean} 556r7
+504b7*IV48{boolean} 557r7
+506b7*IV47{boolean} 558r7
+508b7*IV46{boolean} 559r7
+510b7*IV45{boolean} 560r7
+512b7*IV44{boolean} 561r7
+514b7*IV43{boolean} 562r7
+516b7*IV42{boolean} 563r7
+518b7*IV41{boolean} 564r7
+520b7*IV40{boolean} 565r7
+522b7*IV39{boolean} 566r7
+524b7*IV38{boolean} 567r7
+526b7*IV37{boolean} 568r7
+528b7*IV36{boolean} 569r7
+530b7*IV35{boolean} 570r7
+532b7*IV34{boolean} 571r7
+534b7*IV33{boolean} 572r7
+536b7*IV32{boolean} 573r7
+577R9*IV1LR_Register 643e6 646r8 829r28
+579b7*IV95{boolean} 647r7
+581b7*IV94{boolean} 648r7
+583b7*IV93{boolean} 649r7
+585b7*IV92{boolean} 650r7
+587b7*IV91{boolean} 651r7
+589b7*IV90{boolean} 652r7
+591b7*IV89{boolean} 653r7
+593b7*IV88{boolean} 654r7
+595b7*IV87{boolean} 655r7
+597b7*IV86{boolean} 656r7
+599b7*IV85{boolean} 657r7
+601b7*IV84{boolean} 658r7
+603b7*IV83{boolean} 659r7
+605b7*IV82{boolean} 660r7
+607b7*IV81{boolean} 661r7
+609b7*IV80{boolean} 662r7
+611b7*IV79{boolean} 663r7
+613b7*IV78{boolean} 664r7
+615b7*IV77{boolean} 665r7
+617b7*IV76{boolean} 666r7
+619b7*IV75{boolean} 667r7
+621b7*IV74{boolean} 668r7
+623b7*IV73{boolean} 669r7
+625b7*IV72{boolean} 670r7
+627b7*IV71{boolean} 671r7
+629b7*IV70{boolean} 672r7
+631b7*IV69{boolean} 673r7
+633b7*IV68{boolean} 674r7
+635b7*IV67{boolean} 675r7
+637b7*IV66{boolean} 676r7
+639b7*IV65{boolean} 677r7
+641b7*IV64{boolean} 678r7
+682R9*IV1RR_Register 748e6 751r8 831r28
+684b7*IV127{boolean} 752r7
+686b7*IV126{boolean} 753r7
+688b7*IV125{boolean} 754r7
+690b7*IV124{boolean} 755r7
+692b7*IV123{boolean} 756r7
+694b7*IV122{boolean} 757r7
+696b7*IV121{boolean} 758r7
+698b7*IV120{boolean} 759r7
+700b7*IV119{boolean} 760r7
+702b7*IV118{boolean} 761r7
+704b7*IV117{boolean} 762r7
+706b7*IV116{boolean} 763r7
+708b7*IV115{boolean} 764r7
+710b7*IV114{boolean} 765r7
+712b7*IV113{boolean} 766r7
+714b7*IV112{boolean} 767r7
+716b7*IV111{boolean} 768r7
+718b7*IV110{boolean} 769r7
+720b7*IV109{boolean} 770r7
+722b7*IV108{boolean} 771r7
+724b7*IV107{boolean} 772r7
+726b7*IV106{boolean} 773r7
+728b7*IV105{boolean} 774r7
+730b7*IV104{boolean} 775r7
+732b7*IV103{boolean} 776r7
+734b7*IV102{boolean} 777r7
+736b7*IV101{boolean} 778r7
+738b7*IV100{boolean} 779r7
+740b7*IV99{boolean} 780r7
+742b7*IV98{boolean} 781r7
+744b7*IV97{boolean} 782r7
+746b7*IV96{boolean} 783r7
+791R9*CRYP_Peripheral 865e6 867r8 907r26
+793r7*CR{23R9} 868r7
+795r7*SR{68R9} 869r7
+797m7*DIN{1|97M9} 870r7
+799m7*DOUT{1|97M9} 871r7
+801r7*DMACR{95R9} 872r7
+803r7*IMSCR{113R9} 873r7
+805r7*RISR{131R9} 874r7
+807r7*MISR{149R9} 875r7
+809r7*K0LR{171R9} 876r7
+811r7*K0RR{196R9} 877r7
+813r7*K1LR{221R9} 878r7
+815r7*K1RR{246R9} 879r7
+817r7*K2LR{271R9} 880r7
+819r7*K2RR{296R9} 881r7
+821r7*K3LR{321R9} 882r7
+823r7*K3RR{346R9} 883r7
+825r7*IV0LR{367R9} 884r7
+827r7*IV0RR{472R9} 885r7
+829r7*IV1LR{577R9} 886r7
+831r7*IV1RR{682R9} 887r7
+833m7*CSGCMCCM0R{1|97M9} 888r7
+835m7*CSGCMCCM1R{1|97M9} 889r7
+837m7*CSGCMCCM2R{1|97M9} 890r7
+839m7*CSGCMCCM3R{1|97M9} 891r7
+841m7*CSGCMCCM4R{1|97M9} 892r7
+843m7*CSGCMCCM5R{1|97M9} 893r7
+845m7*CSGCMCCM6R{1|97M9} 894r7
+847m7*CSGCMCCM7R{1|97M9} 895r7
+849m7*CSGCM0R{1|97M9} 896r7
+851m7*CSGCM1R{1|97M9} 897r7
+853m7*CSGCM2R{1|97M9} 898r7
+855m7*CSGCM3R{1|97M9} 899r7
+857m7*CSGCM4R{1|97M9} 900r7
+859m7*CSGCM5R{1|97M9} 901r7
+861m7*CSGCM6R{1|97M9} 902r7
+863m7*CSGCM7R{1|97M9} 903r7
+907r4*CRYP_Periph{791R9}
+X 5 system.ads
+50K9*System 4|8w6 50r24 83r24 104r24 122r24 140r24 158r24 184r24 209r24 234r24
+. 259r24 284r24 309r24 334r24 359r24 434r24 539r24 644r24 749r24 908r30 5|167e11
+80M9*Address 4|908r30
+104n41*Low_Order_First{104E9} 4|50r31 83r31 104r31 122r31 140r31 158r31 184r31
+. 209r31 234r31 259r31 284r31 309r31 334r31 359r31 434r31 539r31 644r31 749r31
+

@@ -1,0 +1,109 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCHING_CALLS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U hal.audio%s		hal-audio.ads		5daa27aa EE OO PR PK IU
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W interfaces%s		interfac.ads		interfac.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-audio.ads		20251114185538 e7f91665 hal.audio%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [audio_bufferIP hal__audio 37 9 none]
+X 10 hal.ads
+34K9*HAL 166e8 11|34r9 73r5
+X 11 hal-audio.ads
+34K13*Audio 10|34k9 11|73l9 73e14
+37A9*Audio_Buffer(12|62I9)<integer> 68r31 71r34
+40I9*Audio_Volume<integer>
+42E9*Audio_Frequency 51e6 52r8 65r41
+43n7*Audio_Freq_8kHz{42E9} 53r7
+44n7*Audio_Freq_11kHz{42E9} 54r7
+45n7*Audio_Freq_16kHz{42E9} 55r7
+46n7*Audio_Freq_22kHz{42E9} 56r7
+47n7*Audio_Freq_32kHz{42E9} 57r7
+48n7*Audio_Freq_44kHz{42E9} 58r7
+49n7*Audio_Freq_48kHz{42E9} 59r7
+50n7*Audio_Freq_96kHz{42E9} 60r7
+62h9*Audio_Stream 64p14 64r48 67p14 67r38 70p14 70r37
+64x14*Set_Frequency 64=29 65>29
+64r29 This{62R9}
+65e29 Frequency{42E9}
+67x14*Transmit 67=24 68>24
+67r24 This{62R9}
+68a24 Data{37A9}
+70x14*Receive 70=23 71<23
+70r23 This{62R9}
+71a23 Data{37A9}
+X 12 interfac.ads
+47K9*Interfaces 11|32w6 32r22 12|247e15
+62I9*Integer_16<short_integer> 11|37r53
+X 33 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 40 s-taskin.ads
+398V13*Get_Sec_Stack{33|102P9} 399i<c,__gnat_get_secondary_stack>22
+

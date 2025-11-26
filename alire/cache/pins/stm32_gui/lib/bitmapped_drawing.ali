@@ -1,0 +1,220 @@
+V "GNAT Lib v15"
+A -O3
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_FLOATING_POINT
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U bitmapped_drawing%b	bitmapped_drawing.adb	f65d41d6 NE OO PK
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W bitmap_color_conversion%s  bitmap_color_conversion.adb  bitmap_color_conversion.ali
+
+U bitmapped_drawing%s	bitmapped_drawing.ads	c944b581 EE NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W bmp_fonts%s		bmp_fonts.adb		bmp_fonts.ali
+W hal%s			hal.ads			hal.ali
+W hal.bitmap%s		hal-bitmap.ads		hal-bitmap.ali
+W hershey_fonts%s	hershey_fonts.adb	hershey_fonts.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D bitmap_color_conversion.ads  20251114185412 7ec7e967 bitmap_color_conversion%s
+D bitmapped_drawing.ads	20251114185259 5d86af19 bitmapped_drawing%s
+D bitmapped_drawing.adb	20251114185259 d51c07a8 bitmapped_drawing%b
+D bmp_fonts.ads		20251114185256 593c0a39 bmp_fonts%s
+D bmp_fonts.adb		20251117011109 20dd65a1 bmp_fonts%b
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-bitmap.ads	20251114185538 12976478 hal.bitmap%s
+D hershey_fonts.ads	20251114185259 f42bbcd7 hershey_fonts%s
+D hershey_fonts.adb	20251114185259 9dfaf9b2 hershey_fonts%b
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D system.ads		20250828113339 00104290 system%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [draw_char bitmapped_drawing 42 14 none]
+G c Z s b [draw_string bitmapped_drawing 50 14 none]
+G c Z s b [draw_string bitmapped_drawing 58 14 none]
+G c Z s b [draw_string bitmapped_drawing 68 14 none]
+G r c none [draw_char bitmapped_drawing 42 14 none] [char_height bmp_fonts 64 13 none]
+G r c none [draw_char bitmapped_drawing 42 14 none] [char_width bmp_fonts 69 13 none]
+G r c none [draw_char bitmapped_drawing 42 14 none] [data bmp_fonts 48 13 none]
+G r c none [draw_char bitmapped_drawing 42 14 none] [mask bmp_fonts 55 13 none]
+G r c none [draw_char bitmapped_drawing 42 14 none] [word_to_bitmap_color bitmap_color_conversion 42 13 none]
+G r c none [draw_string bitmapped_drawing 50 14 none] [bitmap_color_to_word bitmap_color_conversion 37 13 none]
+G r c none [draw_string bitmapped_drawing 50 14 none] [char_width bmp_fonts 69 13 none]
+G r c none [draw_string bitmapped_drawing 50 14 none] [char_height bmp_fonts 64 13 none]
+G r c none [draw_string bitmapped_drawing 50 14 none] [data bmp_fonts 48 13 none]
+G r c none [draw_string bitmapped_drawing 50 14 none] [mask bmp_fonts 55 13 none]
+G r c none [draw_string bitmapped_drawing 50 14 none] [word_to_bitmap_color bitmap_color_conversion 42 13 none]
+G r i none [draw_string bitmapped_drawing 58 14 none] [draw_glyph hershey_fonts 53 14 none]
+G r c none [draw_string bitmapped_drawing 58 14 none] [get_glyph hershey_fonts 34 13 none]
+G r c none [draw_string bitmapped_drawing 68 14 none] [strlen hershey_fonts 48 13 none]
+G r c none [draw_string bitmapped_drawing 68 14 none] [bitmap_color_to_word bitmap_color_conversion 37 13 none]
+G r i none [draw_string bitmapped_drawing 68 14 none] [draw_glyph hershey_fonts 53 14 none]
+G r c none [draw_string bitmapped_drawing 68 14 none] [get_glyph hershey_fonts 34 13 none]
+X 10 bitmap_color_conversion.ads
+35K9*Bitmap_Color_Conversion 47e28 12|32w6 32r35
+37V13*Bitmap_Color_To_Word{15|97M9} 12|77s9 79s9 157s9 159s9
+42V13*Word_To_Bitmap_Color{16|87R9} 12|52s19 56s19
+X 11 bitmapped_drawing.ads
+40K9*Bitmapped_Drawing 78l5 78e22 12|34b14 233l5 233t22
+42U14*Draw_Char 43=7 44>7 45>7 46>7 47>7 48>7 12|40b14 61l8 61t17 83s10
+43c7 Buffer<16|101R9> 12|41b7 51m16 51r16 52r41 53m16 53r16 55m16 55r16 56r41
+. 57m16 57r16
+44r7 Start{16|68R9} 12|42b7 53r35 53r48 57r35 57r48
+45e7 Char{character} 12|43b7 50r29
+46e7 Font{13|46E9} 12|44b7 48r34 49r36 50r23 50r48
+47m7 Foreground{15|97M9} 12|45b7 52r60
+48m7 Background{15|97M9} 12|46b7 56r60
+50U14*Draw_String 51=7 52>7 53>7 54>7 55>7 56>7 12|67b14 92l8 92t19
+51c7 Buffer<16|101R9> 12|68b7 77r31 79r31 82r58 84m13
+52r7 Start{16|68R9} 12|69b7 82r20 85r14 85r51
+53a7 Msg{string} 12|70b7 81r16
+54e7 Font{13|46E9} 12|71b7 82r50 85r44 87r13
+55r7 Foreground{16|87R9} 12|72b7 77r50
+56r7 Background{16|87R9} 12|73b7 79r50
+58U14*Draw_String 59=7 60>7 61>7 62>7 63>7 64>7 65>7 66>7 12|98b14 135l8
+. 135t19
+59c7 Buffer<16|101R9> 12|99b7 115m21 124m7 124r7 126r32
+60r7 Start{16|68R9} 12|100b7 121r26
+61a7 Msg{string} 12|101b7 125r16
+62r7 Font{17|41R9} 12|102b7 128r23
+63i7 Height{natural} 12|103b7 132r23
+64b7 Bold{boolean} 12|104b7 133r23
+65r7 Foreground{16|87R9} 12|105b7 124r26
+66b7 Fast{boolean} 12|106b7 115r64
+68U14*Draw_String 69=7 70>7 71>7 72>7 73>7 74>7 75>7 76>7 12|141b14 231l8
+. 231t19
+69c7 Buffer<16|101R9> 12|142b7 157r31 159r31 168m13 188m7 188r7 202r21 204m16
+. 204r16 209r44 210r44 214m22 214r22 217m22 217r22 220m22 220r22 223m22 223r22
+70r7 Area{16|81R9} 12|143b7 152r42 169r14 170r14 171r14 172r14 181r19 182r26
+. 185r24 196r23 200r27 201r19 201r42 201r60 202r36 204r35 207r22 207r45 207r63
+71a7 Msg{string} 12|144b7 152r31 190r16
+72r7 Font{17|41R9} 12|145b7 152r36 192r23
+73b7 Bold{boolean} 12|146b7 197r23
+74b7 Outline{boolean} 12|147b7 200r10
+75r7 Foreground{16|87R9} 12|148b7 157r50 188r26
+76b7 Fast{boolean} 12|149b7 174r13
+X 12 bitmapped_drawing.adb
+48i11 H{integer} 50r35 53r58 57r58
+49i14 W{integer} 50r54 53r45 57r45
+75i7 Count{natural} 82r30 85r24 90m10 90r19
+76m7 FG{15|97M9} 88r13
+78m7 BG{15|97M9} 89r13
+81e11 C=81:16{character} 86r13
+108U17 Internal_Draw_Line 109>10 109>14 109>18 109>22 109>36 111b17 116l11
+. 116t29 119r35
+109i10 X0{natural} 111b37 115r30
+109i14 Y0{natural} 111b41 115r34
+109i18 X1{natural} 111b45 115r40
+109i22 Y1{natural} 111b49 115r44
+109i36 Width{positive} 111b63 115r49
+118U17 Draw_Glyph[17|53] 127s10 18|54b14
+121r7 Current{16|68R9} 126r20 130m23 130r23 131r23
+125e11 C=125:16{character} 129r23
+151i7 Length{natural} 181r10 182r47 185r37
+153f7 Ratio{float} 169r54 171r54 182m10 184m10
+154r7 Current{16|68R9} 185m10 194m23 194r23 195r23
+155m7 Prev{15|97M9} 202m13 203r16 213r22 216r25 226m19
+156m7 FG{15|97M9} 203r23 213r30 213r48 216r32 216r51 219r32 219r70 222r31
+. 222r50
+158m7 Blk{15|97M9} 214r48 217r52 219r51 220r48 223r52
+161U17 Internal_Draw_Line 162>10 162>14 162>18 162>22 162>36 164b17 175l11
+. 175t29 178r35
+162i10 X0{natural} 164b37 169r48
+162i14 Y0{natural} 164b41 170r32
+162i18 X1{natural} 164b45 171r48
+162i22 Y1{natural} 164b49 172r32
+162i36 Width{positive} 164b63 173r13
+177U17 Draw_Glyph[17|53] 191s10 18|54b14
+190e11 C=190:16{character} 193r23
+201i14 Y{integer} 202r53 204r52 209r62 210r62 214r44 217r48 220r44 223r44
+207i17 X{integer} 209r59 210r59 214r41 217r41 220r41 223r41
+209m19 Col{15|97M9} 213r42 216r44 219r64 222r43 226r27
+210m19 Top{15|97M9} 219r25 219r44 222r25
+X 13 bmp_fonts.ads
+44K9*BMP_Fonts 11|35w6 35r25 13|74e14
+46E9*BMP_Font 11|46r20 54r20 12|44r20 71r20 13|46e52
+48V13*Data{15|66M9} 12|50s17
+55V13*Mask{15|66M9} 12|50s42
+64V13*Char_Height{natural} 12|48s21
+69V13*Char_Width{natural} 12|49s24 82s38 85s32
+X 15 hal.ads
+34K9*HAL 11|37w6 37r25 38r6 38r25 15|166e8
+66M9*UInt16<19|84M9>
+97M9*UInt32<19|92M9> 11|47r20 48r20 12|45r20 46r20 76r24 78r24 155r17 156r26
+. 158r26 209r34 210r34
+X 16 hal-bitmap.ads
+34K13*Bitmap 11|38w10 38r29 16|433e15
+68R9*Point 11|44r20 52r20 60r20 12|42r20 69r20 100r20 121r17 154r17 16|71e14
+69i7*X{natural} 12|53r41 57r41 82r26 85r20 126r28 130m31 169r28 171r28 185m18
+. 194m31 202r50 204r49 207r36 207r59
+70i7*Y{natural} 12|53r54 57r54 85r57 131r31 170r28 172r28 195r31 201r33 201r56
+81R9*Rect 11|70r20 12|143r20 16|85e14
+82r7*Position{68R9} 12|169r19 170r19 171r19 172r19 201r24 201r47 202r41 204r40
+. 207r27 207r50
+83i7*Width{natural} 12|181r24 182r31 185r29 207r68
+84i7*Height{natural} 12|152r47 196r28 200r32 201r65
+87R9*Bitmap_Color 11|55r20 56r20 65r20 75r20 12|72r20 73r20 105r20 148r20
+. 16|92e15
+101h9*Bitmap_Buffer 11|43r27 51r27 59r27 69r27 12|41r27 68r27 99r27 142r27
+105y13*Width{natural} 12|82R65 126R39
+130y13*Color_Mode{44E9} 12|52R48 56R48 77R38 79R38 157R38 159R38
+143x14*Set_Source 12|51R23 55R23 124R14 188R14
+161x14*Set_Pixel 12|53R23 57R23
+166x14*Set_Pixel 12|204R23
+172x14*Set_Pixel 12|214R29 217R29 220R29 223R29
+188y13*Pixel{15|97M9} 12|202R28 209R51 210R51
+194x14*Draw_Line 12|115R10 167R10
+198b7 Fast{boolean} 12|115r56
+422r4*Black{87R9} 12|159r50 204r56
+X 17 hershey_fonts.ads
+37K9*Hershey_Fonts 11|36w6 36r25 12|119r9 152r9 178r9 17|93e18
+41R9*Hershey_Font 11|62r20 72r20 12|102r20 145r20 17|91e14
+48V13*Strlen{natural} 12|152s23
+53u14*Draw_Glyph 12|119r23 178r23
+54r7 Fnt{41R9} 12|128r13[118] 192r13[177]
+55e7 C{character} 12|129r13[118] 193r13[177]
+56i7 X{natural} 12|130r13[118] 194r13[177]
+57i7 Y{natural} 12|131r13[118] 195r13[177]
+58i7 Height{natural} 12|132r13[118] 196r13[177]
+59b7 Bold{boolean} 12|133r13[118] 197r13[177]
+X 19 interfac.ads
+84M9*Unsigned_16
+92M9*Unsigned_32
+

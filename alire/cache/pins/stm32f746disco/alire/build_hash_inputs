@@ -1,0 +1,8 @@
+dependency:cortex_m=0.5.0=679e41c4c605011c22e68eae269011dc49d457d42e80a7881fa25890078f43b6
+dependency:embedded_components=0.2.0=489090140894cd1a8b1557f849fdba246beb77a7e73de937b43b0789590623bc
+dependency:stm32_hal=0.1.0=9365bd0b59e4ce8fed1b6175e7596cbed5a388e06c0af3e4442ea783acff84d0
+external:LIBRARY_TYPE=default
+external:STM32F746DISCO_LIBRARY_TYPE=default
+profile:stm32f746disco=RELEASE
+switches:stm32f746disco=-O3,-fdata-sections,-ffunction-sections,-gnatW8,-gnatn
+version:gnat_arm_elf=15.2.1

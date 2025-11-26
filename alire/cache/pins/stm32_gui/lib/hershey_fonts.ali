@@ -1,0 +1,144 @@
+V "GNAT Lib v15"
+A -O3
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_OBSOLESCENT_FEATURES
+
+U hershey_fonts%b	hershey_fonts.adb	69d14565 NE OO PK
+
+U hershey_fonts%s	hershey_fonts.ads	4e788d18 BN EE NE OO PK
+W hal%s			hal.ads			hal.ali
+W interfaces%s		interfac.ads		interfac.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D hershey_fonts.ads	20251114185259 f42bbcd7 hershey_fonts%s
+D hershey_fonts.adb	20251114185259 9dfaf9b2 hershey_fonts%b
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+G c Z s b [read hershey_fonts 45 13 none]
+G c Z s b [read hershey_fonts 46 14 none]
+G c Z s b [strlen hershey_fonts 48 13 none]
+G c Z s s [coordIP hershey_fonts 63 9 none]
+G c Z s s [coord_arrayIP hershey_fonts 71 9 none]
+G c Z s s [glyphIP hershey_fonts 74 9 none]
+G c Z s s [Tglyph_arrayBIP hershey_fonts 84 4 none]
+G c Z s s [hershey_fontIP hershey_fonts 86 9 none]
+G c Z b b [get_glyph hershey_fonts 34 13 none]
+X 1 hal.ads
+34K9*HAL 166e8 2|35w6 35r22
+53M9*UInt8<4|81M9> 2|76r18 77r18 89r26 90r26 3|196r33 214r28 236r29 237r32
+X 2 hershey_fonts.ads
+37K9*Hershey_Fonts 63E9 93l5 93e18 3|32b14 242l5 242t18
+39P9*Font_Desc(string) 45r25 46r26 3|121r25 132r26
+41R9*Hershey_Font 45r43 46r47 49r25 54r16 86c9 91e14 3|55r16 101r25 121r43
+. 122r13 132r47
+43I9*Glyph_Index<integer> 82c9 84r31 87r26 3|34r46 40r46 44r17 46r17 219r25
+. 223r31
+45V13*Read{41R9} 45>19 3|121b13 126l8 126t12
+45p19 Fnt{39P9} 3|121b19 124r13
+46U14*Read 46>20 46<37 3|124s7 132b14 240l8 240t12
+46p20 Fnt{39P9} 3|132b20 155r18 157r24 162r50 177r25 181r31
+46r37 Ret{41R9} 3|132b37 219m13 223m7 224m7 226r23 228m31 228r31 236m13 237m13
+. 237r43
+48V13*Strlen{natural} 49>7 49>19 49>39 3|100b13 115l8 115t14
+49a7 S{string} 3|101b7 106r16
+49r19 Fnt{41R9} 3|101b19 104r57 108r31
+49i39 Height{natural} 3|101b39 104r40
+52U22 Draw_Line 52>33 52>37 52>41 52>45 52>59 3|88s16
+52i33 X0{natural}
+52i37 Y0{natural}
+52i41 X1{natural}
+52i45 Y1{natural}
+52i59 Width{positive}
+53u14*Draw_Glyph 54>7 55>7 56=7 57>7 58>7 59>7 3|54b14 94l8 94t18
+54r7 Fnt{41R9} 3|55b7 62r61 64r37
+55e7 C{character} 3|56b7 64r60
+56i7 X{natural} 3|57b7 83r60 86r60 93m7 93r12
+57i7 Y{natural} 3|58b7 84r60 87r60
+58i7 Height{natural} 3|59b7 62r44
+59b7 Bold{boolean} 3|60b7 63r43
+63R9 Coord 67e4 69r25 71r53 3|66r19 165r20
+64i7*X{4|59I9} 3|83r46 86r46 195r32 196r48 198m24 198r31 199r53 201r53
+65i7*Y{4|59I9} 3|84r46 87r46 196r42 200r53 202r53 232m35 232r56
+69r4 Raise_Pen{63R9} 3|74r28 186r37 231r38
+71A9 Coord_Array(63R9)<integer> 78r18
+74R9 Glyph 80e4 84r47 3|64r28 108r17 163r20 228r17
+75i7*Vertices{natural} 3|73r23 209m15 211r18 230r32
+76m7*Width{1|53M9} 3|93r34 110r44 196m24
+77m7*Height{1|53M9} 3|212m18 214m18 237r62
+78a7*Coords{71A9} 3|74r15 77r26 85r29 186m21 204m24 231r21 232m21 232r42
+84A9 Glyph_Array(74R9)<43I9> 88r26
+87i7*Number_Of_Glyphs{43I9} 3|223m11 226r27
+88a7*Glyphs{84A9} 3|64r41 108m35 219m17 228m35
+89m7*Font_Height{1|53M9} 3|62r65 104r61 224m11 237m17 237r47
+90m7*Baseline{1|53M9} 3|236m17
+X 3 hershey_fonts.adb
+34V13 Get_Glyph{2|43I9} 34>24 40b13 48l8 48t17 64s49 108s43
+34e24 C{character} 40b24 41r48
+41i7 Ret{integer} 43r10 46r30
+62f7 Ratio{float} 63r69 83r51 84r51 86r51 87r51 93r43
+63i7 Thickness{natural} 69r10 70m10 88r43
+64r7 G{2|74R9} 73r21 74r13 77r24 85r27 93r32
+65b7 First{boolean} 75m13 76r16 78m13
+66r7 Current{2|63R9} 77m13 83r38 84r38 85m16 86r38 87r38
+73i11 V{integer} 74r23 77r34 85r37
+81i16 X0{natural} 83m16 88r27
+81i20 Y0{natural} 84m16 88r31
+81i24 X1{natural} 86m16 88r35
+81i28 Y1{natural} 87m16 88r39
+103i7 Ret{natural} 110m13 110r20 114r14
+104f7 Ratio{float} 110r53
+106e11 C=106:16{character} 108r54
+108r13 G{2|74R9} 110r42
+122r7 Ret{2|41R9} 124m18 125r14
+133i7 Glyph_Idx{natural} 218m13 218r26 219r38 223r44
+134i7 Fnt_Idx{natural} 155m7 157r13 159m10 159r21 162r55 162r66 173m13 173r24
+. 177r30 178m22 178r33 181r36 182m19 182r30
+135i7 Fnt_Y_Min{4|59I9} 215m16 215r50 232r60 236r37
+137V16 To_UInt8{natural} 137>26 143b16 152l11 152t19 162s40
+137a26 S{string} 143b26 146r19 147r16 148r49
+144i10 Ret{natural} 148m16 148r28 151r17
+146i14 J{integer} 147r19 148r52
+162i13 Size{natural} 175r29 209r27
+163r13 G{2|74R9} 186m19 196m22 204m22 209m13 211r16 212m16 214m16 219r53
+164a13 CStr{string} 176r25 181m19 185r19 189r37 190r37
+165r13 C{2|63R9} 188m19 195r30 196r40 196r46 198m22 198r29 199r51 200r51
+. 201r51 202r51 204r40
+166i13 Left{4|59I9} 195m22 198r35
+167i13 XMin{4|59I9} 199m22 199r45
+168i13 YMin{4|59I9} 200m22 200r45 214r42 215r44
+169i13 XMax{4|59I9} 201m22 201r45 202r45
+170i13 YMax{4|59I9} 202m22 214r35
+175i17 Idx{integer} 186r29 192r22 204r32
+176i20 J{integer} 181r25
+226i11 Idx<integer> 228r43
+228r13 G{2|74R9} 230r30 231r19 232r19 232r40 237r60
+230i17 Vert{integer} 231r29 232r29 232r50
+X 4 interfac.ads
+47K9*Interfaces 2|34w6 34r22 64r11 65r11 4|247e15
+59I9*Integer_8<short_short_integer> 2|64r22 65r22 69r45 3|135r19 135r32 166r20
+. 167r20 167r33 168r20 168r33 169r20 169r33 170r20 170r33 199r30 200r30 201r30
+. 202r30 215r29
+81M9*Unsigned_8
+

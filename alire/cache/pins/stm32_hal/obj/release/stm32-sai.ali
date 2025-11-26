@@ -1,0 +1,365 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_ACCESS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U stm32.sai%b		stm32-sai.adb		ed0333fe NE OO PK IU
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.rcc%s	stm32_svd-rcc.ads	stm32_svd-rcc.ali
+W stm32_svd.sai%s	stm32_svd-sai.ads	stm32_svd-sai.ali
+Z system%s		system.ads		system.ali
+Z system.storage_elements%s  s-stoele.ads	s-stoele.ali
+
+U stm32.sai%s		stm32-sai.ads		6ff12fe4 BN EE NE OO PK IU
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.sai%s	stm32_svd-sai.ads	stm32_svd-sai.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-reatim.ads		20250828113339 cfe92427 ada.real_time%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D stm32.ads		20251114185847 698e2c3b stm32%s
+D stm32-sai.ads		20250912141839 86748e81 stm32.sai%s
+D stm32-sai.adb		20250912141839 8b6dee90 stm32.sai%b
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-rcc.ads	20251114185427 b4fd1009 stm32_svd.rcc%s
+D stm32_svd-sai.ads	20251114185427 800b8d5e stm32_svd.sai%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [deinitialize stm32__sai 266 14 none]
+G c Z s b [enabled stm32__sai 270 13 none]
+G c Z s b [enable stm32__sai 275 14 none]
+G c Z s b [disable stm32__sai 280 14 none]
+G c Z s b [enable_dma stm32__sai 285 14 none]
+G c Z s b [dma_pause stm32__sai 290 14 none]
+G c Z s b [dma_resume stm32__sai 295 14 none]
+G c Z s b [dma_stop stm32__sai 300 14 none]
+G c Z s b [configure_audio_block stm32__sai 305 14 none]
+G c Z s b [configure_block_frame stm32__sai 323 14 none]
+G c Z s b [configure_block_slot stm32__sai 332 14 none]
+G c Z b b [get_block stm32__sai 88 13 none]
+G c Z b b [block_registersIP stm32__sai 58 9 none]
+G r s acr1_register [block_registersIP stm32__sai 58 9 none] [acr1_registerIP stm32_svd__sai 48 9 none]
+G r s acr2_register [block_registersIP stm32__sai 58 9 none] [acr2_registerIP stm32_svd__sai 109 9 none]
+G r s afrcr_register [block_registersIP stm32__sai 58 9 none] [afrcr_registerIP stm32_svd__sai 148 9 none]
+G r s aslotr_register [block_registersIP stm32__sai 58 9 none] [aslotr_registerIP stm32_svd__sai 183 9 none]
+G r s aim_register [block_registersIP stm32__sai 58 9 none] [aim_registerIP stm32_svd__sai 210 9 none]
+G r s asr_register [block_registersIP stm32__sai 58 9 none] [asr_registerIP stm32_svd__sai 245 9 none]
+G r s aclrfr_register [block_registersIP stm32__sai 58 9 none] [aclrfr_registerIP stm32_svd__sai 284 9 none]
+X 1 ada.ads
+18K9*Ada 22e8 11|48r6 48r37
+X 3 a-reatim.ads
+52K13*Real_Time 193e18 11|48w10 48r41
+62M9*Time<25|46M9> 11|123r20
+72I9*Time_Span<25|81I9>
+79V13*Clock{62M9}<25|134p13> 11|128s16 130s35
+83V14*"+"{62M9} 11|130s19
+94V14*"<"{boolean} 11|130r33
+142V13*Seconds{72I9} 11|130s21
+X 5 hal.ads
+37M9*Bit
+39M9*UInt2
+41M9*UInt3
+43M9*UInt4 10|156r41 11|303r22 352r20
+45M9*UInt5 10|335r26 11|342r26
+49M9*UInt7 10|327r25 11|319r22
+53M9*UInt8<6|81M9> 10|326r25 11|318r22
+66M9*UInt16<6|84M9> 10|247r26 11|353r20
+83M9*UInt25
+97M9*UInt32<6|92M9> 10|62r35 315r25 11|74r15 261r25 271r19 272r19
+X 6 interfac.ads
+81M9*Unsigned_8
+84M9*Unsigned_16
+92M9*Unsigned_32
+X 9 stm32.ads
+39K9*STM32 48e10 10|52r9 340r5 11|56r14 357r5
+X 10 stm32-sai.ads
+52K15*SAI 9|39k9 10|340l11 340e14 11|56b20 357l11 357t14
+54R12*SAI_Controller{14|596R9} 267r15 271r15 276r15 281r15 286r15 291r15
+. 296r15 301r15 306r25 324r25 333r26 11|89r16 97r16 118r14 149r29 163r14
+. 177r14 191r14 205r15 219r15 237r15 252r25 316r20 340r24
+55R12*SAI_Port{14|596R9} 57r12 58r12
+57r4*SAI_1=57:43{14|596R9}
+58r4*SAI_2=58:43{14|596R9}
+60E9*SAI_Block 60e40 268r15 272r15 277r15 282r15 287r15 292r15 297r15 302r15
+. 307r25 325r25 334r26 11|90r16 98r16 119r16 150r31 164r16 178r16 192r16
+. 206r15 220r15 238r15 253r25 317r22 341r26
+60n23*Block_A{60E9} 11|106r15
+60n32*Block_B{60E9} 11|108r15
+62M12*SAI_Audio_Frequency{5|97M9} 308r25 11|254r25
+64E9*SAI_Mono_Stereo_Mode 67e6 309r25 11|255r25
+65n7*Stereo{64E9}
+66n7*Mono{64E9} 11|298r36
+69E9*SAI_Audio_Mode 74e6 310r25 11|256r25 292r22
+70n7*Master_Transmitter{69E9}
+71n7*Master_Receiver{69E9}
+72n7*Slave_Transmitter{69E9}
+73n7*Slave_Receiver{69E9}
+79E9*SAI_Protocol_Configuration 83e6 89r8 312r25 11|258r25 293r22
+80n7*Free_Protocol{79E9} 90r7
+81n7*SPDIF_Protocol{79E9} 91r7
+82n7*AC97_Protocol{79E9} 92r7
+94E9*SAI_Data_Size 101e6 107r8 313r25 11|259r25 294r22
+95n7*Data_8b{94E9} 108r7
+96n7*Data_10b{94E9} 109r7
+97n7*Data_16b{94E9} 110r7
+98n7*Data_20b{94E9} 111r7
+99n7*Data_24b{94E9} 112r7
+100n7*Data_32b{94E9} 113r7
+115E9*SAI_Endianness 118e6 314r25 11|260r25
+116n7*Data_MSB_First{115E9}
+117n7*Data_LSB_First{115E9} 11|295r35
+120E9*SAI_Clock_Strobing_Edge 123e6 316r25 11|262r25
+121n7*Clock_Strobing_Falling_Edge{120E9}
+122n7*Clock_Strobing_Rising_Edge{120E9} 11|296r39
+134E9*SAI_Synchronization 138e6 317r25 11|263r25 297r22
+135n7*Asynchronous_Mode{134E9}
+136n7*Synchronous_Mode{134E9}
+137n7*Synchronous_Ext_Mode{134E9}
+148E9*SAI_Output_Drive 151e6 318r25 11|264r25
+149n7*Drive_On_SAI_Enabled{148E9}
+150n7*Drive_Immediate{148E9} 11|299r37
+156M9*SAI_Master_Clock_Divider<5|43M9>
+164E9*SAI_FIFO_Threshold 170e6 319r25 11|265r25 305r30
+165n7*FIFO_Empty{164E9}
+166n7*FIFO_1_Quarter_Full{164E9}
+167n7*FIFO_Half_Full{164E9}
+168n7*FIFO_3_Quarters_Full{164E9}
+169n7*FIFO_Full{164E9}
+172E9*SAI_Tristate_Management 174e24 320r25 11|266r25
+173n7*SD_Line_Driven{172E9} 320r52 11|266r52
+174n7*SD_Line_Released{172E9} 11|307r45
+184E9*SAI_Companding_Mode 187e23 321r25 11|267r25 308r30
+185n7*No_Companding{184E9} 321r48 11|267r48
+186n7*M_Law_Algorithm{184E9}
+187n7*A_Law_Algorithm{184E9}
+194E9*SAI_Frame_Synchronization 197e6 328r25 11|320r22
+195n7*FS_Frame{194E9}
+196n7*FS_Frame_And_Channel_Identification{194E9} 11|329r32
+211E9*SAI_Frame_Sync_Polarity 214e6 329r25 11|321r22
+212n7*FS_Active_Low{211E9}
+213n7*FS_Active_High{211E9} 11|330r33
+222E9*SAI_Frame_Sync_Offset 225e6 330r25 11|322r22
+223n7*First_Bit{222E9}
+224n7*Before_First_Bit{222E9} 11|331r31
+233E9*SAI_Slot_Size 237e6 336r26 11|343r26 351r20
+234n7*Data_Size{233E9}
+235n7*Slot_16b{233E9}
+236n7*Slot_32b{233E9}
+245I9*Slots_Number<short_short_integer> 337r26 11|344r26
+247M9*SAI_Slots<5|66M9> 249r23 250r23 251r23 252r23 253r23 254r23 255r23
+. 256r23 257r23 258r23 259r23 260r23 261r23 262r23 263r23 264r23 338r26 11|345r26
+249m4*Slot_0{247M9}
+250m4*Slot_1{247M9}
+251m4*Slot_2{247M9}
+252m4*Slot_3{247M9}
+253m4*Slot_4{247M9}
+254m4*Slot_5{247M9}
+255m4*Slot_6{247M9}
+256m4*Slot_7{247M9}
+257m4*Slot_8{247M9}
+258m4*Slot_9{247M9}
+259m4*Slot_10{247M9}
+260m4*Slot_11{247M9}
+261m4*Slot_12{247M9}
+262m4*Slot_13{247M9}
+263m4*Slot_14{247M9}
+264m4*Slot_15{247M9}
+266U14*Deinitialize 267>7 268>7 11|117b14 143l8 143t20 274s7
+267r7 This{54R12} 11|118b7 122r33
+268e7 Block{60E9} 11|119b7 122r39
+270V13*Enabled{boolean} 271>7 272>7 11|149b13 156l8 156t15
+271r7 This{54R12} 11|149b22 153r33
+272e7 Block{60E9} 11|150b22 153r39
+275U14*Enable 276>7 277>7 11|162b14 170l8 170t14 228s10
+276r7 This{54R12} 11|163b7 167r33
+277e7 Block{60E9} 11|164b7 167r39
+280U14*Disable 281>7 282>7 11|176b14 184l8 184t15 244s7
+281r7 This{54R12} 11|177b7 181r33
+282e7 Block{60E9} 11|178b7 181r39
+285U14*Enable_DMA 286>7 287>7 11|190b14 198l8 198t18
+286r7 This{54R12} 11|191b7 195r33
+287e7 Block{60E9} 11|192b7 195r39
+290U14*DMA_Pause 291>7 292>7 11|204b14 212l8 212t17
+291r7 This{54R12} 11|205b7 209r33
+292e7 Block{60E9} 11|206b7 209r39
+295U14*DMA_Resume 296>7 297>7 11|218b14 230l8 230t18
+296r7 This{54R12} 11|219b7 223r33 228r18
+297e7 Block{60E9} 11|220b7 223r39 228r24
+300U14*DMA_Stop 301>7 302>7 11|236b14 245l8 245t16
+301r7 This{54R12} 11|237b7 241r33 244r16
+302e7 Block{60E9} 11|238b7 241r39 244r22
+305U14*Configure_Audio_Block 306>7 307>7 308>7 309>7 310>7 311>7 312>7 313>7
+. 314>7 315>7 316>7 317>7 318>7 319>7 320>7 321>7 11|251b14 309l8 309t29
+306r7 This{54R12} 11|252b7 269r65 274r21
+307e7 Block{60E9} 11|253b7 269r71 274r27
+308m7 Frequency{62M12} 11|254b7 283r40
+309e7 Stereo_Mode{64E9} 11|255b7 298r22
+310e7 Mode{69E9} 11|256b7 292r47
+311b7 MCD_Enabled{boolean} 11|257b7 302r26
+312e7 Protocol{79E9} 11|258b7 293r59
+313e7 Data_Size{94E9} 11|259b7 294r46
+314e7 Endianness{115E9} 11|260b7 295r22
+315m7 Clock_Speed{5|97M9} 11|261b7 283r20
+316e7 Clock_Strobing{120E9} 11|262b7 296r22
+317e7 Synchronization{134E9} 11|263b7 297r52
+318e7 Output_Drive{148E9} 11|264b7 299r22
+319e7 FIFO_Threshold{164E9} 11|265b7 305r59
+320e7 Tristate_Mgt{172E9} 11|266b7 307r30
+321e7 Companding_Mode{184E9} 11|267b7 308r60
+323U14*Configure_Block_Frame 324>7 325>7 326>7 327>7 328>7 329>7 330>7 11|315b14
+. 333l8 333t29
+324r7 This{54R12} 11|316b7 324r65
+325e7 Block{60E9} 11|317b7 324r71
+326m7 Frame_Length{5|53M9} 11|318b7 327r19
+327m7 Frame_Active{5|49M9} 11|319b7 328r19
+328e7 Frame_Sync{194E9} 11|320b7 329r19
+329e7 FS_Polarity{211E9} 11|321b7 330r19
+330e7 FS_Offset{222E9} 11|322b7 331r19
+332U14*Configure_Block_Slot 333>7 334>7 335>7 336>7 337>7 338>7 11|339b14
+. 355l8 355t28
+333r7 This{54R12} 11|340b7 347r65
+334e7 Block{60E9} 11|341b7 347r71
+335m7 First_Bit_Offset{5|45M9} 11|342b7 350r20
+336e7 Slot_Size{233E9} 11|343b7 351r44
+337i7 Number_Of_Slots{245I9} 11|344b7 352r27
+338m7 Enabled_Slots{247M9} 11|345b7 353r28
+X 11 stm32-sai.adb
+58R9 Block_Registers 75e15 76r8 86r46 100r24 102r24
+60r7*CR1{14|48R9} 77r7 126m18 129r24 155r25 169m18 183m18 197m18 211m18 225m18
+. 227r25 243m18 291m17
+62r7*CR2{14|109R9} 78r7 142m18 305m17 306m17 307m17 308m17
+64r7*FRCR{14|148R9} 79r7 326m17
+66r7*SLOTR{14|183R9} 80r7 349m17
+68r7*IM{14|210R9} 81r7 136m18
+70r7*SR{14|245R9} 82r7
+72r7*CLRFR{14|284R9} 83r7 137m18
+74m7*DR{5|97M9} 84r7
+86P9 Block_Registers_Access(58R9) 90r34 98r34 121r29 152r29 166r29 180r29
+. 194r29 208r29 222r29 240r29 269r28 324r28 347r28
+88V13 Get_Block{86P9} 89>7 90>7 96b13 111l8 111t17 122s22 153s22 167s22 181s22
+. 195s22 209s22 223s22 241s22 269s54 324s54 347s54
+89r7 Periph{10|54R12} 97b7 101r43 103r43
+90e7 Block{10|60E9} 98b7 105r12
+100r7 BlockA{58R9} 107m20 107r20
+102r7 BlockB{58R9} 109m20 109r20
+121p7 Block_Regs{86P9} 126r7 129r13 136r7 137r7 142r7
+123m7 Start{3|62M9} 128m7 130r13
+152p7 Block_Regs{86P9} 155r14
+166p7 Block_Regs{86P9} 169r7
+180p7 Block_Regs{86P9} 183r7
+194p7 Block_Regs{86P9} 197r7
+208p7 Block_Regs{86P9} 211r7
+222p7 Block_Regs{86P9} 225r7 227r14
+240p7 Block_Regs{86P9} 243r7
+269p7 Block_Reg{86P9} 291r7 305r7 306r7 307r7 308r7
+271m7 Tmp_Clock{5|97M9} 283m7 284r17 287r11
+272m7 Mckdiv{5|97M9} 284m7 288m10 288r20 303r29
+324p7 Block_Reg{86P9} 326r7
+347p7 Block_Reg{86P9} 349r7
+X 12 stm32_svd.ads
+10K9*STM32_SVD 10|50r6 54r30 55r24 57r29 58r29 11|52w6 52r37 53r6 53r37 54r6
+. 54r37 12|196e14
+X 13 stm32_svd-rcc.ads
+10K19*RCC 11|54w16 54r47 13|1665e18
+X 14 stm32_svd-sai.ads
+10K19*SAI 10|50w16 54r40 55r34 57r39 58r39 11|53w16 53r47 14|662e18
+41M12*ACR1_MODE_Field{5|39M9}
+42M12*ACR1_PRTCFG_Field{5|39M9}
+43M12*ACR1_DS_Field{5|41M9}
+44M12*ACR1_SYNCEN_Field{5|39M9}
+48R9*ACR1_Register 11|60r15 14|82e6
+50m7*MODE{41M12} 11|292m10
+52m7*PRTCFG{42M12} 11|293m10
+56m7*DS{43M12} 11|294m10
+58b7*LSBFIRST{boolean} 11|295m10
+60b7*CKSTR{boolean} 11|296m10
+62m7*SYNCEN{44M12} 11|297m10
+64b7*MONO{boolean} 11|298m10
+66b7*OutDri{boolean} 11|299m10
+70b7*SAIAEN{boolean} 11|126m22 129r28 155r29 169m22 183m22 227r29 300m10
+72b7*DMAEN{boolean} 11|197m22 211m22 225m22 243m22 301m10
+76b7*NODIV{boolean} 11|302m10
+78m7*MCJDIV{45M12} 11|303m10
+104M12*ACR2_FTH_Field{5|41M9}
+106M12*ACR2_COMP_Field{5|39M9}
+109R9*ACR2_Register 11|62r15 14|129e6
+111m7*FTH{104M12} 11|305m21
+113b7*FFLUS{boolean} 11|142m22 306m21
+115b7*TRIS{boolean} 11|307m21
+125m7*COMP{106M12} 11|308m21
+144M12*AFRCR_FRL_Field{5|53M9}
+148R9*AFRCR_Register 11|64r15 14|164e6
+150m7*FRL{144M12} 11|327m10
+152m7*FSALL{145M12} 11|328m10
+156b7*FSDEF{boolean} 11|329m10
+158b7*FSPOL{boolean} 11|330m10
+160b7*FSOFF{boolean} 11|331m10
+178M12*ASLOTR_SLOTSZ_Field{5|39M9}
+180M12*ASLOTR_SLOTEN_Field{5|66M9}
+183R9*ASLOTR_Register 11|66r15 14|197e6
+185m7*FBOFF{177M12} 11|350m10
+189m7*SLOTSZ{178M12} 11|351m10
+191m7*NBSLOT{179M12} 11|352m10
+195m7*SLOTEN{180M12} 11|353m10
+210R9*AIM_Register 11|68r15 14|228e6
+245R9*ASR_Register 11|70r15 14|267e6
+284R9*ACLRFR_Register 11|72r15 14|302e6
+292m7*Reserved_3_3{5|37M9} 11|138m10
+300m7*Reserved_7_31{5|83M9} 11|139m10
+596R9*SAI_Peripheral 10|54r44 55r38 14|632e6
+600r7*ACR1{48R9} 11|101m50
+616r7*BCR1{323R9} 11|103m50
+655r4*SAI1_Periph{596R9} 10|57r43
+659r4*SAI2_Periph{596R9} 10|58r43
+X 25 s-bbtime.ads
+46M9*Time
+81I9*Time_Span<long_long_integer>
+

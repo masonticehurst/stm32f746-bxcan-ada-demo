@@ -1,0 +1,5 @@
+external:HAL_LIBRARY_TYPE=default
+external:LIBRARY_TYPE=default
+profile:hal=RELEASE
+switches:hal=-O3,-fdata-sections,-ffunction-sections,-gnatW8,-gnatn
+version:gnat_arm_elf=15.2.1

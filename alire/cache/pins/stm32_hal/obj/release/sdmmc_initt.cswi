@@ -1,0 +1,17 @@
+20250929015319
+-c
+-x
+ada
+-gnatA
+--RTS=/users/mason.ticehurst/.local/share/alire/toolchains/gnat_arm_elf_14.2.1_9efaf827/arm-eabi/lib/gnat/embedded-stm32f746disco/
+-mlittle-endian
+-mfloat-abi=hard
+-mcpu=cortex-m7
+-mfpu=fpv5-sp-d16
+-mthumb
+-fno-tree-loop-distribute-patterns
+-O3
+-gnatn
+-ffunction-sections
+-fdata-sections
+-gnatW8

@@ -1,0 +1,103 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_LONG_LONG_INTEGERS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U hal%s			hal.ads			ba5331cf NE OO PU PK IU
+W interfaces%s		interfac.ads		interfac.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+G c Z s s [uint8_arrayIP hal 162 9 none]
+G c Z s s [uint16_arrayIP hal 163 9 none]
+G c Z s s [uint32_arrayIP hal 164 9 none]
+X 1 hal.ads
+34K9*HAL 166l5 166e8
+37M9*Bit
+39M9*UInt2
+41M9*UInt3
+43M9*UInt4
+45M9*UInt5
+47M9*UInt6
+49M9*UInt7
+51M9*UInt9
+53M9*UInt8<2|81M9> 162r52
+54M9*UInt10
+56M9*UInt11
+58M9*UInt12
+60M9*UInt13
+62M9*UInt14
+64M9*UInt15
+66M9*UInt16<2|84M9> 163r53
+67M9*UInt17
+69M9*UInt18
+71M9*UInt19
+73M9*UInt20
+75M9*UInt21
+77M9*UInt22
+79M9*UInt23
+81M9*UInt24
+83M9*UInt25
+85M9*UInt26
+87M9*UInt27
+89M9*UInt28
+91M9*UInt29
+93M9*UInt30
+95M9*UInt31
+97M9*UInt32<2|92M9> 164r53
+98M9*UInt33
+100M9*UInt34
+102M9*UInt35
+104M9*UInt36
+106M9*UInt37
+108M9*UInt38
+110M9*UInt39
+112M9*UInt40
+114M9*UInt41
+116M9*UInt42
+118M9*UInt43
+120M9*UInt44
+122M9*UInt45
+124M9*UInt46
+126M9*UInt47
+128M9*UInt48
+130M9*UInt49
+132M9*UInt50
+134M9*UInt51
+136M9*UInt52
+138M9*UInt53
+140M9*UInt54
+142M9*UInt55
+144M9*UInt56
+146M9*UInt57
+148M9*UInt58
+150M9*UInt59
+152M9*UInt60
+154M9*UInt61
+156M9*UInt62
+158M9*UInt63
+160M9*UInt64<2|95M9>
+162A9*UInt8_Array(53M9)<integer>
+163A9*UInt16_Array(66M9)<integer>
+164A9*UInt32_Array(97M9)<integer>
+X 2 interfac.ads
+47K9*Interfaces 1|32w6 53r22 66r23 97r23 160r23 2|247e15
+81M9*Unsigned_8 1|53r33
+84M9*Unsigned_16 1|66r34
+92M9*Unsigned_32 1|97r34
+95M9*Unsigned_64 1|160r34
+

@@ -1,0 +1,224 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U hal.filesystem%s	hal-filesystem.ads	665eda19 EE OO PF PR PK IU
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-filesystem.ads	20251114185538 4d0c5087 hal.filesystem%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+X 10 hal.ads
+34K9*HAL 166e8 11|34r9 76r26 229r5
+160M9*UInt64<12|95M9> 11|76r30
+X 11 hal-filesystem.ads
+34K13*Filesystem 10|34k9 11|229l9 229e19
+37E9*Status_Code 62e31 101r14 106r33 110r28 115r38 127r14 133r14 172r14 180r14
+. 196r14 203r14 213r14 219r14
+38n7*OK{37E9}
+39n7*Non_Empty_Directory{37E9}
+40n7*Disk_Error{37E9}
+41n7*Disk_Full{37E9}
+42n7*Internal_Error{37E9}
+43n7*Drive_Not_Ready{37E9}
+44n7*No_Such_File{37E9}
+45n7*No_Such_Path{37E9}
+46n7*Not_Mounted{37E9}
+47n7*Invalid_Name{37E9}
+48n7*Access_Denied{37E9}
+49n7*Already_Exists{37E9}
+50n7*Invalid_Object_Entry{37E9}
+51n7*Write_Protected{37E9}
+52n7*Invalid_Drive{37E9}
+53n7*No_Filesystem{37E9}
+54n7*Locked{37E9}
+55n7*Too_Many_Open_Files{37E9}
+56n7*Invalid_Parameter{37E9}
+57n7*Input_Output_Error{37E9}
+58n7*No_MBR_Found{37E9}
+59n7*No_Partition_Found{37E9}
+60n7*No_More_Entries{37E9}
+61n7*Read_Only_File_System{37E9}
+62n7*Operation_Not_Permitted{37E9}
+64E9*File_Mode 64e57 170r16 178r16 190r34
+64n23*Read_Only{64E9} 197r39
+64n34*Write_Only{64E9} 205r36
+64n46*Read_Write{64E9} 197r51 205r49
+65E9*Seek_Mode 74e16 217r16
+68n7*From_Start{65E9}
+70n7*From_End{65E9}
+72n7*Forward{65E9}
+74n7*Backward{65E9}
+76M9*File_Size<10|160M9> 159r46 187r34 195r23 202r16 209r14 218r23
+81h9*Filesystem_Driver 82r45 97p13 98r23 104p13 104r40 108p13 108r35 113p13
+. 113r45 123p13 124r23 167p13 168r23 227p14 227r35
+82P9*Any_Filesystem_Driver(81R9) 119r39 147r48 184r41
+84h9*Directory_Handle 85r44 118p13 119r14 130p13 131r23 137p14 137r35 140p14
+. 140r35
+85P9*Any_Directory_Handle(84R9) 100r20
+87h9*File_Handle 88r39 183p13 184r21 186p13 187r14 189p13 190r14 192p13 193r23
+. 199p13 200r23 207p13 208r14 211p13 212r21 215p13 216r23 221p14 221r35
+88P9*Any_File_Handle(87R9) 171r20 179r20
+90h9*Node_Handle
+90r9 Node_Handle{90R9}
+90r9 Node_Handle{90R9}
+90h9*Node_Handle 91r39 147p13 147r28 149p13 149r30 151p13 151r34 153p13 153r31
+. 155p13 155r37 157p13 157r32 159p13 159r26 161p14 161r35 175p13 176r16
+91P9*Any_Node_Handle(90R9) 126r20 132r20
+97y13*Open{37E9} 98=7 99>7 100<7
+98r7 This{81R9}
+99a7 Path{string}
+100p7 Handle{85P9}
+104y13*Create_File{37E9} 104=26 105>26
+104r26 This{81R9}
+105a26 Path{string}
+108y13*Unlink{37E9} 108=21 109>21
+108r21 This{81R9}
+109a21 Path{string}
+113y13*Remove_Directory{37E9} 113=31 114>31
+113r31 This{81R9}
+114a31 Path{string}
+118y13*Get_FS{82P9} 119>7
+119r7 This{84R9}
+123y13*Root_Node{37E9} 124=7 125>7 126<7
+124r7 This{81R9}
+125a7 As{string}
+126p7 Handle{91P9}
+130y13*Read{37E9} 131=7 132<7
+131r7 This{84R9}
+132p7 Handle{91P9}
+137x14*Reset 137=21
+137r21 This{84R9}
+140x14*Close 140=21
+140r21 This{84R9}
+147y13*Get_FS{82P9} 147>21
+147r21 This{90R9}
+149y13*Basename{string} 149>23
+149r23 This{90R9}
+151y13*Is_Read_Only{boolean} 151>27
+151r27 This{90R9}
+153y13*Is_Hidden{boolean} 153>24
+153r24 This{90R9}
+155y13*Is_Subdirectory{boolean} 155>30 181s24
+155r30 This{90R9}
+157y13*Is_Symlink{boolean} 157>25
+157r25 This{90R9}
+159y13*Size{76M9} 159>19
+159r19 This{90R9}
+161x14*Close 161=21
+161r21 This{90R9}
+167y13*Open{37E9} 168=7 169>7 170>7 171<7
+168r7 This{81R9}
+169a7 Path{string}
+170e7 Mode{64E9}
+171p7 Handle{88P9}
+175y13*Open{37E9} 176>7 177>7 178>7 179<7
+176r7 This{90R9} 181r41
+177a7 Name{string}
+178e7 Mode{64E9}
+179p7 Handle{88P9}
+183y13*Get_FS{82P9} 184=7
+184r7 This{87R9}
+186y13*Size{76M9} 187>7
+187r7 This{87R9}
+189y13*Mode{64E9} 190>7 197s24 205s21
+190r7 This{87R9}
+192y13*Read{37E9} 193=7 194>7 195=7
+193r7 This{87R9} 197r30
+194m7 Addr{15|80M9}
+195m7 Length{76M9}
+199y13*Write{37E9} 200=7 201>7 202>7
+200r7 This{87R9} 205r27
+201m7 Addr{15|80M9}
+202m7 Length{76M9}
+207y13*Offset{76M9} 208>7
+208r7 This{87R9}
+211y13*Flush{37E9} 212=7
+212r7 This{87R9}
+215y13*Seek{37E9} 216=7 217>7 218=7
+216r7 This{87R9}
+217e7 Origin{65E9}
+218m7 Amount{76M9}
+221x14*Close 221=21
+221r21 This{87R9}
+227x14*Close 227=21
+227r21 This{81R9}
+X 12 interfac.ads
+95M9*Unsigned_64
+X 15 system.ads
+50K9*System 11|32w6 194r16 201r16 15|167e11
+80M9*Address 11|194r23 201r23
+X 34 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 41 s-taskin.ads
+398V13*Get_Sec_Stack{34|102P9} 399i<c,__gnat_get_secondary_stack>22
+

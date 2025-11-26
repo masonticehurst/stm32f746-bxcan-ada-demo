@@ -1,0 +1,405 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U hal.bitmap%s		hal-bitmap.ads		39c5eee6 EE OO PF PR PK IU
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-bitmap.ads	20251114185538 12976478 hal.bitmap%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D system.ads		20250828113339 00104290 system%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [bits_per_pixel hal__bitmap 59 13 none]
+G c Z s s [Oadd hal__bitmap 75 13 none]
+G c Z s s [Osubtract hal__bitmap 78 13 none]
+G c Z s s [bitmap_colorIP hal__bitmap 87 9 none]
+G c Z s s [pointIP hal__bitmap 68 9 none]
+G c Z s s [point_arrayIP hal__bitmap 73 9 none]
+G c Z s s [rectIP hal__bitmap 81 9 none]
+X 10 hal.ads
+34K9*HAL 166e8 11|34r9 433r5
+53M9*UInt8<12|81M9> 11|88r15 89r15 90r15 91r15
+97M9*UInt32<12|92M9> 11|148r35 158r14 175r17 191r14
+X 11 hal-bitmap.ads
+34K13*Bitmap 10|34k9 11|433l9 433e15
+37E9*Orientation_Mode 40e17 42r34
+38n7*Default{37E9}
+39n7*Portrait{37E9} 42r57
+40n7*Landscape{37E9} 42r69
+42E12*Actual_Orientation{37E9}
+44E9*Bitmap_Color_Mode 57e8 59r36 130r56
+45n7*ARGB_8888{44E9} 61r15
+46n7*RGB_888{44E9} 62r15
+47n7*RGB_565{44E9} 63r15
+48n7*ARGB_1555{44E9} 63r25
+49n7*ARGB_4444{44E9} 63r37
+50n7*L_8{44E9} 64r15
+51n7*AL_44{44E9} 64r21
+52n7*AL_88{44E9} 63r49
+53n7*L_4{44E9} 65r15
+54n7*A_8{44E9} 64r29
+55n7*A_4{44E9} 65r21
+56n7*M_1{44E9} 66r15
+59V13*Bits_Per_Pixel{positive} 59b13 59>29
+59e29 Mode{44E9} 60r12
+68R9*Point 71e14 73r52 75r27 75r41 78r27 78r41 82r18 163r17 168r17 174r17
+. 180r16 184r16 190r16 196r21 214r21 216r21 218r21 225r21 227r21 234r21 236r21
+. 243r16 248r16 270r16 275r16 280r24
+69i7*X{natural} 76r14 76r21 79r14 79r21
+70i7*Y{natural} 76r27 76r34 79r27 79r34
+73A9*Point_Array(68R9)<integer> 286r24
+75V14*"+"{68R9} 75b14 75>18 75>22
+75r18 P1{68R9} 76r11 76r24
+75r22 P2{68R9} 76r18 76r31
+78V14*"-"{68R9} 78b14 78>18 78>22
+78r18 P1{68R9} 79r11 79r24
+78r22 P2{68R9} 79r18 79r31
+81R9*Rect 85e14 209r16 253r19 259r19 265r16
+82r7*Position{68R9}
+83i7*Width{natural}
+84i7*Height{natural}
+87R9*Bitmap_Color 92e15 94r8 144r35 153r14 169r17 185r14 292r35 293r35 294r35
+. 295r35 296r35 297r35 298r35 299r35 300r35 301r35 302r35 303r35 304r35 305r35
+. 306r35 307r35 308r35 309r35 310r35 311r35 312r35 313r35 314r35 315r35 316r35
+. 317r35 318r35 319r35 320r35 321r35 322r35 323r35 324r35 325r35 326r35 327r35
+. 328r35 329r35 330r35 331r35 332r35 333r35 334r35 335r35 336r35 337r35 338r35
+. 339r35 340r35 341r35 342r35 343r35 344r35 345r35 346r35 347r35 348r35 349r35
+. 350r35 351r35 352r35 353r35 354r35 355r35 356r35 357r35 358r35 359r35 360r35
+. 361r35 362r35 363r35 364r35 365r35 366r35 367r35 368r35 369r35 370r35 371r35
+. 372r35 373r35 374r35 375r35 376r35 377r35 378r35 379r35 380r35 381r35 382r35
+. 383r35 384r35 385r35 386r35 387r35 388r35 389r35 390r35 391r35 392r35 393r35
+. 394r35 395r35 396r35 397r35 398r35 399r35 400r35 401r35 402r35 403r35 404r35
+. 405r35 406r35 407r35 408r35 409r35 410r35 411r35 412r35 413r35 414r35 415r35
+. 416r35 417r35 418r35 419r35 420r35 421r35 422r35 423r35 424r35 425r35 426r35
+. 427r35 428r35 429r35 430r35 431r35
+88m7*Alpha{10|53M9} 98r7
+89m7*Red{10|53M9} 97r7
+90m7*Green{10|53M9} 96r7
+91m7*Blue{10|53M9} 95r7
+101r9 Bitmap_Buffer{101R9}
+101r9 Bitmap_Buffer{101R9}
+101h9*Bitmap_Buffer 103r41 105p13 105r29 109p13 109r30 113p13 113r31 130p13
+. 130r34 135p13 135r37 138p13 138r38 143p14 143r42 147p14 147r42 151p13 152r16
+. 156p13 157r16 161p14 162r24 166p14 167r24 172p14 173r24 178p14 179r23 182p13
+. 183r16 188p13 189r16 194p14 195r28 203p14 204r23 207p14 208r23 212p14 213r21
+. 215r28 217r21 223p14 224r21 226r28 232p14 233r21 235r28 241p14 242r23 246p14
+. 247r23 251p14 252r26 257p14 258r26 263p14 264r23 268p14 269r23 273p14 274r23
+. 278p14 279r31 284p14 285r31 290p13 290r35
+103P9*Any_Bitmap_Buffer(101R9)
+105y13*Width{natural} 105>20
+105r20 Buffer{101R9}
+109y13*Height{natural} 109>21
+109r21 Buffer{101R9}
+113y13*Swapped{boolean} 113>22
+113r22 Buffer{101R9}
+130y13*Color_Mode{44E9} 130>25
+130r25 Buffer{101R9}
+135y13*Mapped_In_RAM{boolean} 135>28 139s31
+135r28 Buffer{101R9}
+138y13*Memory_Address{13|80M9} 138>29
+138r29 Buffer{101R9} 139r24
+143x14*Set_Source 143=26 144>26
+143r26 Buffer{101R9}
+144r26 ARGB{87R9}
+147x14*Set_Source 147=26 148>26
+147r26 Buffer{101R9}
+148m26 Native{10|97M9}
+151y13*Source{87R9} 152>7
+152r7 Buffer{101R9}
+156y13*Source{10|97M9} 157>7
+157r7 Buffer{101R9}
+161x14*Set_Pixel 162=7 163>7
+162r7 Buffer{101R9}
+163r7 Pt{68R9}
+166x14*Set_Pixel 167=7 168>7 169>7
+167r7 Buffer{101R9}
+168r7 Pt{68R9}
+169r7 Color{87R9}
+172x14*Set_Pixel 173=7 174>7 175>7
+173r7 Buffer{101R9}
+174r7 Pt{68R9}
+175m7 Native{10|97M9}
+178x14*Set_Pixel_Blend 179=7 180>7
+179r7 Buffer{101R9}
+180r7 Pt{68R9}
+182y13*Pixel{87R9} 183>7 184>7
+183r7 Buffer{101R9}
+184r7 Pt{68R9}
+188y13*Pixel{10|97M9} 189>7 190>7
+189r7 Buffer{101R9}
+190r7 Pt{68R9}
+194x14*Draw_Line 195=7 196>7 196>14 197>7 198>7
+195r7 Buffer{101R9}
+196r7 Start{68R9}
+196r14 Stop{68R9}
+197i7 Thickness{natural}
+198b7 Fast{boolean}
+203x14*Fill 204=7
+204r7 Buffer{101R9}
+207x14*Fill_Rect 208=7 209>7
+208r7 Buffer{101R9}
+209r7 Area{81R9}
+212x14*Copy_Rect 213>7 214>7 215=7 216>7 217>7 218>7 219>7 220>7 221>7
+213c7 Src_Buffer<101R9>
+214r7 Src_Pt{68R9}
+215r7 Dst_Buffer{101R9}
+216r7 Dst_Pt{68R9}
+217c7 Bg_Buffer<101R9>
+218r7 Bg_Pt{68R9}
+219i7 Width{natural}
+220i7 Height{natural}
+221b7 Synchronous{boolean}
+223x14*Copy_Rect 224>7 225>7 226=7 227>7 228>7 229>7 230>7
+224c7 Src_Buffer<101R9>
+225r7 Src_Pt{68R9}
+226r7 Dst_Buffer{101R9}
+227r7 Dst_Pt{68R9}
+228i7 Width{natural}
+229i7 Height{natural}
+230b7 Synchronous{boolean}
+232x14*Copy_Rect_Blend 233>7 234>7 235=7 236>7 237>7 238>7 239>7
+233r7 Src_Buffer{101R9}
+234r7 Src_Pt{68R9}
+235c7 Dst_Buffer<101R9>
+236r7 Dst_Pt{68R9}
+237i7 Width{natural}
+238i7 Height{natural}
+239b7 Synchronous{boolean}
+241x14*Draw_Vertical_Line 242=7 243>7 244>7
+242r7 Buffer{101R9}
+243r7 Pt{68R9}
+244i7 Height{integer}
+246x14*Draw_Horizontal_Line 247=7 248>7 249>7
+247r7 Buffer{101R9}
+248r7 Pt{68R9}
+249i7 Width{integer}
+251x14*Draw_Rect 252=7 253>7 254>7
+252r7 Buffer{101R9}
+253r7 Area{81R9}
+254i7 Thickness{natural}
+257x14*Draw_Rounded_Rect 258=7 259>7 260>7 261>7
+258r7 Buffer{101R9}
+259r7 Area{81R9}
+260i7 Radius{natural}
+261i7 Thickness{natural}
+263x14*Fill_Rounded_Rect 264=7 265>7 266>7
+264r7 Buffer{101R9}
+265r7 Area{81R9}
+266i7 Radius{natural}
+268x14*Draw_Circle 269=7 270>7 271>7
+269r7 Buffer{101R9}
+270r7 Center{68R9}
+271i7 Radius{natural}
+273x14*Fill_Circle 274=7 275>7 276>7
+274r7 Buffer{101R9}
+275r7 Center{68R9}
+276i7 Radius{natural}
+278x14*Cubic_Bezier 279=7 280>7 280>11 280>15 280>19 281>7 282>7
+279r7 Buffer{101R9}
+280r7 P1{68R9}
+280r11 P2{68R9}
+280r15 P3{68R9}
+280r19 P4{68R9}
+281i7 N{positive}
+282i7 Thickness{natural}
+284x14*Bezier 285=7 286>7 287>7 288>7
+285r7 Buffer{101R9}
+286a7 Input_Points{73A9}
+287i7 N{positive}
+288i7 Thickness{natural}
+290y13*Buffer_Size{natural} 290>26
+290r26 Buffer{101R9}
+292r4*Transparent{87R9}
+293r4*Dark_Red{87R9}
+294r4*Brown{87R9}
+295r4*Firebrick{87R9}
+296r4*Crimson{87R9}
+297r4*Red{87R9}
+298r4*Tomato{87R9}
+299r4*Coral{87R9}
+300r4*Indian_Red{87R9}
+301r4*Light_Coral{87R9}
+302r4*Dark_Salmon{87R9}
+303r4*Salmon{87R9}
+304r4*Light_Salmon{87R9}
+305r4*Dark_Orange{87R9}
+306r4*Orange{87R9}
+307r4*Light_Orange{87R9}
+308r4*Gold{87R9}
+309r4*Dark_Golden_Rod{87R9}
+310r4*Golden_Rod{87R9}
+311r4*Pale_Golden_Rod{87R9}
+312r4*Dark_Khaki{87R9}
+313r4*Khaki{87R9}
+314r4*Olive{87R9}
+315r4*Yellow{87R9}
+316r4*Yellow_Green{87R9}
+317r4*Dark_Olive_Green{87R9}
+318r4*Olive_Drab{87R9}
+319r4*Lawn_Green{87R9}
+320r4*Chart_Reuse{87R9}
+321r4*Green_Yellow{87R9}
+322r4*Dark_Green{87R9}
+323r4*Green{87R9}
+324r4*Maroon{87R9}
+325r4*Forest_Green{87R9}
+326r4*Lime{87R9}
+327r4*Lime_Green{87R9}
+328r4*Light_Green{87R9}
+329r4*Pale_Green{87R9}
+330r4*Dark_Sea_Green{87R9}
+331r4*Medium_Spring_Green{87R9}
+332r4*Spring_Green{87R9}
+333r4*Sea_Green{87R9}
+334r4*Medium_Aqua_Marine{87R9}
+335r4*Medium_Sea_Green{87R9}
+336r4*Light_Sea_Green{87R9}
+337r4*Dark_Slate_Gray{87R9}
+338r4*Teal{87R9}
+339r4*Dark_Cyan{87R9}
+340r4*Aqua{87R9}
+341r4*Cyan{87R9}
+342r4*Light_Cyan{87R9}
+343r4*Dark_Turquoise{87R9}
+344r4*Turquoise{87R9}
+345r4*Medium_Turquoise{87R9}
+346r4*Pale_Turquoise{87R9}
+347r4*Aqua_Marine{87R9}
+348r4*Powder_Blue{87R9}
+349r4*Cadet_Blue{87R9}
+350r4*Steel_Blue{87R9}
+351r4*Corn_Flower_Blue{87R9}
+352r4*Deep_Sky_Blue{87R9}
+353r4*Dodger_Blue{87R9}
+354r4*Light_Blue{87R9}
+355r4*Sky_Blue{87R9}
+356r4*Light_Sky_Blue{87R9}
+357r4*Midnight_Blue{87R9}
+358r4*Navy{87R9}
+359r4*Dark_Blue{87R9}
+360r4*Medium_Blue{87R9}
+361r4*Blue{87R9}
+362r4*Royal_Blue{87R9}
+363r4*Blue_Violet{87R9}
+364r4*Indigo{87R9}
+365r4*Dark_Slate_Blue{87R9}
+366r4*Slate_Blue{87R9}
+367r4*Medium_Slate_Blue{87R9}
+368r4*Medium_Purple{87R9}
+369r4*Dark_Magenta{87R9}
+370r4*Dark_Violet{87R9}
+371r4*Dark_Orchid{87R9}
+372r4*Medium_Orchid{87R9}
+373r4*Purple{87R9}
+374r4*Thistle{87R9}
+375r4*Plum{87R9}
+376r4*Violet{87R9}
+377r4*Magenta{87R9}
+378r4*Orchid{87R9}
+379r4*Medium_Violet_Red{87R9}
+380r4*Pale_Violet_Red{87R9}
+381r4*Deep_Pink{87R9}
+382r4*Hot_Pink{87R9}
+383r4*Light_Pink{87R9}
+384r4*Pink{87R9}
+385r4*Antique_White{87R9}
+386r4*Beige{87R9}
+387r4*Bisque{87R9}
+388r4*Blanched_Almond{87R9}
+389r4*Wheat{87R9}
+390r4*Corn_Silk{87R9}
+391r4*Lemon_Chiffon{87R9}
+392r4*Light_Yellow{87R9}
+393r4*Saddle_Brown{87R9}
+394r4*Sienna{87R9}
+395r4*Chocolate{87R9}
+396r4*Peru{87R9}
+397r4*Sandy_Brown{87R9}
+398r4*Burly_Wood{87R9}
+399r4*Tan{87R9}
+400r4*Rosy_Brown{87R9}
+401r4*Moccasin{87R9}
+402r4*Navajo_White{87R9}
+403r4*Peach_Puff{87R9}
+404r4*Misty_Rose{87R9}
+405r4*Lavender_Blush{87R9}
+406r4*Linen{87R9}
+407r4*Old_Lace{87R9}
+408r4*Papaya_Whip{87R9}
+409r4*Sea_Shell{87R9}
+410r4*Mint_Cream{87R9}
+411r4*Slate_Gray{87R9}
+412r4*Light_Slate_Gray{87R9}
+413r4*Light_Steel_Blue{87R9}
+414r4*Lavender{87R9}
+415r4*Floral_White{87R9}
+416r4*Alice_Blue{87R9}
+417r4*Ghost_White{87R9}
+418r4*Honeydew{87R9}
+419r4*Ivory{87R9}
+420r4*Azure{87R9}
+421r4*Snow{87R9}
+422r4*Black{87R9}
+423r4*Dim_Grey{87R9}
+424r4*Grey{87R9}
+425r4*Gray{87R9}
+426r4*Dark_Grey{87R9}
+427r4*Silver{87R9}
+428r4*Light_Grey{87R9}
+429r4*Gainsboro{87R9}
+430r4*White_Smoke{87R9}
+431r4*White{87R9}
+X 12 interfac.ads
+81M9*Unsigned_8
+92M9*Unsigned_32
+X 13 system.ads
+50K9*System 11|32w6 138r60 13|167e11
+80M9*Address 11|138r67
+

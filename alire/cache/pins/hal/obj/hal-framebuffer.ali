@@ -1,0 +1,161 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U hal.framebuffer%s	hal-framebuffer.ads	01221380 EE OO PF PR PK IU
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W hal.bitmap%s		hal-bitmap.ads		hal-bitmap.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-bitmap.ads	20251114185538 12976478 hal.bitmap%s
+D hal-framebuffer.ads	20251114185538 38f7bff6 hal.framebuffer%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+X 10 hal.ads
+34K9*HAL 166e8 12|32r6 34r9 37r29 38r6 38r30 120r23 128r5
+53M9*UInt8<13|81M9> 12|82r46
+X 11 hal-bitmap.ads
+34K13*Bitmap 433e15 12|32w10 37r33 38r10 38r34 120r27
+44E9*Bitmap_Color_Mode 57e8 12|37r40
+45n7*ARGB_8888{44E9} 12|38r17
+56n7*M_1{44E9} 12|38r41
+101h9*Bitmap_Buffer
+103P9*Any_Bitmap_Buffer(101R9) 12|120r34
+X 12 hal-framebuffer.ads
+34K13*Framebuffer 10|34k9 12|128l9 128e20
+37E12*FB_Color_Mode{11|44E9} 55r14 87r16 114r32
+40E9*Display_Orientation 41e36 60r21
+41n7*Default{40E9}
+41n16*Landscape{40E9}
+41n27*Portrait{40E9}
+43E9*Wait_Mode 43e42 64r17
+43n23*Polling{43E9}
+43n32*Interrupt{43E9}
+45h9*Frame_Buffer_Display 47r48 49p13 50r14 53p13 54r14 58p14 59r28 62p14
+. 63r24 66p13 67r14 69p13 70r14 72p13 73r14 75p13 76r14 81p14 82r14 84p14
+. 85r23 97p13 98r15 101p14 102r26 107p14 108r21 112p13 113r15 117p13 118r22
+. 123p13 124r17
+47P9*Any_Frame_Buffer_Display(45R9)
+49y13*Max_Layers{positive} 50>7
+50r7 This{45R9}
+53y13*Supported{boolean} 54>7 55>7
+54r7 This{45R9}
+55e7 Mode{37E12}
+58x14*Set_Orientation 59=7 60>7
+59r7 This{45R9}
+60e7 Orientation{40E9}
+62x14*Set_Mode 63=7 64>7
+63r7 This{45R9}
+64e7 Mode{43E9}
+66y13*Initialized{boolean} 67>7
+67r7 This{45R9}
+69y13*Width{positive} 70>7
+70r7 This{45R9}
+72y13*Height{positive} 73>7
+73r7 This{45R9}
+75y13*Swapped{boolean} 76>7
+76r7 This{45R9}
+81x14*Set_Background 82>7 82>36 82>39 82>42
+82r7 This{45R9}
+82m36 R{10|53M9}
+82m39 G{10|53M9}
+82m42 B{10|53M9}
+84x14*Initialize_Layer 85=7 86>7 87>7 88>7 89>7 90>7 91>7
+85r7 This{45R9}
+86i7 Layer{positive}
+87e7 Mode{37E12}
+88i7 X{natural}
+89i7 Y{natural}
+90i7 Width{positive}
+91i7 Height{positive}
+97y13*Initialized{boolean} 98>7 99>7
+98r7 This{45R9}
+99i7 Layer{positive}
+101x14*Update_Layer 102=7 103>7 104>7
+102r7 This{45R9}
+103i7 Layer{positive}
+104b7 Copy_Back{boolean}
+107x14*Update_Layers 108=7
+108r7 This{45R9}
+112y13*Color_Mode{37E12} 113>7 114>7
+113r7 This{45R9}
+114i7 Layer{positive}
+117y13*Hidden_Buffer{11|103P9} 118=7 119>7
+118r7 This{45R9}
+119i7 Layer{positive}
+123y13*Pixel_Size{positive} 124>7 125>7
+124r7 Display{45R9}
+125i7 Layer{positive}
+X 13 interfac.ads
+81M9*Unsigned_8
+X 35 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 42 s-taskin.ads
+398V13*Get_Sec_Stack{35|102P9} 399i<c,__gnat_get_secondary_stack>22
+

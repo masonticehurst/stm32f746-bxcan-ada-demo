@@ -1,0 +1,130 @@
+V "GNAT Lib v15"
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U hal.spi%s		hal-spi.ads		088e301d EE OO PF PR PK IU
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-spi.ads		20251114185538 23ccf813 hal.spi%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [spi_data_8bIP hal__spi 45 9 none]
+G c Z s s [spi_data_16bIP hal__spi 47 9 none]
+X 10 hal.ads
+34K9*HAL 166e8 11|32r9 87r5
+53M9*UInt8<12|81M9> 11|45r52
+66M9*UInt16<12|84M9> 11|47r53
+X 11 hal-spi.ads
+32K13*SPI 10|34k9 11|87l9 87e12
+35E9*SPI_Status 39e12 58r21 66r21 74r21 82r21
+36n7*Ok{35E9}
+37n7*Err_Error{35E9}
+38n7*Err_Timeout{35E9}
+39n7*Busy{35E9}
+41E9*SPI_Data_Size 43e21 53r48
+42n7*Data_Size_8b{41E9} 61r40 77r40
+43n7*Data_Size_16b{41E9} 69r40 85r40
+45A9*SPI_Data_8b(10|53M9)<integer> 57r17 73r21
+47A9*SPI_Data_16b(10|66M9)<integer> 65r17 81r21
+49h9*SPI_Port 51r36 53p13 53r31 55p14 56r24 63p14 64r24 71p14 72r24 79p14
+. 80r24
+51P9*Any_SPI_Port(49R9)
+53y13*Data_Size{41E9} 53>24 61s21 69s21 77s21 85s21
+53r24 This{49R9}
+55x14*Transmit 56=7 57>7 58<7 59>7
+56r7 This{49R9} 61r32
+57a7 Data{45A9}
+58e7 Status{35E9}
+59i7 Timeout{natural}
+63x14*Transmit 64=7 65>7 66<7 67>7
+64r7 This{49R9} 69r32
+65a7 Data{47A9}
+66e7 Status{35E9}
+67i7 Timeout{natural}
+71x14*Receive 72=7 73<7 74<7 75>7
+72r7 This{49R9} 77r32
+73a7 Data{45A9}
+74e7 Status{35E9}
+75i7 Timeout{natural}
+79x14*Receive 80=7 81<7 82<7 83>7
+80r7 This{49R9} 85r32
+81a7 Data{47A9}
+82e7 Status{35E9}
+83i7 Timeout{natural}
+X 12 interfac.ads
+81M9*Unsigned_8
+84M9*Unsigned_16
+X 34 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 41 s-taskin.ads
+398V13*Get_Sec_Stack{34|102P9} 399i<c,__gnat_get_secondary_stack>22
+

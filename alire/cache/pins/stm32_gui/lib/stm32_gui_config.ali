@@ -1,0 +1,41 @@
+V "GNAT Lib v15"
+A -O3
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_ELABORATION_CODE
+
+U stm32_gui_config%s	stm32_gui_config.ads	7a26ecc9 NE OO PU PK
+
+D stm32_gui_config.ads	20251121163515 7a26ecc9 stm32_gui_config%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+X 1 stm32_gui_config.ads
+5K9*Stm32_Gui_Config 20l5 20e21
+8a4*Crate_Version{string}
+9a4*Crate_Name{string}
+11a4*Alire_Host_OS{string}
+13a4*Alire_Host_Arch{string}
+15a4*Alire_Host_Distro{string}
+17E9*Build_Profile_Kind 17e65 18r29
+17n32*release{17E9} 18r51
+17n41*validation{17E9}
+17n53*development{17E9}
+18e4*Build_Profile{17E9}
+

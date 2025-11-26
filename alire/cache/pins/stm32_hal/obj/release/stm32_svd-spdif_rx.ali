@@ -1,0 +1,152 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_ELABORATION_CODE
+
+U stm32_svd.spdif_rx%s	stm32_svd-spdif_rx.ads	a13f60e2 NE OO PR PK IU
+W hal%s			hal.ads			hal.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W system%s		system.ads		system.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-spdif_rx.ads  20250912141839 916800e3 stm32_svd.spdif_rx%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+G c Z s s [cr_registerIP stm32_svd__spdif_rx 23 9 none]
+G c Z s s [imr_registerIP stm32_svd__spdif_rx 77 9 none]
+G c Z s s [sr_registerIP stm32_svd__spdif_rx 112 9 none]
+G c Z s s [ifcr_registerIP stm32_svd__spdif_rx 157 9 none]
+G c Z s s [dr_registerIP stm32_svd__spdif_rx 187 9 none]
+G c Z s s [csr_registerIP stm32_svd__spdif_rx 220 9 none]
+G c Z s s [dir_registerIP stm32_svd__spdif_rx 244 9 none]
+G c Z s s [spdif_rx_peripheralIP stm32_svd__spdif_rx 269 9 none]
+X 1 hal.ads
+34K9*HAL 166e8 4|7w6 17r32 18r30 19r29 20r30 49r24 53r24 93r23 109r31 132r24
+. 136r24 159r23 169r23 183r27 184r27 201r24 216r29 217r28 228r24 240r29 241r29
+. 248r24 252r24
+37M9*Bit 4|49r28 136r28
+39M9*UInt2 4|17r36 18r34 19r33 159r27 184r31 201r28
+41M9*UInt3 4|20r34 248r28 252r28
+49M9*UInt7 4|132r28 228r28
+53M9*UInt8<2|81M9> 4|217r32
+60M9*UInt13 4|53r28 240r33 241r33
+64M9*UInt15 4|109r35
+66M9*UInt16<2|84M9> 4|216r33
+81M9*UInt24 4|183r31
+83M9*UInt25 4|93r27
+85M9*UInt26 4|169r27
+X 2 interfac.ads
+81M9*Unsigned_8
+84M9*Unsigned_16
+X 3 stm32_svd.ads
+10K9*STM32_SVD 196e14 4|10r9 301r5
+X 4 stm32_svd-spdif_rx.ads
+10K19*SPDIF_RX 3|10k9 4|301l15 301e23
+17M12*CR_SPDIFEN_Field{1|39M9} 25r24
+18M12*CR_DRFMT_Field{1|39M9} 31r24
+19M12*CR_NBTR_Field{1|39M9} 45r24
+20M12*CR_INSEL_Field{1|41M9} 51r24
+23R9*CR_Register 55e6 58r8 271r22
+25m7*SPDIFEN{17M12} 59r7
+27b7*RXDMAEN{boolean} 60r7
+29b7*RXSTEO{boolean} 61r7
+31m7*DRFMT{18M12} 62r7
+33b7*PMSK{boolean} 63r7
+35b7*VMSK{boolean} 64r7
+37b7*CUMSK{boolean} 65r7
+39b7*PTMSK{boolean} 66r7
+41b7*CBDMAEN{boolean} 67r7
+43b7*CHSEL{boolean} 68r7
+45m7*NBTR{19M12} 69r7
+47b7*WFA{boolean} 70r7
+49m7*Reserved_15_15{1|37M9} 71r7
+51m7*INSEL{20M12} 72r7
+53m7*Reserved_19_31{1|60M9} 73r7
+77R9*IMR_Register 95e6 98r8 273r22
+79b7*RXNEIE{boolean} 99r7
+81b7*CSRNEIE{boolean} 100r7
+83b7*PERRIE{boolean} 101r7
+85b7*OVRIE{boolean} 102r7
+87b7*SBLKIE{boolean} 103r7
+89b7*SYNCDIE{boolean} 104r7
+91b7*IFEIE{boolean} 105r7
+93m7*Reserved_7_31{1|83M9} 106r7
+109M12*SR_WIDTH5_Field{1|64M9} 134r24
+112R9*SR_Register 138e6 141r8 275r22
+114b7*RXNE{boolean} 142r7
+116b7*CSRNE{boolean} 143r7
+118b7*PERR{boolean} 144r7
+120b7*OVR{boolean} 145r7
+122b7*SBD{boolean} 146r7
+124b7*SYNCD{boolean} 147r7
+126b7*FERR{boolean} 148r7
+128b7*SERR{boolean} 149r7
+130b7*TERR{boolean} 150r7
+132m7*Reserved_9_15{1|49M9} 151r7
+134m7*WIDTH5{109M12} 152r7
+136m7*Reserved_31_31{1|37M9} 153r7
+157R9*IFCR_Register 171e6 174r8 277r22
+159m7*Reserved_0_1{1|39M9} 175r7
+161b7*PERRCF{boolean} 176r7
+163b7*OVRCF{boolean} 177r7
+165b7*SBDCF{boolean} 178r7
+167b7*SYNCDCF{boolean} 179r7
+169m7*Reserved_6_31{1|85M9} 180r7
+183M12*DR_DR_Field{1|81M9} 189r24
+184M12*DR_PT_Field{1|39M9} 199r24
+187R9*DR_Register 203e6 206r8 279r22
+189m7*DR{183M12} 207r7
+191b7*PE{boolean} 208r7
+193b7*V{boolean} 209r7
+195b7*U{boolean} 210r7
+197b7*C{boolean} 211r7
+199m7*PT{184M12} 212r7
+201m7*Reserved_30_31{1|39M9} 213r7
+216M12*CSR_USR_Field{1|66M9} 222r24
+217M12*CSR_CS_Field{1|53M9} 224r24
+220R9*CSR_Register 230e6 233r8 281r22
+222m7*USR{216M12} 234r7
+224m7*CS{217M12} 235r7
+226b7*SOB{boolean} 236r7
+228m7*Reserved_25_31{1|49M9} 237r7
+240M12*DIR_THI_Field{1|60M9} 246r24
+241M12*DIR_TLO_Field{1|60M9} 250r24
+244R9*DIR_Register 254e6 257r8 283r22
+246m7*THI{240M12} 258r7
+248m7*Reserved_13_15{1|41M9} 259r7
+250m7*TLO{241M12} 260r7
+252m7*Reserved_29_31{1|41M9} 261r7
+269R9*SPDIF_RX_Peripheral 285e6 287r8 298r30
+271r7*CR{23R9} 288r7
+273r7*IMR{77R9} 289r7
+275r7*SR{112R9} 290r7
+277r7*IFCR{157R9} 291r7
+279r7*DR{187R9} 292r7
+281r7*CSR{220R9} 293r7
+283r7*DIR{244R9} 294r7
+298r4*SPDIF_RX_Periph{269R9}
+X 5 system.ads
+50K9*System 4|8w6 56r24 96r24 139r24 172r24 204r24 231r24 255r24 299r30 5|167e11
+80M9*Address 4|299r30
+104n41*Low_Order_First{104E9} 4|56r31 96r31 139r31 172r31 204r31 231r31 255r31
+

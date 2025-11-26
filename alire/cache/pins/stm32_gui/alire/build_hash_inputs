@@ -1,0 +1,6 @@
+dependency:stm32_hal=0.1.0=9365bd0b59e4ce8fed1b6175e7596cbed5a388e06c0af3e4442ea783acff84d0
+external:LIBRARY_TYPE=default
+external:STM32_GUI_LIBRARY_TYPE=default
+profile:stm32_gui=RELEASE
+switches:stm32_gui=-O3,-fdata-sections,-ffunction-sections,-gnatW8,-gnatn
+version:gnat_arm_elf=15.2.1

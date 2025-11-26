@@ -1,0 +1,2 @@
+hal-can.ads:1:06: error: file "stm32_svd.ads" not found
+hal-can.ads:2:06: error: file "stm32_svd-can.ads" not found

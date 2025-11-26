@@ -1,0 +1,401 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF SS ZX
+
+RN
+RV NO_DISPATCHING_CALLS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U stm32.i2c%b		stm32-i2c.adb		b03b0bc8 OO PK IU
+W ada%s			ada.ads			ada.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W hal%s			hal.ads			hal.ali
+W hal.i2c%s		hal-i2c.ads		hal-i2c.ali
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.i2c%s	stm32_svd-i2c.ads	stm32_svd-i2c.ali
+W stm32_svd.rcc%s	stm32_svd-rcc.ads	stm32_svd-rcc.ali
+
+U stm32.i2c%s		stm32-i2c.ads		94e18223 BN EE OO PF PK IU
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W hal.i2c%s		hal-i2c.ads		hal-i2c.ali
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.i2c%s	stm32_svd-i2c.ads	stm32_svd-i2c.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-reatim.ads		20250828113339 cfe92427 ada.real_time%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-i2c.ads		20251114185538 bbe3f8eb hal.i2c%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D stm32.ads		20251114185847 698e2c3b stm32%s
+D stm32-i2c.ads		20251114185853 25dd9b22 stm32.i2c%s
+D stm32-i2c.adb		20251114185853 364091fe stm32.i2c%b
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-i2c.ads	20251114185427 6351cdd1 stm32_svd.i2c%s
+D stm32_svd-rcc.ads	20251114185427 b4fd1009 stm32_svd.rcc%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-retsta.ads		20250828113339 0f6b06cb system.return_stack%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20250828113339 516607ae system.stream_attributes%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [port_enabled stm32__i2c 73 13 none]
+G c Z s b [configure stm32__i2c 76 14 none]
+G c Z s b [is_configured stm32__i2c 82 13 none]
+G c Z s b [master_transmit stm32__i2c 85 14 none]
+G c Z s b [master_receive stm32__i2c 94 14 none]
+G c Z s b [mem_write stm32__i2c 103 14 none]
+G c Z s b [mem_read stm32__i2c 114 14 none]
+G c Z s s [i2c_configurationIP stm32__i2c 46 9 none]
+G c Z s s [i2c_portDA stm32__i2c 136 9 none]
+G c Z s s [i2c_portDF stm32__i2c 136 9 none]
+G c Z s s [i2c_portIP stm32__i2c 136 9 none]
+G c Z b b [config_transfer stm32__i2c 52 14 none]
+G c Z b b [reset_config stm32__i2c 59 14 none]
+G c Z b b [check_nack stm32__i2c 61 14 none]
+G c Z b b [wait_tx_interrupt_status stm32__i2c 66 14 none]
+G c Z b b [wait_transfer_complete_reset_flag stm32__i2c 71 14 none]
+G c Z b b [wait_stop_flag stm32__i2c 76 14 none]
+X 1 ada.ads
+18K9*Ada 22e8 18|32r6 32r25
+X 4 a-reatim.ads
+52K13*Real_Time 193e18 18|32w10 32r29
+62M9*Time<32|46M9> 18|227r24 274r24 309r24 335r24 553r21 694r21
+72I9*Time_Span<32|81I9>
+79V13*Clock{62M9}<32|134p13> 18|227s32 242s57 274s32 287s54 309s32 313s54
+. 335s32 348s54 556s16 558s13 697s16 700s13
+83V14*"+"{62M9} 18|242s30 287s27 313s27 348s27
+87V14*"-"{72I9} 18|558s19 700s19
+94V14*"<"{boolean} 18|242r55 287r52 313r52 348r52
+125V14*">"{boolean} 18|558r27 700r27
+139V13*Milliseconds{72I9} 18|242s32 287s29 313s29 348s29 558s29 700s29
+X 11 hal.ads
+34K9*HAL 166e8 17|36r6 71r11 87r17 88r17 89r21 96r17 97r21 98r21 105r23 107r23
+. 108r23 109r27 116r23 118r23 119r27 120r27 137r11 18|37r6 37r19 64r21
+43M9*UInt4
+53M9*UInt8<13|81M9> 18|55r17 169r17 434r31 519r31 596r40 600r31 600r40 601r31
+. 601r40 659r19 736r40 740r31 740r40 741r31 741r40 796r19
+54M9*UInt10 17|49r34 63r27 18|175r19
+66M9*UInt16<13|84M9> 17|106r23 117r23 18|545r23 686r23
+97M9*UInt32<13|92M9> 17|47r34
+162A9*UInt8_Array(53M9)<integer>
+X 12 hal-i2c.ads
+32K13*I2C 85e12 17|36w10 71r15 87r21 88r21 89r25 96r21 97r25 98r25 105r27
+. 107r27 108r27 109r31 116r27 118r27 119r31 120r31 137r15 18|37w10 37r23
+. 64r25
+35E9*I2C_Status 39e12 17|89r29 98r29 109r35 120r35 18|64r29 69r21 74r21 79r21
+. 225r21 272r21 307r21 333r21 373r21 461r21 548r27 689r27
+36n7*Ok{35E9} 18|261r20 279r23 297r17 323r17 340r23 361r17 412r23 424r26
+. 442r20 449r23 527r20 534r23 588r20 606r29 616r20 635r23 648r26 668r20 675r23
+. 730r20 747r29 805r20 812r23
+37n7*Err_Error{35E9} 18|258r26 281r29 342r29 386r20 480r20 565r20 707r20
+38n7*Err_Timeout{35E9} 18|245r32 291r29 316r29 351r29
+39n7*Busy{35E9} 18|381r20 391r20 468r20 473r20 559r23 570r20 701r23 712r20
+41A12*I2C_Data{11|162A9}<integer> 17|88r25 97r29 108r31 119r35 18|372r17
+. 460r21 547r23 688r27
+43E9*I2C_Memory_Address_Size 45e23 17|107r31 118r31 18|546r23 687r23
+44n7*Memory_Size_8b{43E9} 18|581r19 595r15 723r19 735r15
+45n7*Memory_Size_16b{43E9} 18|582r19 598r15 724r19 738r15
+47M12*I2C_Address{11|54M9} 17|87r25 96r25 105r31 116r31
+49h9*I2C_Port 17|71r19 137r19
+X 13 interfac.ads
+81M9*Unsigned_8
+84M9*Unsigned_16
+92M9*Unsigned_32
+134V13*Shift_Right{84M9} 18|600s47 740s47
+X 16 stm32.ads
+39K9*STM32 48e10 17|38r9 142r5 18|39r14 815r5
+X 17 stm32-i2c.ads
+38K15*I2C 16|39k9 17|126E9 142l11 142e14 18|39b20 815l11 815t14
+40E9*I2C_Direction 40e49
+40n27*Transmitter{40E9}
+40n40*Receiver{40E9}
+42E9*I2C_Addressing_Mode 44e29 48r34
+43n7*Addressing_Mode_7bit{42E9}
+44n7*Addressing_Mode_10bit{42E9} 18|125r56 133r41
+46R9*I2C_Configuration 61e14 78r23 138r21 18|97r23
+47m7*Clock_Speed{11|97M9}
+48e7*Addressing_Mode{42E9} 18|125r38 133r23
+49m7*Own_Address{11|54M9} 18|121r24 123r38
+53b7*General_Call_Enabled{boolean} 18|143r37
+57b7*Clock_Stretching_Enabled{boolean}
+59b7*Enable_DMA{boolean}
+63M12*I2C_Address{11|54M9} 18|54r17 168r17 371r17 459r17 544r23 685r23
+65X4*I2C_Timeout
+66X4*I2C_Error
+68R9*Internal_I2C_Port<20|433R9> 70r44 134c9 136r44
+70R9*I2C_Port<12|49R9> 70d19 73p13 73r34 76p14 77r30 82p13 82r35 85P14 86r24
+. 94P14 95r24 103P14 104r30 114P14 115r30 136c9 140e17 18|53r24 59r42 62r24
+. 67r24 72r24 77r24 85r34 96r30 156r35 167r24 206r43 223r24 270r24 305r24
+. 331r24 370r24 458r24 543r30 684r30
+73V13*Port_Enabled{boolean} 73>27 18|85b13 89l8 89t20
+73r27 This{70R9} 18|85b27 88r14
+76U14*Configure 77=7 78>7 18|95b14 150l8 150t17
+77r7 This{70R9} 79r38 80r34 18|96b7 100r10 104m7 107m7 107r7 110m7 110r7
+. 119m7 119r7 122m10 122r10 132m7 132r7 134m7 134r7 135m7 135r7 139m7 139r7
+. 142m7 142r7 147m7 149m7 149r7
+78r7 Configuration{46R9} 18|97b7 104r22 121r10 123r24 125r24 133r9 143r23
+82V13*Is_Configured{boolean} 79s23 80s19 82>28 91s18 100s18 111s18 122s18
+. 18|156b13 160l8 160t21
+82r28 Port{70R9} 18|156b28 159r14
+85U14*Master_Transmit<12|53p14> 86=7 87>7 88>7 89<7 90>7 18|369b14 450l8
+. 450t23
+86r7 This{70R9} 91r33 18|370b7 380r10 390r10 395m7 400m13 404m13 410m36 416m10
+. 416r10 423m48 430m19 434m19 441m23 447m21 448m7
+87m7 Addr{12|47M12} 18|371b7 400r19 404r19 430r25 434r25
+88a7 Data{12|41A12} 18|372b7 385r10 398r10 404r25 405r23 409r27 416r37 416r43
+. 420r35 428r16 434r38 436r29
+89e7 Status{12|35E9} 18|373b7 381m10 386m10 391m10 410m51 412r13 423m63 424r16
+. 441m38 442r10 449m7
+90i7 Timeout{natural} 18|374b7 410r42 423r54 441r29
+94U14*Master_Receive<12|60p14> 95=7 96>7 97<7 98<7 99>7 18|457b14 535l8 535t22
+95r7 This{70R9} 100r33 18|458b7 467r10 472r10 477m7 487m13 491m13 497r20
+. 501r45 509r19 515m19 519m19 526m23 532m21 533m7
+96m7 Addr{12|47M12} 18|459b7 487r19 491r19 515r25 519r25
+97a7 Data{12|41A12} 18|460b7 479r10 485r10 491r25 492r23 496r27 501m10 501r16
+. 506r35 513r16 519r38 521r29
+98e7 Status{12|35E9} 18|461b7 468m10 473m10 480m10 526m38 527r10 534m7
+99i7 Timeout{natural} 18|462b7 526r29
+103U14*Mem_Write<12|67p14> 104=7 105>7 106>7 107>7 108>7 109<7 110>7 18|542b14
+. 676l8 676t17
+104r7 This{70R9} 111r33 18|543b7 557r13 569r10 574m7 578m10 586m33 589m10
+. 596m13 596r13 603m16 603r16 605m42 610m16 610r16 614m42 623m13 627m13 633m36
+. 639m10 639r10 646m48 654m19 658m19 667m23 673m21 674m7
+105m7 Addr{12|47M12} 18|544b7 579r10 623r19 627r19 654r25 658r25
+106m7 Mem_Addr{11|66M9} 18|545b7 596r47 600r60 601r47
+107e7 Mem_Addr_Size{12|43E9} 18|546b7 580r16 594r12
+108a7 Data{12|41A12} 18|547b7 564r10 621r10 627r25 628r23 632r27 639r37 639r43
+. 643r35 652r16 659r26 662r29
+109e7 Status{12|35E9} 18|548b7 559m13 565m10 570m10 586m48 588r10 605m57
+. 606r19 614m57 616r10 633m51 635r13 646m63 648r16 667m38 668r10 675m7
+110i7 Timeout{natural} 18|549b7 558r43 586r39 605r48 614r48 633r42 646r54
+. 667r29
+114U14*Mem_Read<12|76p14> 115=7 116>7 117>7 118>7 119<7 120<7 121>7 18|683b14
+. 813l8 813t16
+115r7 This{70R9} 122r33 18|684b7 699r13 711r10 716m7 720m10 728m33 736m13
+. 736r13 743m16 743r16 745m42 751m16 751r16 756r17 763m13 767m13 773r20 777r45
+. 785r23 791m19 795m19 804m23 810m21 811m7
+116m7 Addr{12|47M12} 18|685b7 721r10 763r19 767r19 791r25 795r25
+117m7 Mem_Addr{11|66M9} 18|686b7 736r47 740r60 741r47
+118e7 Mem_Addr_Size{12|43E9} 18|687b7 722r16 734r12
+119a7 Data{12|41A12} 18|688b7 706r10 761r10 767r25 768r23 772r27 777m10 777r16
+. 782r35 789r16 796r26 799r29
+120e7 Status{12|35E9} 18|689b7 701m13 707m10 712m10 728m48 730r10 745m57
+. 747r19 804m38 805r10 812m7
+121i7 Timeout{natural} 18|690b7 700r43 728r39 745r48 804r29
+126E9 I2C_State 132e19 139r21
+127n7 Reset{126E9} 139r34 18|100r24 159r28
+128n7 Ready{126E9} 18|147r21 244r30 257r24 280r27 290r27 317r27 341r27 352r27
+. 390r24 448r21 472r24 533r21 569r24 589r24 674r21 711r24 811r21
+129n7 Master_Busy_Tx{126E9} 18|230r26 395r21
+130n7 Master_Busy_Rx{126E9} 18|477r21
+131n7 Mem_Busy_Tx{126E9} 18|231r33 574r21
+132n7 Mem_Busy_Rx{126E9} 18|232r33 716r21
+138r10 Config{46R9} 18|104m12
+139e10 State{126E9} 18|100r15 147m12 159r19 230r18 231r25 232r25 244m21 257m15
+. 280m18 290m18 317m18 341m18 352m18 390r15 395m12 448m12 472r15 477m12 533m12
+. 569r15 574m12 589m15 674m12 711r15 716m12 811m12
+X 18 stm32-i2c.adb
+41E9 I2C_Transfer_Mode 44e20 56r17 170r17
+42n7 Reload_Mode{41E9} 177r28 400r30 430r36 487r30 515r36 583r10 623r30 654r36
+. 763r30 791r36
+43n7 Autoend_Mode{41E9} 178r29 404r38 434r66 491r38 519r66 627r38 660r19
+. 767r38 797r19
+44n7 Softend_Mode{41E9} 725r10
+46E9 I2C_Request 50e28 57r17 171r17
+47n7 No_Start_Stop{46E9} 185r15 430r49 435r19 515r49 520r19 623r43 627r52
+. 654r49 661r19 791r49 798r19
+48n7 Generate_Stop{46E9} 188r15
+49n7 Generate_Start_Read{46E9} 191r15 487r43 491r52 763r43 767r52
+50n7 Generate_Start_Write{46E9} 195r15 400r43 404r52 584r10 726r10
+52U14 Config_Transfer 53=7 54>7 55>7 56>7 57>7 166b14 200l8 200t23 399s10
+. 403s10 429s16 433s16 486s10 490s10 514s16 518s16 577s7 622s10 626s10 653s16
+. 657s16 719s7 762s10 766s10 790s16 794s16
+53r7 Port{17|70R9} 167b7 173r29 199m7 199r7
+54m7 Addr{17|63M12} 168b7 175r27
+55m7 Size{11|53M9} 169b7 176r21
+56e7 Mode{41E9} 170b7 177r21 178r22
+57e7 Request{46E9} 171b7 184r12
+59U14 Reset_Config 59=28 206b14 216l8 216t20 255s10 289s13 315s13 350s13
+. 447s7 532s7 673s7 810s7
+59r28 Port{17|70R9} 206b28 208r29 215m7 215r7
+61U14 Check_Nack 62=7 63>7 64<7 222b14 263l8 263t18 277s10 338s10
+62r7 Port{17|70R9} 223b7 229r10 230r13 231r20 232r20 235r20 236m16 236r16
+. 240r20 244m16 251m10 251r10 252m10 252r10 255m24 257m10
+63i7 Timeout{natural} 224b7 241r16 242r46
+64e7 Status{12|35E9} 225b7 245m16 258m10 261m10
+66U14 Wait_Tx_Interrupt_Status 67=7 68>7 69<7 269b14 298l8 298t32 410s10
+. 586s7 605s16 633s10 728s7 745s16
+67r7 Port{17|70R9} 270b7 276r17 277m22 280m13 289m27 290m13
+68i7 Timeout{natural} 271b7 277r28 286r13 287r43
+69e7 Status{12|35E9} 272b7 277m37 279r13 281m13 291m13 297m7
+71U14 Wait_Transfer_Complete_Reset_Flag 72=7 73>7 74<7 304b14 324l8 324t41
+. 423s13 614s7 646s13
+72r7 Port{17|70R9} 305b7 311r17 315m27 317m13
+73i7 Timeout{natural} 306b7 312r13 313r43
+74e7 Status{12|35E9} 307b7 316m13 323m7
+76U14 Wait_Stop_Flag 77=7 78>7 79<7 330b14 362l8 362t22 441s7 526s7 667s7
+. 804s7
+77r7 Port{17|70R9} 331b7 337r17 338m22 341m13 350m27 352m13 359m7 359r7
+78i7 Timeout{natural} 332b7 338r28 347r13 348r43
+79e7 Status{12|35E9} 333b7 338m37 340r13 342m13 351m13 361m7
+173r7 CR2{20|98R9} 175m7 176m7 177m7 178m7 180m7 181m7 182m7 189m13 192m13
+. 193m13 196m13 199r26
+208r7 CR2{20|98R9} 210m7 211m7 212m7 213m7 214m7 215r26
+227m7 Start{4|62M9} 242r24
+274m7 Start{4|62M9} 287r21
+309m7 Start{4|62M9} 313r21
+335m7 Start{4|62M9} 348r21
+376i7 Size_Temp{natural} 401m10 405m10 419r27 431m16 436m16
+377i7 Transmitted{natural} 409r13 416r56 417m10 417r25 419r13 420r21 428r30
+. 434r52 436r43
+464i7 Size_Temp{natural} 488m10 492m10 503m10 503r25 505r13 516m16 521m16
+465i7 Transmitted{natural} 496r13 501r29 502m10 502r25 506r21 513r30 519r52
+. 521r43
+551i7 Size_Temp{natural} 624m10 628m10 642r27 655m16 662m16
+552i7 Transmitted{natural} 632r13 639r56 640m10 640r25 642r13 643r21 652r30
+. 659r40 662r43
+553m7 Start{4|62M9} 556m7 558r21
+600m16 MSB{11|53M9} 603r43
+601m16 LSB{11|53M9} 610r43
+692i7 Size_Temp{natural} 764m10 768m10 779m10 779r25 781r13 792m16 799m16
+693i7 Transmitted{natural} 772r13 777r29 778m10 778r25 782r21 789r30 796r40
+. 799r43
+694m7 Start{4|62M9} 697m7 700r21
+740m16 MSB{11|53M9} 743r43
+741m16 LSB{11|53M9} 751r43
+X 19 stm32_svd.ads
+10K9*STM32_SVD 17|35r14 134r34 18|34r6 34r25 35r6 35r25 19|196e14
+X 20 stm32_svd-i2c.ads
+10K19*I2C 17|35w24 134r44 18|34w16 34r35 20|489e18
+22b7*PE{boolean} 18|88r30 107m23 149m23
+50b7*NOSTRETCH{boolean} 18|144m10
+54b7*GCEN{boolean} 18|143m10
+95M12*CR2_NBYTES_Field{11|53M9}
+98R9*CR2_Register 18|173r13 208r13 20|124e6
+100m7*SADD{94M12} 18|175m11 210m11
+102b7*RD_WRN{boolean} 18|180m11 192m17 214m11
+104b7*ADD10{boolean} 18|132m23
+106b7*HEAD10R{boolean} 18|211m11
+108b7*START{boolean} 18|181m11 193m17 196m17
+110b7*STOP{boolean} 18|182m11 189m17 236m32
+112b7*NACK{boolean} 18|135m23
+114m7*NBYTES{95M12} 18|176m11 212m11
+116b7*RELOAD{boolean} 18|177m11 213m11
+118b7*AUTOEND{boolean} 18|134m23 178m11 235r36
+147m7*OA1{142M12} 18|123m13
+149b7*OA1MODE{boolean} 18|125m13
+153b7*OA1EN{boolean} 18|119m24 124m13
+198M12*TIMINGR_SCLL_Field{11|53M9}
+199M12*TIMINGR_SCLH_Field{11|53M9}
+200M12*TIMINGR_SDADEL_Field{11|43M9}
+201M12*TIMINGR_SCLDEL_Field{11|43M9}
+202M12*TIMINGR_PRESC_Field{11|43M9}
+207m7*SCLL{198M12} 18|111m10
+209m7*SCLH{199M12} 18|112m10
+211m7*SDADEL{200M12} 18|113m10
+213m7*SCLDEL{201M12} 18|114m10
+217m7*PRESC{202M12} 18|115m10
+271b7*TXIS{boolean} 18|276r33
+273b7*RXNE{boolean} 18|497r36 773r36
+277b7*NACKF{boolean} 18|229r26
+279b7*STOPF{boolean} 18|240r36 337r33
+281b7*TC{boolean} 18|756r33
+283b7*TCR{boolean} 18|311r33 509r35 785r39
+299b7*BUSY{boolean} 18|380r26 467r26 557r29 699r29
+339b7*NACKCF{boolean} 18|251m26
+341b7*STOPCF{boolean} 18|252m26 359m23
+394M12*RXDR_RXDATA_Field{11|53M9}
+399m7*RXDATA{394M12} 18|501r62 777r62
+411M12*TXDR_TXDATA_Field{11|53M9}
+416m7*TXDATA{411M12} 18|416m27 596m30 603m33 610m33 639m27 736m30 743m33
+. 751m33
+433R9*I2C_Peripheral 17|134r48 20|457e6
+435r7*CR1{20R9} 18|88r26 107m19 142m19 149m19
+437r7*CR2{98R9} 18|132m19 134m19 135m19 173r41 199m19 208r41 215m19 235r32
+. 236m28
+439r7*OAR1{145R9} 18|119m19 122m22
+441r7*OAR2{172R9} 18|139m19
+443r7*TIMINGR{205R9} 18|110m19
+447r7*ISR{267R9} 18|229r22 240r32 276r29 311r29 337r29 380r22 467r22 497r32
+. 509r31 557r25 699r25 756r29 773r32 785r35
+449r7*ICR{333R9} 18|251m22 252m22 359m19
+453r7*RXDR{397R9} 18|501r57 777r57
+455r7*TXDR{414R9} 18|416m22 596m25 603m28 610m28 639m22 736m25 743m28 751m28
+X 21 stm32_svd-rcc.ads
+10K19*RCC 18|35w16 35r35 21|1665e18
+X 32 s-bbtime.ads
+46M9*Time
+81I9*Time_Span<long_long_integer>
+X 42 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 50 s-taskin.ads
+398V13*Get_Sec_Stack{42|102P9} 399i<c,__gnat_get_secondary_stack>22
+

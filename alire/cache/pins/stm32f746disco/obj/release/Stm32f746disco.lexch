@@ -1,0 +1,17 @@
+[LIBRARY PATH]
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/lib/libStm32f746disco.a
+[OBJECT FILES]
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/framebuffer_ltdc.o
+20251121163649
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/framebuffer_rk043fn48h.o
+20251121163650
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/sdcard.o
+20251121163650
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/stm32-board.o
+20251121163650
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/stm32-dma2d_bitmap.o
+20251121163649
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/stm32f746disco_config.o
+20251121163648
+/home/dev/Projects/bxcan/alire/cache/pins/stm32f746disco/obj/release/touch_panel_ft5336.o
+20251121163650

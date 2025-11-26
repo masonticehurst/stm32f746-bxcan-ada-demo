@@ -1,0 +1,8 @@
+config:adl_middleware.max_mount_name_length=128
+config:adl_middleware.max_mount_points=2
+config:adl_middleware.max_path_length=1024
+external:ADL_MIDDLEWARE_LIBRARY_TYPE=default
+external:LIBRARY_TYPE=default
+profile:adl_middleware=RELEASE
+switches:adl_middleware=-O0,-g,-gnatW8
+version:gnat_arm_elf=15.2.1

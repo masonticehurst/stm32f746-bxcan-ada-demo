@@ -1,0 +1,246 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF SS ZX
+
+RN
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTIONS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U stm32.rtc%b		stm32-rtc.adb		8b33b6ab OO PK IU
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W hal%s			hal.ads			hal.ali
+W hal.real_time_clock%s	hal-real_time_clock.ads	hal-real_time_clock.ali
+W stm32%s		stm32.ads		stm32.ali
+W stm32.power_control%s	stm32-power_control.adb	stm32-power_control.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.rcc%s	stm32_svd-rcc.ads	stm32_svd-rcc.ali
+W stm32_svd.rtc%s	stm32_svd-rtc.ads	stm32_svd-rtc.ali
+
+U stm32.rtc%s		stm32-rtc.ads		45ea6fdb EE OO PF PK IU
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W hal.real_time_clock%s	hal-real_time_clock.ads	hal-real_time_clock.ali
+W stm32%s		stm32.ads		stm32.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-real_time_clock.ads  20251114185538 d33ce008 hal.real_time_clock%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D stm32.ads		20251114185847 698e2c3b stm32%s
+D stm32-power_control.ads  20251114185853 c6c262f4 stm32.power_control%s
+D stm32-rtc.ads		20251114185853 ff58a3e8 stm32.rtc%s
+D stm32-rtc.adb		20251114185853 cfd3b47e stm32.rtc%b
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-rcc.ads	20251114185427 b4fd1009 stm32_svd.rcc%s
+D stm32_svd-rtc.ads	20251114185427 1abb33c8 stm32_svd.rtc%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-retsta.ads		20250828113339 0f6b06cb system.return_stack%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [set stm32__rtc 39 14 none]
+G c Z s b [get stm32__rtc 44 14 none]
+G c Z s b [get_time stm32__rtc 49 13 none]
+G c Z s b [get_date stm32__rtc 52 13 none]
+G c Z s b [enable stm32__rtc 54 14 none]
+G c Z s b [disable stm32__rtc 55 14 none]
+G c Z s s [rtc_deviceDA stm32__rtc 59 9 none]
+G c Z s s [rtc_deviceDF stm32__rtc 59 9 none]
+G c Z s s [rtc_deviceIP stm32__rtc 59 9 none]
+G c Z b b [disable_write_protection stm32__rtc 41 14 none]
+G c Z b b [enable_write_protection stm32__rtc 42 14 none]
+G r s dr_register [set stm32__rtc 39 14 none] [dr_registerIP stm32_svd__rtc 71 9 none]
+G r s tr_register [set stm32__rtc 39 14 none] [tr_registerIP stm32_svd__rtc 25 9 none]
+G r c none [set stm32__rtc 39 14 none] [disable_backup_domain_protection stm32__power_control 37 14 none]
+G r c none [set stm32__rtc 39 14 none] [enable_backup_domain_protection stm32__power_control 38 14 none]
+G r c none [enable stm32__rtc 54 14 none] [enable stm32__power_control 34 14 none]
+G r c none [enable stm32__rtc 54 14 none] [disable_backup_domain_protection stm32__power_control 37 14 none]
+G r c none [enable stm32__rtc 54 14 none] [enable_backup_domain_protection stm32__power_control 38 14 none]
+G r c none [disable stm32__rtc 55 14 none] [disable_backup_domain_protection stm32__power_control 37 14 none]
+G r c none [disable stm32__rtc 55 14 none] [enable_backup_domain_protection stm32__power_control 38 14 none]
+G r c none [disable_write_protection stm32__rtc 41 14 none] [disable_backup_domain_protection stm32__power_control 37 14 none]
+G r c none [enable_write_protection stm32__rtc 42 14 none] [enable_backup_domain_protection stm32__power_control 38 14 none]
+X 10 hal.ads
+34K9*HAL 166e8 17|32r6 36r27 40r26 41r26 45r30 46r30 49r49 52r49 59r27 18|37r6
+. 37r31 72r26 73r26 139r30 140r30 158r49 178r49
+39M9*UInt2 18|99r16 116r16
+41M9*UInt3 18|102r17 105r16 111r17
+43M9*UInt4 18|100r16 103r17 106r16 108r16 109r16 114r16 117r16
+49M9*UInt7
+53M9*UInt8<12|81M9>
+64M9*UInt15
+X 11 hal-real_time_clock.ads
+32K13*Real_Time_Clock 100e24 17|32w10 36r31 40r30 41r30 45r34 46r34 49r53
+. 52r53 59r31 18|37w10 37r35 72r30 73r30 139r34 140r34 158r53 178r53
+35M9*RTC_Hour 18|164r19 164r43
+36M9*RTC_Minute 18|166r18 166r45
+37M9*RTC_Second 18|168r18 168r44
+39R9*RTC_Time 43e14 17|40r46 45r50 49r69 18|72r46 139r50 158r69 161r13
+40m7*Hour{35M9} 18|99r28 100r28 164m11
+41m7*Min{36M9} 18|102r29 103r29 166m11
+42m7*Sec{37M9} 18|105r28 106r28 168m11
+45E9*RTC_Month 46e62 18|113r17 114r23 187r20
+47E9*RTC_Day_Of_Week 48e46 18|111r24 184r26
+49I9*RTC_Day<short_short_integer> 18|185r18
+50I9*RTC_Year<short_short_integer> 18|186r19 186r43
+52R9*RTC_Date 57e14 17|41r46 46r50 52r69 18|73r46 140r50 178r69 181r13
+53e7*Day_Of_Week{47E9} 18|111r55 184m11
+54i7*Day{49I9} 18|116r28 117r28 185m11
+55e7*Month{45E9} 18|113r42 114r48 187m11
+56i7*Year{50I9} 18|108r28 109r28 186m11
+80h9*RTC_Device 17|36r47 59r47
+X 12 interfac.ads
+81M9*Unsigned_8
+X 15 stm32.ads
+39K9*STM32 48e10 17|34r9 62r5 18|35r6 39r14 237r5
+X 16 stm32-power_control.ads
+32K15*Power_Control 89e24 18|35w12 50r7 63r7 199r7 201r7 222r7 232r7 234r7
+34U14*Enable 18|199s21
+37U14*Disable_Backup_Domain_Protection 18|50s21 201s21 232s21
+38U14*Enable_Backup_Domain_Protection 18|63s21 222s21 234s21
+X 17 stm32-rtc.ads
+34K15*RTC 15|39k9 17|59E9 62l11 62e14 18|39b20 237l11 237t14
+36R9*RTC_Device<11|80R9> 39P14 39r33 44P14 44r33 49P13 49r30 52P13 52r30
+. 54p14 54r36 55p14 55r37 59c9 60e17 18|71r33 138r33 158r30 178r30 195r36
+. 229r37
+39U14*Set<11|83p14> 39=19 40>19 41>19 18|71b14 131l8 131t11
+39r19 This{36R9} 18|71b19 75r28
+40r19 Time{11|39R9} 18|72b19 99r23 100r23 102r24 103r24 105r23 106r23
+41r19 Date{11|52R9} 18|73b19 108r23 109r23 111r50 113r37 114r43 116r23 117r23
+44U14*Get<11|87p14> 44=19 45<19 46<19 18|138b14 151l8 151t11
+44r19 This{36R9} 18|138b19 144r18 145r18 149r20
+45r19 Time{11|39R9} 18|139b19 144m10 149r36
+46r19 Date{11|52R9} 18|140b19 145m10
+49V13*Get_Time{11|39R9}<11|92p13> 49>23 18|144s23 149s25 158b13 171l8 171t16
+49r23 This{36R9} 18|158b23 160r28
+52V13*Get_Date{11|52R9}<11|96p13> 52>23 18|145s23 178b13 189l8 189t16
+52r23 This{36R9} 18|178b23 180r28
+54U14*Enable 54=22 18|195b14 223l8 223t14
+54r22 This{36R9} 18|195b22 196r28
+55U14*Disable 55=23 18|229b14 235l8 235t15
+55r23 This{36R9} 18|229b23 230r28
+X 18 stm32-rtc.adb
+41U14 Disable_Write_Protection 48b14 53l8 53t32 80s7
+42U14 Enable_Write_Protection 59b14 64l8 64t31 126s7
+77r7 DR{21|71R9} 108m7 109m7 111m7 113m7 114m7 116m7 117m7 121r24
+78r7 TR{21|25R9} 97m7 99m7 100m7 102m7 103m7 105m7 106m7 120r24
+161r7 Ret{11|39R9} 164m7 166m7 168m7 170r14
+162r7 TR{21|25R9} 164r29 166r30 166r57 168r30 168r56
+181r7 Ret{11|52R9} 184m7 185m7 186m7 187m7 188r14
+182r7 DR{21|71R9} 184r52 185r36 185r59 186r29 186r53 187r44 187r68
+X 19 stm32_svd.ads
+10K9*STM32_SVD 18|32r6 32r25 33r6 33r25 19|196e14
+X 20 stm32_svd-rcc.ads
+10K19*RCC 18|33w16 33r35 20|1665e18
+1265m13*Val{10|39M9} 18|211m30 212r33
+1289r7*RTCSEL{1259R9} 18|211m23 212r26
+1293b7*RTCEN{boolean} 18|216m23 233m23
+1317b7*LSION{boolean} 18|204m22
+1319b7*LSIRDY{boolean} 18|206r32
+1616r7*BDCR{1279R9} 18|211m18 212r21 216m18 233m18
+1618r7*CSR{1315R9} 18|204m18 206r28
+1662r4*RCC_Periph{1576R9} 18|204m7 206r17 211m7 212r10 216m7 233m7
+X 21 stm32_svd-rtc.ads
+10K19*RTC 18|32w16 32r35 21|906e18
+25R9*TR_Register 18|78r12 162r22 21|47e6
+27m7*SU{17M12} 18|106m10 168r59
+29m7*ST{18M12} 18|105m10 168r33
+33m7*MNU{19M12} 18|103m10 166r60
+35m7*MNT{20M12} 18|102m10 166r33
+39m7*HU{21M12} 18|100m10 164r67
+41m7*HT{22M12} 18|99m10 164r32
+43b7*PM{boolean} 18|97m10
+71R9*DR_Register 18|77r12 182r22 21|91e6
+73m7*DU{63M12} 18|117m10 185r62
+75m7*DT{64M12} 18|116m10 185r39
+79m7*MU{65M12} 18|114m10 187r71
+81b7*MT{boolean} 18|113m10 187r47
+83m7*WDU{66M12} 18|111m10 184r55
+85m7*YU{67M12} 18|109m10 186r56
+87m7*YT{68M12} 18|108m10 186r32
+200b7*RSF{boolean} 18|128r32 218r32
+202b7*INITF{boolean} 18|82r29 87r35
+204b7*INIT{boolean} 18|84m25 124m22
+250M12*PRER_PREDIV_S_Field{10|64M9}
+251M12*PRER_PREDIV_A_Field{10|49M9}
+256m7*PREDIV_S{250M12} 18|93m23
+260m7*PREDIV_A{251M12} 18|94m23
+411M12*WPR_KEY_Field{10|53M9}
+416m7*KEY{411M12} 18|51m22 52m22 62m22
+744r7*TR{25R9} 18|120m18 162r48 164r64
+746r7*DR{71R9} 18|121m18 182r48
+750r7*ISR{188R9} 18|82r25 84m21 87r31 124m18 128r28 218r28
+752r7*PRER{254R9} 18|93m18 94m18
+760r7*WPR{414R9} 18|51m18 52m18 62m18
+903r4*RTC_Periph{742R9} 18|51m7 52m7 62m7 82r14 84m10 87r20 93m7 94m7 120m7
+. 121m7 124m7 128r17 162r37 164r53 182r37 218r17
+X 42 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 49 s-taskin.ads
+398V13*Get_Sec_Stack{42|102P9} 399i<c,__gnat_get_secondary_stack>22
+

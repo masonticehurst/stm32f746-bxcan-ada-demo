@@ -1,0 +1,157 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U file_block_drivers%b	file_block_drivers.adb	6d3fc8b2 OO PK
+Z system%s		system.ads		system.ali
+
+U file_block_drivers%s	file_block_drivers.ads	d79675a2 EE OO PF PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W file_io%s		file_io.adb		file_io.ali
+W hal%s			hal.ads			hal.ali
+W hal.block_drivers%s	hal-block_drivers.ads	hal-block_drivers.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D adl_config.ads	20251114185257 4bc817ec adl_config%s
+D adl_middleware_config.ads  20251121163515 d1d6f650 adl_middleware_config%s
+D file_block_drivers.ads  20251114185412 02de9814 file_block_drivers%s
+D file_block_drivers.adb  20251114185412 6fe150a6 file_block_drivers%b
+D file_io.ads		20251114185412 4b2019a9 file_io%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-block_drivers.ads	20251114185538 b52a3c11 hal.block_drivers%s
+D hal-filesystem.ads	20251114185538 4d0c5087 hal.filesystem%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [open file_block_drivers 43 13 none]
+G c Z s b [close file_block_drivers 48 14 none]
+G c Z s b [read file_block_drivers 51 13 none]
+G c Z s b [write file_block_drivers 58 13 none]
+G c Z s s [file_block_driverDF file_block_drivers 65 9 none]
+G c Z s s [file_block_driverIP file_block_drivers 65 9 none]
+G r c none [open file_block_drivers 43 13 none] [open file_io 91 13 none]
+G r c none [close file_block_drivers 48 14 none] [close file_io 97 14 none]
+G r c none [read file_block_drivers 51 13 none] [seek file_io 121 13 none]
+G r c none [read file_block_drivers 51 13 none] [read file_io 108 13 none]
+G r c none [write file_block_drivers 58 13 none] [seek file_io 121 13 none]
+G r c none [write file_block_drivers 58 13 none] [write file_io 113 13 none]
+G r s file_descriptor [file_block_driverIP file_block_drivers 65 9 none] [file_descriptorIP file_io 195 9 none]
+X 12 file_block_drivers.ads
+38K9*File_Block_Drivers 65E9 70l5 70e23 13|32b14 110l5 110t23
+40R9*File_Block_Driver<16|35R9> 43p13 43r33 48p14 48r35 51P13 52r29 58P13
+. 59r29 65c9 69e14 13|38r33 52r35 64r29 90r29
+43V13*Open{14|44E9} 43=19 44>19 45>19 13|38b13 46l8 46t12
+43r19 This{40R9} 13|38b19 44m7 45m20 45r20
+44a19 Path{string} 13|39b19 45r29
+45e19 Mode{14|71E9} 13|40b19 44r20 45r35
+48U14*Close 48=21 13|52b14 55l8 55t13
+48r21 This{40R9} 13|52b21 54m14 54r14
+51V13*Read{boolean}<16|43p13> 52=7 53>7 54<7 13|63b13 82l8 82t12
+52r7 This{40R9} 13|64b7 72r10 76m16 76r16 81r20
+53m7 Block_Number{15|160M9} 13|65b7 69r40
+54a7 Data{16|38A12} 13|66b7 80r17 81m29 81r29
+58V13*Write{boolean}<16|50p13> 59=7 60>7 61>7 13|89b13 108l8 108t13
+59r7 This{40R9} 13|90b7 98r10 102m16 102r16 107r21
+60m7 Block_Number{15|160M9} 13|91b7 95r40
+61a7 Data{16|38A12} 13|92b7 106r17 107r30
+67r7 FD{14|89R9} 13|45m25 54m19 76m21 81r25 102m21 107r26
+68e7 Mode{14|71E9} 13|44m12 72r15 98r15
+X 13 file_block_drivers.adb
+69m7 Amount{14|83M9} 76m37 76r37 80m7 81r43 81r53
+95m7 Amount{14|83M9} 102m37 102r37 106m7 107r44 107r54
+X 14 file_io.ads
+42K9*File_IO 12|36w6 36r29 14|250e12
+44E9*Status_Code 12|46r26 13|41r26 14|69e31
+45n7*OK{44E9} 13|76r48 102r48
+71E9*File_Mode 12|45r26 68r14 13|40r26 14|71e57
+71n23*Read_Only{71E9} 13|98r22
+71n34*Write_Only{71E9} 13|72r22
+75n7*From_Start{72E9} 13|76r25 102r25
+83M9*File_Size<15|160M9> 13|69r16 69r29 95r16 95r29
+89R9*File_Descriptor 12|67r14 14|197e14
+91V13*Open{44E9} 13|45s14
+97U14*Close 13|54s7
+108V13*Read{83M9} 13|81s14
+113V13*Write{83M9} 13|107s14
+121V13*Seek{44E9} 13|76s10 102s10
+X 15 hal.ads
+34K9*HAL 12|34r6 34r29 35w6 35r29 15|166e8
+53M9*UInt8<18|81M9>
+160M9*UInt64<18|95M9> 12|53r22 60r22 13|65r22 91r22
+162A9*UInt8_Array(53M9)<integer>
+X 16 hal-block_drivers.ads
+32K13*Block_Drivers 12|34w10 34r33 16|57e22
+35h9*Block_Driver 12|41r18 66r18
+38A12*Block{15|162A9}<integer> 12|54r26 61r22 13|66r26 92r22
+X 18 interfac.ads
+81M9*Unsigned_8
+95M9*Unsigned_64
+X 40 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 47 s-taskin.ads
+398V13*Get_Sec_Stack{40|102P9} 399i<c,__gnat_get_secondary_stack>22
+

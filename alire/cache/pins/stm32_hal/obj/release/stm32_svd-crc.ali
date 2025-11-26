@@ -1,0 +1,69 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_ELABORATION_CODE
+
+U stm32_svd.crc%s	stm32_svd-crc.ads	b24377a4 NE OO PR PK IU
+W hal%s			hal.ads			hal.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W system%s		system.ads		system.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-crc.ads	20250912141839 821417a5 stm32_svd.crc%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+G c Z s s [idr_registerIP stm32_svd__crc 20 9 none]
+G c Z s s [cr_registerIP stm32_svd__crc 35 9 none]
+G c Z s s [crc_peripheralIP stm32_svd__crc 54 9 none]
+X 1 hal.ads
+34K9*HAL 166e8 4|7w6 17r29 24r23 39r23 56r22 62r22 64r22
+53M9*UInt8<2|81M9> 4|17r33
+81M9*UInt24 4|24r27
+95M9*UInt31 4|39r27
+97M9*UInt32<2|92M9> 4|56r26 62r26 64r26
+X 2 interfac.ads
+81M9*Unsigned_8
+92M9*Unsigned_32
+X 3 stm32_svd.ads
+10K9*STM32_SVD 196e14 4|10r9 80r5
+X 4 stm32_svd-crc.ads
+10K19*CRC 3|10k9 4|80l15 80e18
+17M12*IDR_IDR_Field{1|53M9} 22r23
+20R9*IDR_Register 26e6 29r8 58r22
+22m7*IDR{17M12} 30r7
+24m7*Reserved_8_31{1|81M9} 31r7
+35R9*CR_Register 41e6 44r8 60r22
+37b7*CR{boolean} 45r7
+39m7*Reserved_1_31{1|95M9} 46r7
+54R9*CRC_Peripheral 66e6 68r8 77r25
+56m7*DR{1|97M9} 69r7
+58r7*IDR{20R9} 70r7
+60r7*CR{35R9} 71r7
+62m7*INIT{1|97M9} 72r7
+64m7*POL{1|97M9} 73r7
+77r4*CRC_Periph{54R9}
+X 5 system.ads
+50K9*System 4|8w6 27r24 42r24 78r30 5|167e11
+80M9*Address 4|78r30
+104n41*Low_Order_First{104E9} 4|27r31 42r31
+

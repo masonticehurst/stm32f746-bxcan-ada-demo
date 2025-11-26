@@ -1,0 +1,37 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U adl_config%s		adl_config.ads		9a1ee1bc NE OO PK
+W adl_middleware_config%s  adl_middleware_config.ads  adl_middleware_config.ali
+
+D adl_config.ads	20251114185257 4bc817ec adl_config%s
+D adl_middleware_config.ads  20251121163515 d1d6f650 adl_middleware_config%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+X 1 adl_config.ads
+7K9*ADL_Config 14l5 14e15
+8N4*Max_Mount_Points
+10N4*Max_Mount_Name_Length
+13N4*Max_Path_Length
+X 2 adl_middleware_config.ads
+5K9*Adl_Middleware_Config 1|5w6 8r35 11r6 13r34 2|32e26
+22N4*Max_Mount_Points 1|8r57
+26N4*Max_Path_Length 1|13r56
+30N4*Max_Mount_Name_Length 1|11r28
+

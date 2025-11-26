@@ -1,0 +1,54 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U stm32.rcc%b		stm32-rcc.adb		39ea6a32 NE OO PK IU
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.rcc%s	stm32_svd-rcc.ads	stm32_svd-rcc.ali
+
+U stm32.rcc%s		stm32-rcc.ads		738b340d BN EE NE OO PK IU
+W stm32%s		stm32.ads		stm32.ali
+Z system%s		system.ads		system.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D stm32.ads		20251114185847 698e2c3b stm32%s
+D stm32-rcc.ads		20251114185853 1a051836 stm32.rcc%s
+D stm32-rcc.adb		20251114185304 9712620d stm32.rcc%b
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-rcc.ads	20251114185427 b4fd1009 stm32_svd.rcc%s
+D system.ads		20250828113339 00104290 system%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [syscfg_clock_enable stm32__rcc 38 14 none]
+X 3 stm32.ads
+39K9*STM32 48e10 4|32r9 40r5 5|34r14 45r5
+X 4 stm32-rcc.ads
+32K15*RCC 3|39k9 4|40l11 40e14 5|34b20 45l11 45t14
+34X4*Unknown_Device
+38U14*SYSCFG_Clock_Enable 5|40b14 43l8 43t27
+X 6 stm32_svd.ads
+10K9*STM32_SVD 5|32r6 32r25 6|196e14
+X 7 stm32_svd-rcc.ads
+10K19*RCC 5|32w16 32r35 7|1665e18
+861b7*SYSCFGEN{boolean} 5|42m26
+1604r7*APB2ENR{835R9} 5|42m18
+1662r4*RCC_Periph{1576R9} 5|42m7
+

@@ -1,0 +1,21 @@
+name = "stm32f746disco"
+description = "Support for the stm32f746disco board"
+version = "0.1.0"
+licenses = "BSD-3-Clause"
+
+authors = ["AdaCore"]
+maintainers = ["Olivier Henley <olivier.henley@gmail.com>"]
+maintainers-logins = ["ohenley"]
+website="https://github.com/GNAT-Academic-Program/stm32f746disco"
+tags = ["embedded", "stm32", "stm32f746disco"]
+
+[[depends-on]]
+stm32_hal = "0.1.0"
+cortex_m = "0.5.0"
+embedded_components = "0.2.0"
+
+[configuration.values.cortex_m]
+core = "m7f"
+
+[configuration.values.stm32_hal]
+device = "stm32f746"

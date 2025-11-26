@@ -1,0 +1,8 @@
+config:stm32_hal.device=stm32f746
+dependency:adl_middleware=0.4.0-dev=87b6dd78e138808b47184b1830296bfa656ac1d02350248a556a81c6710b3007
+dependency:cortex_m=0.5.0=679e41c4c605011c22e68eae269011dc49d457d42e80a7881fa25890078f43b6
+external:LIBRARY_TYPE=default
+external:STM32_HAL_LIBRARY_TYPE=default
+profile:stm32_hal=RELEASE
+switches:stm32_hal=-O0,-g,-gnatW8
+version:gnat_arm_elf=15.2.1

@@ -1,0 +1,43 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U filesystem%s		filesystem.ads		7c64b1a6 NE OO PK
+W adl_config%s		adl_config.ads		adl_config.ali
+W hal%s			hal.ads			hal.ali
+
+D adl_config.ads	20251114185257 4bc817ec adl_config%s
+D adl_middleware_config.ads  20251121163515 d1d6f650 adl_middleware_config%s
+D filesystem.ads	20251114185412 1cee6e44 filesystem%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+X 1 adl_config.ads
+7K9*ADL_Config 14e15 3|33w6 37r35
+13N4*Max_Path_Length 3|37r46
+X 3 filesystem.ads
+35K9*Filesystem 44l5 44e15
+37N4*Max_Path_Length
+40M12*Block_Number{4|160M9}
+X 4 hal.ads
+34K9*HAL 3|32w6 40r28 4|166e8
+160M9*UInt64<5|95M9> 3|40r32
+X 5 interfac.ads
+95M9*Unsigned_64
+

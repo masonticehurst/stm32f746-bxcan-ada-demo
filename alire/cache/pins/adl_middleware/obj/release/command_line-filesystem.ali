@@ -1,0 +1,98 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF SS ZX
+
+RN
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U command_line.filesystem%b  command_line-filesystem.adb  2ddc4d35 OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W command_line%s	command_line.adb	command_line.ali
+W command_line.filesystem%s  command_line-filesystem.adb  command_line-filesystem.ali
+W command_line.filesystem.cat%s  command_line-filesystem-cat.adb  command_line-filesystem-cat.ali
+W command_line.filesystem.list_directory%s  command_line-filesystem-list_directory.adb  command_line-filesystem-list_directory.ali
+W command_line.filesystem.remove_directory%s  command_line-filesystem-remove_directory.adb  command_line-filesystem-remove_directory.ali
+W command_line.filesystem.touch%s  command_line-filesystem-touch.adb  command_line-filesystem-touch.ali
+
+U command_line.filesystem%s  command_line-filesystem.ads  b1a0cad0 EE NE OO PK
+W command_line%s	command_line.adb	command_line.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D command_line.ads	20250929021426 29283dc6 command_line%s
+D command_line-filesystem.ads  20250929021426 9888f716 command_line.filesystem%s
+D command_line-filesystem.adb  20250929021426 f7389fe3 command_line.filesystem%b
+D command_line-filesystem-cat.ads  20250929021426 c85a26eb command_line.filesystem.cat%s
+D command_line-filesystem-list_directory.ads  20250929021426 2c2a1d82 command_line.filesystem.list_directory%s
+D command_line-filesystem-remove_directory.ads  20250929021426 5e089155 command_line.filesystem.remove_directory%s
+D command_line-filesystem-touch.ads  20250929021426 f8148ffc command_line.filesystem.touch%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D system.ads		20250828113339 00104290 system%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-pooglo.ads		20250828113339 91708d21 system.pool_global%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20250828113339 516607ae system.stream_attributes%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c b b b [b command_line__filesystem 37 1 none]
+G c Z s b [register_all command_line__filesystem 34 14 none]
+G r s ls_cmd [b command_line__filesystem 37 1 none] [ls_cmdIP command_line__filesystem__list_directory 52 9 none]
+G r s rmdir_cmd [b command_line__filesystem 37 1 none] [rmdir_cmdIP command_line__filesystem__remove_directory 52 9 none]
+G r s touch_cmd [b command_line__filesystem 37 1 none] [touch_cmdIP command_line__filesystem__touch 52 9 none]
+G r s cat_cmd [b command_line__filesystem 37 1 none] [cat_cmdIP command_line__filesystem__cat 51 9 none]
+G r c none [register_all command_line__filesystem 34 14 none] [register command_line 78 14 none]
+X 10 command_line.ads
+32K9*Command_Line 146e17 11|32r9 37r5 12|32r6 33r6 34r6 35r6 37r14 39r22
+. 40r22 41r22 42r20 56r5
+78U14*Register 12|50s7 51s7 52s7 53s7
+X 11 command_line-filesystem.ads
+32K22*Filesystem 10|32k9 11|37l18 37e28 12|32r19 33r19 34r19 35r19 37b27
+. 39r35 40r35 41r35 42r33 56l18 56t28
+34U14*Register_All 12|48b14 54l8 54t20
+X 12 command_line-filesystem.adb
+39r4 Ls{14|34R9} 50m17 50r17
+40r4 Rmdir{15|34R9} 51m17 51r17
+41r4 Touch_C{16|34R9} 52m17 52r17
+42r4 Cat_C{13|34R9} 53m17 53r17
+X 13 command_line-filesystem-cat.ads
+32K33*Cat 12|35w30 42r44 13|53e32
+34R9*Cat_Cmd<10|54R9> 12|42r48 13|51e48
+X 14 command_line-filesystem-list_directory.ads
+32K33*List_Directory 12|32w30 39r46 14|54e43
+34R9*Ls_Cmd<10|54R9> 12|39r61 14|52e47
+X 15 command_line-filesystem-remove_directory.ads
+32K33*Remove_Directory 12|33w30 40r46 15|54e45
+34R9*Rmdir_Cmd<10|54R9> 12|40r63 15|52e50
+X 16 command_line-filesystem-touch.ads
+32K33*Touch 12|34w30 41r46 16|54e34
+34R9*Touch_Cmd<10|54R9> 12|41r52 16|52e50
+

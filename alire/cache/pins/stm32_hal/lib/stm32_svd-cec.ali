@@ -1,0 +1,126 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_ELABORATION_CODE
+
+U stm32_svd.cec%s	stm32_svd-cec.ads	862c691c NE OO PR PK IU
+W hal%s			hal.ads			hal.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W system%s		system.ads		system.ali
+
+D hal.ads		20251114185538 2b42c80e hal%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-cec.ads	20250912141839 b67b091d stm32_svd.cec%s
+D system.ads		20250828113339 00104290 system%s
+G a e
+G c Z s s [cr_registerIP stm32_svd__cec 18 9 none]
+G c Z s s [cfgr_registerIP stm32_svd__cec 42 9 none]
+G c Z s s [txdr_registerIP stm32_svd__cec 83 9 none]
+G c Z s s [rxdr_registerIP stm32_svd__cec 100 9 none]
+G c Z s s [isr_registerIP stm32_svd__cec 115 9 none]
+G c Z s s [ier_registerIP stm32_svd__cec 166 9 none]
+G c Z s s [cec_peripheralIP stm32_svd__cec 221 9 none]
+X 1 hal.ads
+34K9*HAL 166e8 4|7w6 26r23 38r30 39r30 58r23 80r30 87r23 97r31 104r23 143r24
+. 194r24
+41M9*UInt3 4|38r34
+49M9*UInt7 4|58r27
+53M9*UInt8<2|81M9> 4|80r34 97r35
+64M9*UInt15 4|39r34
+71M9*UInt19 4|143r28 194r28
+81M9*UInt24 4|87r27 104r27
+91M9*UInt29 4|26r27
+X 2 interfac.ads
+81M9*Unsigned_8
+X 3 stm32_svd.ads
+10K9*STM32_SVD 196e14 4|10r9 250r5
+X 4 stm32_svd-cec.ads
+10K19*CEC 3|10k9 4|250l15 250e18
+18R9*CR_Register 28e6 31r8 223r22
+20b7*CECEN{boolean} 32r7
+22b7*TXSOM{boolean} 33r7
+24b7*TXEOM{boolean} 34r7
+26m7*Reserved_3_31{1|91M9} 35r7
+38M12*CFGR_SFT_Field{1|41M9} 44r23
+39M12*CFGR_OAR_Field{1|64M9} 60r23
+42R9*CFGR_Register 64e6 67r8 225r22
+44m7*SFT{38M12} 68r7
+46b7*RXTOL{boolean} 69r7
+48b7*BRESTP{boolean} 70r7
+50b7*BREGEN{boolean} 71r7
+52b7*LBPEGEN{boolean} 72r7
+54b7*BRDNOGEN{boolean} 73r7
+56b7*SFTOP{boolean} 74r7
+58m7*Reserved_9_15{1|49M9} 75r7
+60m7*OAR{39M12} 76r7
+62b7*LSTN{boolean} 77r7
+80M12*TXDR_TXD_Field{1|53M9} 85r23
+83R9*TXDR_Register 89e6 92r8 227r22
+85m7*TXD{80M12} 93r7
+87m7*Reserved_8_31{1|81M9} 94r7
+97M12*RXDR_RXDR_Field{1|53M9} 102r23
+100R9*RXDR_Register 106e6 109r8 229r22
+102m7*RXDR{97M12} 110r7
+104m7*Reserved_8_31{1|81M9} 111r7
+115R9*ISR_Register 145e6 148r8 231r22
+117b7*RXBR{boolean} 149r7
+119b7*RXEND{boolean} 150r7
+121b7*RXOVR{boolean} 151r7
+123b7*BRE{boolean} 152r7
+125b7*SBPE{boolean} 153r7
+127b7*LBPE{boolean} 154r7
+129b7*RXACKE{boolean} 155r7
+131b7*ARBLST{boolean} 156r7
+133b7*TXBR{boolean} 157r7
+135b7*TXEND{boolean} 158r7
+137b7*TXUDR{boolean} 159r7
+139b7*TXERR{boolean} 160r7
+141b7*TXACKE{boolean} 161r7
+143m7*Reserved_13_31{1|71M9} 162r7
+166R9*IER_Register 196e6 199r8 233r22
+168b7*RXBRIE{boolean} 200r7
+170b7*RXENDIE{boolean} 201r7
+172b7*RXOVRIE{boolean} 202r7
+174b7*BREIE{boolean} 203r7
+176b7*SBPEIE{boolean} 204r7
+178b7*LBPEIE{boolean} 205r7
+180b7*RXACKIE{boolean} 206r7
+182b7*ARBLSTIE{boolean} 207r7
+184b7*TXBRIE{boolean} 208r7
+186b7*TXENDIE{boolean} 209r7
+188b7*TXUDRIE{boolean} 210r7
+190b7*TXERRIE{boolean} 211r7
+192b7*TXACKIE{boolean} 212r7
+194m7*Reserved_13_31{1|71M9} 213r7
+221R9*CEC_Peripheral 235e6 237r8 247r25
+223r7*CR{18R9} 238r7
+225r7*CFGR{42R9} 239r7
+227r7*TXDR{83R9} 240r7
+229r7*RXDR{100R9} 241r7
+231r7*ISR{115R9} 242r7
+233r7*IER{166R9} 243r7
+247r4*CEC_Periph{221R9}
+X 5 system.ads
+50K9*System 4|8w6 29r24 65r24 90r24 107r24 146r24 197r24 248r30 5|167e11
+80M9*Address 4|248r30
+104n41*Low_Order_First{104E9} 4|29r31 65r31 90r31 107r31 146r31 197r31
+

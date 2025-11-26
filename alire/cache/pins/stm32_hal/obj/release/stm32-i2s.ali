@@ -1,0 +1,255 @@
+V "GNAT Lib v15"
+A -O0
+A -gnatA
+A --RTS=/home/dev/.local/share/alire/toolchains/gnat_arm_elf_15.2.1_a5e9cfb1/arm-eabi/lib/gnat/embedded-stm32f746disco/
+A -mlittle-endian
+A -mfloat-abi=hard
+A -mcpu=cortex-m7
+A -mfpu=fpv5-sp-d16
+A -mthumb
+A -fno-tree-loop-distribute-patterns
+A -g
+A -gnatW8
+A -mlibarch=armv7e-m+fpv5
+A -march=armv7e-m+fpv5
+P DB LC TF ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_CONVERSION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+
+U stm32.i2s%b		stm32-i2s.adb		b65b44b7 OO PK IU
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.unchecked_conversion%s
+W stm32%s		stm32.ads		stm32.ali
+Z system%s		system.ads		system.ali
+
+U stm32.i2s%s		stm32-i2s.ads		b0936e49 EE OO PF PK IU
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W hal%s			hal.ads			hal.ali
+W hal.audio%s		hal-audio.ads		hal-audio.ali
+W stm32%s		stm32.ads		stm32.ali
+W stm32_svd%s		stm32_svd.ads		stm32_svd.ali
+W stm32_svd.spi%s	stm32_svd-spi.ads	stm32_svd-spi.ali
+W system%s		system.ads		system.ali
+Z system.finalization_primitives%s  s-finpri.adb  s-finpri.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+
+D ada.ads		20250828113339 76789da1 ada%s
+D a-except.ads		20250828113339 e7970cd9 ada.exceptions%s
+D a-finali.ads		20250828113339 bf4f806b ada.finalization%s
+D a-stream.ads		20250828113339 17477cbd ada.streams%s
+D a-string.ads		20250828113339 90ac6797 ada.strings%s
+D a-sttebu.ads		20250828113339 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20250828113339 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20250828113339 fbca0ad5 ada.tags%s
+D a-unccon.ads		20250828113339 0e9b276f ada.unchecked_conversion%s
+D hal.ads		20251114185538 2b42c80e hal%s
+D hal-audio.ads		20251114185538 e7f91665 hal.audio%s
+D interfac.ads		20250828113339 9111f9c1 interfaces%s
+D i-stm32.ads		20250828113339 3ba0ba7a interfaces.stm32%s
+D i-stm32-pwr.ads	20250828113339 9584d9cf interfaces.stm32.pwr%s
+D stm32.ads		20251114185847 698e2c3b stm32%s
+D stm32-i2s.ads		20251114185853 8099fbc7 stm32.i2s%s
+D stm32-i2s.adb		20251114185853 3859981f stm32.i2s%b
+D stm32_svd.ads		20251114185427 1b05ea9f stm32_svd%s
+D stm32_svd-spi.ads	20251114185427 be6ded40 stm32_svd.spi%s
+D system.ads		20250828113339 00104290 system%s
+D s-bb.ads		20250828113339 09e072ae system.bb%s
+D s-bbbopa.ads		20250828113339 1c156ba3 system.bb.board_parameters%s
+D s-bbbosu.ads		20250828113339 0f820a2a system.bb.board_support%s
+D s-bbcppr.ads		20250828113339 c529bbcc system.bb.cpu_primitives%s
+D s-bbinte.ads		20250828113339 cf617f22 system.bb.interrupts%s
+D s-bbmcpa.ads		20250828113339 1b94ea21 system.bb.mcu_parameters%s
+D s-bbpara.ads		20250828113339 f29639f9 system.bb.parameters%s
+D s-bbthre.ads		20250828113339 5f49caa9 system.bb.threads%s
+D s-bbthqu.ads		20250828113339 cd23d79e system.bb.threads.queues%s
+D s-bbtime.ads		20250828113339 ad086247 system.bb.time%s
+D s-finpri.ads		20250828113339 5970d55a system.finalization_primitives%s
+D s-finroo.ads		20250828113339 0a7c3ed4 system.finalization_root%s
+D s-multip.ads		20250828113339 f33e0e35 system.multiprocessors%s
+D s-osinte.ads		20250828113339 229b14dd system.os_interface%s
+D s-oslock.ads		20250828113339 e4b161c5 system.os_locks%s
+D s-parame.ads		20250828113339 07f3e19f system.parameters%s
+D s-putima.ads		20250828113339 17291fe4 system.put_images%s
+D s-secsta.ads		20250828113339 bd894d4b system.secondary_stack%s
+D s-stalib.ads		20250828113339 1c9580f6 system.standard_library%s
+D s-stm32.ads		20250828113339 ea0d68d9 system.stm32%s
+D s-stoele.ads		20250828113339 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20250828113339 e9fa2dd8 system.storage_pools%s
+D s-tasinf.ads		20250828113339 801abd01 system.task_info%s
+D s-taspri.ads		20250828113339 37f162b4 system.task_primitives%s
+D s-taskin.ads		20250828113339 989d56fd system.tasking%s
+D s-traent.ads		20250828113339 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20250828113339 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [in_i2s_mode stm32__i2s 90 13 none]
+G c Z s s [valid_extended_config stm32__i2s 94 13 none]
+G c Z s b [configure stm32__i2s 99 14 none]
+G c Z s b [enable stm32__i2s 105 14 none]
+G c Z s b [disable stm32__i2s 108 14 none]
+G c Z s b [enabled stm32__i2s 111 13 none]
+G c Z s b [data_register_address stm32__i2s 113 13 none]
+G c Z s b [set_frequency stm32__i2s 118 14 none]
+G c Z s b [transmit stm32__i2s 123 14 none]
+G c Z s b [receive stm32__i2s 128 14 none]
+G c Z s s [i2s_configurationIP stm32__i2s 72 9 none]
+G c Z s s [i2s_portDF stm32__i2s 136 9 none]
+G c Z s s [i2s_portIP stm32__i2s 136 9 none]
+G c Z b b [to_uint16 stm32__i2s 47 13 none]
+G c Z b b [to_integer_16 stm32__i2s 49 13 none]
+X 1 ada.ads
+18K9*Ada 22e8 17|42r6 47r30 49r34
+X 9 a-unccon.ads
+23v14*Unchecked_Conversion 17|42w10 47r34 49r38
+X 10 hal.ads
+34K9*HAL 166e8 16|46r6 46r21
+39M9*UInt2
+53M9*UInt8<12|81M9> 17|176r35
+66M9*UInt16<12|84M9> 17|48r61 49r60
+97M9*UInt32<12|92M9> 17|146r31 147r22 148r31 151r22
+X 11 hal-audio.ads
+34K13*Audio 73e14 16|46w10 46r25
+37A9*Audio_Buffer(12|62I9)<integer> 16|124r31 129r34 17|185r18 202r14
+42E9*Audio_Frequency 51e6 16|119r41 17|141r41
+62h9*Audio_Stream 16|88r19 138r18
+X 12 interfac.ads
+62I9*Integer_16<short_integer> 17|47r56 50r60
+81M9*Unsigned_8
+84M9*Unsigned_16
+92M9*Unsigned_32
+X 15 stm32.ads
+39K9*STM32 48e10 16|49r9 140r5 17|45r14 213r5
+X 16 stm32-i2s.ads
+49K15*I2S 15|39k9 16|134E9 140l11 140e14 17|45b20 213l11 213t14
+51E9*I2S_Mode 54e37 73r34
+51n22*Slave_Transmit{51E9} 95r21 17|58r46
+52n22*Slave_Receive{51E9} 95r56 17|59r46
+53n22*Master_Transmit{51E9} 17|60r46
+54n22*Master_Receive{51E9} 17|61r46
+56E9*I2S_Standard 59e39 74r34
+56n26*I2S_Philips_Standard{56E9} 17|66r46
+57n26*MSB_Justified_Standard{56E9} 17|67r46
+58n26*LSB_Justified_Standard{56E9} 17|68r46
+59n26*PCM_Standard{56E9} 17|69r46
+61E9*I2S_Synchronization 62e52 75r34
+61n33*Short_Frame_Syncrho{61E9}
+62n33*Long_Frame_Synchro{61E9} 17|63r52
+64E9*I2S_Clock_Polarity 65e50 76r34
+64n32*Steady_State_Low{64E9}
+65n32*Steady_State_High{64E9} 17|71r58
+67E9*I2S_Data_Length 67e67 77r34
+67n29*Data_16bits{67E9} 17|74r46
+67n42*Data_24bits{67E9} 17|75r46
+67n55*Data_32bits{67E9} 17|76r46
+68E9*I2S_Channel_Length 68e63 78r34
+68n32*Channel_16bits{68E9}
+68n48*Channel_32bits{68E9} 17|78r55
+70I9*I2S_Linear_Prescaler<short_integer>
+72R9*I2S_Configuration 82e14 94r43 99r56 17|55r56
+73e7*Mode{51E9} 95r14 95r49 17|57r48
+74e7*Standard{56E9} 17|65r48
+75e7*Syncho{61E9} 17|63r43
+76e7*Clock_Polarity{64E9} 17|71r41
+77e7*Data_Length{67E9} 17|73r48
+78e7*Chan_Length{68E9} 17|78r41
+79b7*Master_Clock_Out_Enabled{boolean} 97r17 17|80r39
+80b7*Transmit_DMA_Enabled{boolean} 17|82r39
+81b7*Receive_DMA_Enabled{boolean} 17|83r39
+84R9*Internal_I2S_Port<19|414R9> 86r46 134c9 136r46
+86R9*I2S_Port<11|62R9> 86d19 87d19 90p13 90r40 99p14 99r39 105p14 105r36
+. 108p14 108r37 111p13 111r29 113p13 113r43 118P14 118r48 123P14 123r38 128P14
+. 128r37 136c9 138e47 17|55r39 90r40 97r36 110r37 119r29 128r43 140r48 184r21
+. 201r21
+87b19*Extended{boolean} 102r29 137r19
+90V13*In_I2S_Mode{boolean} 90=26 106s41 109s23 125s23 130s23 17|90b13
+90r26 This{86R9} 17|91r7
+94V13*Valid_Extended_Config{boolean} 94b13 94>36 102s46
+94r36 Conf{72R9} 95r9 95r44 97r12
+99U14*Configure 99=25 99>49 17|55b14 84l8 84t17
+99r25 This{86R9} 100r23 102r24 103r23 17|55b25 57m7 57r7 63m7 63r7 65m7 65r7
+. 71m7 71r7 73m7 73r7 78m7 78r7 80m7 80r7 82m7 82r7 83m7 83r7
+99r49 Conf{72R9} 102r69 17|55b49 57r43 63r38 65r43 71r36 73r43 78r36 80r34
+. 82r34 83r34
+105U14*Enable 105=22 17|97b14 104l8 104t14
+105r22 This{86R9} 106r19 106m36 106r36 17|97b22 99r10 102m7 102r7 103m7 103r7
+108U14*Disable 108=23 17|110b14 113l8 113t15
+108r23 This{86R9} 109m18 109r18 17|110b23 112m7 112r7
+111V13*Enabled{boolean} 100s28 103s28 106s24 111>22 120s28 17|119b13 122l8
+. 122t15
+111r22 This{86R9} 17|119b22 121r14
+113V13*Data_Register_Address{20|80M9} 113>36 17|128b13 133l8 133t29
+113r36 This{86R9} 17|128b36 132r14
+118U14*Set_Frequency<11|64p14> 118=29 119>29 17|140b14 177l8 177t21
+118r29 This{86R9} 120r23 17|140b29 148r45 153r10 175m7 175r7 176m7 176r7
+119e29 Frequency{11|42E9} 17|141b29 159r40
+123U14*Transmit<11|67p14> 123=24 124>24 17|200b25 211l8 211t16
+123r24 This{86R9} 125m18 125r18 17|201b7 206r20 209m10 209r10
+124a24 Data{11|37A9} 17|202b7 205r18
+128U14*Receive<11|70p14> 128=23 129<23 17|183b25 194l8 194t15
+128r23 This{86R9} 130m18 130r18 17|184b7 189r20 192r32
+129a23 Data{11|37A9} 17|185b7 188m18 188r18
+X 17 stm32-i2s.adb
+47V13 To_UInt16[9|23]{10|66M9} 209s31
+49V13 To_Integer_16[9|23]{12|62I9} 192s17
+146m7 I2SCLK{10|97M9} 154r27 156r27
+147m7 Real_Divider{10|97M9} 154m10 156m10 159m7 159r25 161r17 164r22 166r21
+148m7 Packet_Len{10|97M9} 156r42
+150b7 Is_Odd{boolean} 161m7 163r10 172m10 175r35
+151m7 Divider{10|97M9} 164m10 166m10 169r10 169r30 171m10 176r42
+188i11 Elt=188:18{12|62I9} 192r10
+205i11 Elt=205:18{12|62I9} 209r42
+X 18 stm32_svd.ads
+10K9*STM32_SVD 16|45r14 134r34 18|196e14
+X 19 stm32_svd-spi.ads
+10K19*SPI 16|45w24 134r44 19|472e18
+30b7*SPE{boolean} 17|99r26
+146b7*RXDMAEN{boolean} 17|83m23
+148b7*TXDMAEN{boolean} 17|82m23
+230b7*RXNE{boolean} 17|189r35
+232b7*TXE{boolean} 17|206r35
+272M12*DR_DR_Field{10|66M9}
+277m7*DR{272M12} 17|192r47 209m25
+340M12*I2SCFGR_DATLEN_Field{10|39M9}
+341M12*I2SCFGR_I2SSTD_Field{10|39M9}
+342M12*I2SCFGR_I2SCFG_Field{10|39M9}
+347b7*CHLEN{boolean} 17|78m27
+349m7*DATLEN{340M12} 17|73m27 148r65
+351b7*CKPOL{boolean} 17|71m27
+353m7*I2SSTD{341M12} 17|65m27
+357b7*PCMSYNC{boolean} 17|63m27
+359m7*I2SCFG{342M12} 17|57m27
+361b7*I2SE{boolean} 17|103m27 112m27 121r34
+363b7*I2SMOD{boolean} 17|91r27 102m27
+386M12*I2SPR_I2SDIV_Field{10|53M9}
+391m7*I2SDIV{386M12} 17|176m25
+393b7*ODD{boolean} 17|175m25
+395b7*MCKOE{boolean} 17|80m25 153r28
+414R9*SPI_Peripheral 16|134r48 19|434e6
+416r7*CR1{20R9} 17|99r22
+418r7*CR2{144R9} 17|82m19 83m19
+420r7*SR{228R9} 17|189r32 206r32
+422r7*DR{275R9} 17|132m26 192r44 209m22
+430r7*I2SCFGR{345R9} 17|57m19 63m19 65m19 71m19 73m19 78m19 91r19 102m19
+. 103m19 112m19 121r26 148r57
+432r7*I2SPR{389R9} 17|80m19 153r22 175m19 176m19
+X 20 system.ads
+50K9*System 16|47w6 114r43 17|129r43 20|167e11
+80M9*Address 16|114r50 17|129r50
+X 38 s-secsta.ads
+102P9*SS_Stack_Ptr(99R9)
+X 45 s-taskin.ads
+398V13*Get_Sec_Stack{38|102P9} 399i<c,__gnat_get_secondary_stack>22
+
