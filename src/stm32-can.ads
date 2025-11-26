@@ -39,7 +39,7 @@ package STM32.CAN is
       Id2        : UInt32               := 0;
       Mask1      : UInt32               := 0;
       Mask2      : UInt32               := 0;
-      Use_32_Bit : Boolean := True;
+      Use_32_Bit : Boolean              := True;
    end record;
 
    --  11-bit and 29-bit ID subtypes

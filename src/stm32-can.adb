@@ -544,17 +544,17 @@ package body STM32.CAN is
    procedure Configure_Filter
      (This : aliased in out CAN_Port'Class; Filter : CAN_Filter_Config)
    is
-      Bank_Index : constant Natural := Natural (Filter.Bank);
+      Bank_Index  : constant Natural    := Natural (Filter.Bank);
       -- Compute bank bit in UInt32 (where Shift_Left overload exists),
       --  then convert to UInt28 for the FS1R/FM1R/FFA1R/FA1R .Val fields.
-      Bank_Bit_32 : constant UInt32 := Shift_Left (UInt32 (1), Bank_Index);
-      Bank_Bit : constant HAL.UInt28 := HAL.UInt28 (Bank_Bit_32);
+      Bank_Bit_32 : constant UInt32     := Shift_Left (UInt32 (1), Bank_Index);
+      Bank_Bit    : constant HAL.UInt28 := HAL.UInt28 (Bank_Bit_32);
 
       type Filter_Reg_Array is
         array (Natural range <>) of aliased F0R_Register;
 
       Filter_Regs : Filter_Reg_Array (0 .. 2 * 28 - 1) with
-        Import, Address => Periph.F0R1'Address;
+        Import, Address => CAN1_Periph.F0R1'Address;
 
       FR1_Idx : constant Natural := 2 * Bank_Index;
       FR2_Idx : constant Natural := 2 * Bank_Index + 1;
@@ -572,32 +572,32 @@ package body STM32.CAN is
       end Ext_Id_To_Reg;
 
    begin
-      Periph.FMR.FINIT     := True;
-      Periph.FA1R.FACT.Val := Periph.FA1R.FACT.Val and not Bank_Bit;
+      CAN1_Periph.FMR.FINIT     := True;
+      CAN1_Periph.FA1R.FACT.Val := CAN1_Periph.FA1R.FACT.Val and not Bank_Bit;
 
       if Filter.Use_32_Bit then
          -- 1 = 32-bit scale
-         Periph.FS1R.FSC.Val := Periph.FS1R.FSC.Val or Bank_Bit;
+         CAN1_Periph.FS1R.FSC.Val := CAN1_Periph.FS1R.FSC.Val or Bank_Bit;
       else
          -- 0 = dual 16-bit scale
-         Periph.FS1R.FSC.Val := Periph.FS1R.FSC.Val and not Bank_Bit;
+         CAN1_Periph.FS1R.FSC.Val := CAN1_Periph.FS1R.FSC.Val and not Bank_Bit;
       end if;
 
       case Filter.Mode is
          when Mask =>
-            Periph.FM1R.FBM.Val :=
-              Periph.FM1R.FBM.Val and not Bank_Bit;  -- mask mode
+            CAN1_Periph.FM1R.FBM.Val :=
+              CAN1_Periph.FM1R.FBM.Val and not Bank_Bit;  -- mask mode
          when List =>
-            Periph.FM1R.FBM.Val :=
-              Periph.FM1R.FBM.Val or Bank_Bit;       -- list mode
+            CAN1_Periph.FM1R.FBM.Val :=
+              CAN1_Periph.FM1R.FBM.Val or Bank_Bit;       -- list mode
       end case;
 
       if Filter.FIFO = 0 then
-         Periph.FFA1R.FFA.Val :=
-           Periph.FFA1R.FFA.Val and not Bank_Bit;    -- FIFO0
+         CAN1_Periph.FFA1R.FFA.Val :=
+           CAN1_Periph.FFA1R.FFA.Val and not Bank_Bit;    -- FIFO0
       else
-         Periph.FFA1R.FFA.Val :=
-           Periph.FFA1R.FFA.Val or Bank_Bit;         -- FIFO1
+         CAN1_Periph.FFA1R.FFA.Val :=
+           CAN1_Periph.FFA1R.FFA.Val or Bank_Bit;         -- FIFO1
       end if;
 
       declare
@@ -636,9 +636,9 @@ package body STM32.CAN is
          end if;
       end;
 
-      Periph.FA1R.FACT.Val := Periph.FA1R.FACT.Val or Bank_Bit;
+      CAN1_Periph.FA1R.FACT.Val := CAN1_Periph.FA1R.FACT.Val or Bank_Bit;
 
-      Periph.FMR.FINIT := False;
+      CAN1_Periph.FMR.FINIT := False;
    end Configure_Filter;
 
 end STM32.CAN;
