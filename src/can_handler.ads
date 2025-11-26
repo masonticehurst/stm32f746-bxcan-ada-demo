@@ -10,6 +10,10 @@ package CAN_Handler is
    procedure On_SteeringAngle (F : CAN_Frame);
    procedure On_Lighting (F : CAN_Frame);
    procedure On_VIN (F : CAN_Frame);
+   procedure On_RangeSOC (F : CAN_Frame);
+   procedure On_HVBattAmpVolt (F : CAN_Frame);
+   procedure On_THSStatus (F : CAN_Frame);
+   procedure On_RearInverterPower (F : CAN_Frame);
 
    type Gear is (Invalid, Drive, Neutral, Park, Rev);
    function To_String (Value : Gear) return String;
@@ -21,4 +25,9 @@ package CAN_Handler is
    Left_Turn_Signal                   : Boolean          := False;
    Right_Turn_Signal                  : Boolean          := False;
    VIN_Number                         : String (1 .. 17) := (others => ' ');
+   Range_Miles                        : Natural          := 0;
+   HV_Battery_Voltage                 : Long_Float       := 0.0;
+   Humidity                           : Natural          := 0;
+   Temperature                        : Long_Float       := 0.0;
+   Rear_Power_kW                      : Long_Float       := 0.0;
 end CAN_Handler;

@@ -210,4 +210,67 @@ package body CAN_Handler is
       end case;
    end On_VIN;
 
+   --  BO_ 826 ID33AUI_rangeSOC: 8 VehicleBus
+   --   SG_ UI_idealRange : 16|10@1+ (1,0) [0|1023] "mi"  Receiver
+   --   SG_ UI_Range : 0|10@1+ (1,0) [0|1023] "mi"  Receiver
+   --   SG_ UI_SOC : 48|7@1+ (1,0) [0|127] "%"  Receiver
+   --   SG_ UI_uSOE : 56|7@1+ (1,0) [0|127] "%"  Receiver
+   --   SG_ UI_ratedWHpM : 32|10@1+ (1,0) [0|1023] "WHpM"  Receiver
+   procedure On_RangeSOC (F : CAN_Frame) is
+      Raw_Range : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 10);
+   begin
+      Range_Miles := Natural (Raw_Range);
+   end On_RangeSOC;
+
+   --  BO_ 306 ID132HVBattAmpVolt: 8 VehicleBus
+   --   SG_ ChargeHoursRemaining132 : 48|12@1+ (1,0) [0|4095] "Min"  Receiver
+   --   SG_ BattVoltage132 : 0|16@1+ (0.01,0) [0|655.35] "V"  Receiver
+   --   SG_ RawBattCurrent132 : 32|16@1- (-0.05,822) [-1138.35|2138.4] "A"  Receiver
+   --   SG_ SmoothBattCurrent132 : 16|16@1- (-0.1,0) [-3276.7|3276.7] "A"  Receiver
+   procedure On_HVBattAmpVolt (F : CAN_Frame) is
+      Raw_Batt_Voltage    : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 16);
+      Scaled_Batt_Voltage : constant Long_Float  :=
+        Long_Float (Raw_Batt_Voltage) * 0.01;
+   begin
+      HV_Battery_Voltage := Scaled_Batt_Voltage;
+   end On_HVBattAmpVolt;
+
+   --  BO_ 899 ID383VCRIGHT_thsStatus: 8 VehicleBus
+   --   SG_ VCRIGHT_estimatedThsSolarLoad : 53|10@1+ (1,0) [0|1022] "W/m2"  Receiver
+   --   SG_ VCRIGHT_estimatedVehicleSituatio : 31|2@1+ (1,0) [0|2] ""  Receiver
+   --   SG_ VCRIGHT_thsActive : 0|1@1+ (1,0) [0|1] ""  Receiver
+   --   SG_ VCRIGHT_thsHumidity : 17|8@1+ (1,0) [0|100] "%"  Receiver
+   --   SG_ VCRIGHT_thsSolarLoadInfrared : 33|10@1+ (1,0) [0|1022] "W/m2"  Receiver
+   --   SG_ VCRIGHT_thsSolarLoadVisible : 43|10@1+ (1,0) [0|1022] "W/m2"  Receiver
+   --   SG_ VCRIGHT_thsTemperature : 1|8@1- (1,-40) [-40|150] "C"  Receiver
+   procedure On_THSStatus (F : CAN_Frame) is
+      Raw_Humidity    : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 17, Length => 8);
+      Raw_Temperature : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 1, Length => 8);
+
+      Scaled_Temperature : constant Long_Float :=
+        Long_Float (Raw_Temperature) * 1.0 - 40.0;
+   begin
+      Humidity    := Natural (Raw_Humidity);
+      Temperature := Scaled_Temperature;
+   end On_THSStatus;
+
+   --  BO_ 614 ID266RearInverterPower: 8 VehicleBus
+   --   SG_ RearHeatPowerMax266 : 24|8@1+ (0.08,0) [0|20] "kW"  Receiver
+   --   SG_ RearPowerLimit266 : 48|9@1+ (1,0) [0|400] "kW"  Receiver
+   --   SG_ RearHeatPower266 : 32|8@1+ (0.08,0) [0|20] "kW"  Receiver
+   --   SG_ RearHeatPowerOptimal266 : 16|8@1+ (0.08,0) [0|20] "kW"  Receiver
+   --   SG_ RearExcessHeatCmd : 40|8@1+ (0.08,0) [0|20] "kW"  Receiver
+   --   SG_ RearPower266 : 0|11@1- (0.5,0) [-500|500] "kW"  Receiver
+   procedure On_RearInverterPower (F : CAN_Frame) is
+      Raw_Rear_Power : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 11);
+
+      Scaled_Rear_Power : Long_Float := Long_Float (Raw_Rear_Power) * 0.5;
+   begin
+      Rear_Power_kW := Long_Float (Scaled_Rear_Power);
+   end On_RearInverterPower;
 end CAN_Handler;
