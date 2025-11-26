@@ -88,4 +88,6 @@ package GUI.Bitmap is
      (Foreground : HAL.Bitmap.Bitmap_Color;
       Background : HAL.Bitmap.Bitmap_Color) return HAL.Bitmap.Bitmap_Color;
 
+   procedure Draw_Image_From_File (FD : File_IO.File_Descriptor);
+
 end GUI.Bitmap;

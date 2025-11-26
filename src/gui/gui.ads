@@ -34,6 +34,7 @@
 
 with BMP_Fonts; use BMP_Fonts;
 
+with File_IO;
 with HAL.Bitmap;
 with HAL.Framebuffer;
 with Ada.Containers.Vectors;

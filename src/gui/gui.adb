@@ -332,12 +332,15 @@ package body GUI is
       Text_Size : Size := (0, 0);
    begin
       if Val /= "" then
+         GUI.Current_Background_Color :=
+           (Alpha => 255, Red => 26, Green => 36, Blue => 46);
          Set_Font (Font16x24);
          Text_Size := MeasureText (Val, Font16x24);
          Put
            (X   => Point.X + 103 / 2 - Text_Size.Width / 2, Y => Point.Y + 20,
             Msg => Val);
          Set_Font (Font8x8);
+         GUI.Current_Background_Color := GUI.Default_Background_Color;
       else
          Fill_Rounded_Rectangle
            (Rect   =>
@@ -360,4 +363,5 @@ package body GUI is
         (Text'Length * BMP_Fonts.Char_Width (Font),
          BMP_Fonts.Char_Height (Font));
    end MeasureText;
+
 end GUI;
