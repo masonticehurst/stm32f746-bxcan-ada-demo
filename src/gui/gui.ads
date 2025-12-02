@@ -34,11 +34,10 @@
 
 with BMP_Fonts; use BMP_Fonts;
 
-with File_IO;
+with CAN_Handler;
 with HAL.Bitmap;
 with HAL.Framebuffer;
 with Ada.Containers.Vectors;
-with HAL.Touch_Panel;
 
 package GUI is
 
@@ -87,6 +86,21 @@ package GUI is
    Current_Text_Color       : HAL.Bitmap.Bitmap_Color := Default_Text_Color;
    Current_Background_Color : HAL.Bitmap.Bitmap_Color :=
      Default_Background_Color;
+
+   Last_Range_Miles        : Natural                               := 9_999;
+   Last_HV_Batt_V          : Natural                               := 9_999;
+   Last_Humidity_Pct       : Natural                               := 9_999;
+   Last_Speed_MPH          : Natural                               := 9_999;
+   Last_Rear_Power_kW      : Integer                               := -1;
+   Last_Temperature_C      : Integer                               := -1;
+   Last_Gear               : CAN_Handler.Gear := CAN_Handler.Invalid;
+   Last_Left_Turn          : Boolean                               := False;
+   Last_Right_Turn         : Boolean                               := False;
+   Steering_Angle_Filtered : Long_Float                            := 0.0;
+   Last_Steering_Angle     : Integer                               := -1;
+   Steering_Alpha          : constant Long_Float := 0.25;  -- smoothing
+   Steering_Threshold : constant Natural := 1;   -- redraw threshold in deg
+   Last_VIN : String (CAN_Handler.VIN_Number'Range) := (others => ' ');
 
    procedure Set_Font (To : BMP_Font);
    --  Changes the current font setting so that subsequent output is in the
@@ -139,6 +153,10 @@ package GUI is
    --  effect whatsoever, especially none on the state of the current logical
    --  line or logical column. Does not wrap around.
 
+   procedure Draw_Filled_Circle
+     (Point : HAL.Bitmap.Point; Radius : Natural;
+      Color : HAL.Bitmap.Bitmap_Color);
+
    procedure Draw_Rectangle
      (Rect : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color);
 
@@ -149,7 +167,7 @@ package GUI is
    pragma Assertion_Policy (Pre => Check);
 
    procedure Draw_Info
-     (Point : HAl.Bitmap.Point; Text : String; Val : String := "");
+     (Point : HAL.Bitmap.Point; Text : String; Val : String := "");
 
    procedure Fill_Rounded_Rectangle
      (Rect   : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
@@ -158,4 +176,15 @@ package GUI is
      (Rect : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
       T    : Access_String);
    function MeasureText (Text : String; Font : BMP_Fonts.BMP_Font) return Size;
+
+   procedure Draw_Static_UI;
+
+   procedure Update_Range_If_Changed;
+   procedure Update_Speed_If_Changed;
+   procedure Update_Gear_If_Changed;
+   procedure Update_Power_If_Changed;
+   procedure Update_Turn_Signals_If_Changed;
+   procedure Update_Steering_Wheel_If_Changed;
+   procedure Update_VIN_If_Completed;
+   procedure Update_Link_Status;
 end GUI;
