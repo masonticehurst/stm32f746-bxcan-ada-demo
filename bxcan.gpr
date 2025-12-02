@@ -32,7 +32,7 @@ project bxCAN is
    end Compiler;
 
    package Binder is
-      for Switches ("Ada") use ("-Es", "-D8k"); --  Symbolic traceback
+      for Switches ("Ada") use ("-Es"); --  Symbolic traceback
    end Binder;
 
    package Install is
