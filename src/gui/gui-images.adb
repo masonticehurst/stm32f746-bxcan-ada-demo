@@ -3,7 +3,7 @@ with Ada.Numerics.Long_Elementary_Functions;
 package body GUI.Images is
    procedure Draw_Image
      (X0, Y0        : Natural; Image : Bitmap_Color_Image;
-      Angle_Degrees : Long_Float := 0.0)
+      Angle_Degrees : Integer := 0)
    is
       use Ada.Numerics;
       use Ada.Numerics.Long_Elementary_Functions;
@@ -21,13 +21,14 @@ package body GUI.Images is
       Cx : constant Long_Float := Long_Float (Img_Width - 1) / 2.0;
       Cy : constant Long_Float := Long_Float (Img_Height - 1) / 2.0;
 
-      Angle_Rad : constant Long_Float := Angle_Degrees * Pi / 180.0;
+      Angle_Rad : constant Long_Float :=
+        Long_Float (Angle_Degrees) * Pi / 180.0;
 
       Cos_A : constant Long_Float := Cos (Angle_Rad);
       Sin_A : constant Long_Float := Sin (Angle_Rad);
    begin
       -- Fast path: no rotation → use your original loops
-      if Angle_Degrees = 0.0 then
+      if Angle_Degrees = 0 then
          for Row in Image'Range (1) loop
             for Col in Image'Range (2) loop
                declare
@@ -38,7 +39,10 @@ package body GUI.Images is
                begin
                   Display.Hidden_Buffer (1).Set_Source
                     (ARGB =>
-                       Blend (Image (Row, Col), Current_Background_Color));
+                       Blend
+                         (Image (Row, Col),
+                          Display.Hidden_Buffer (1).Pixel
+                            ((X => Dest_X, Y => Dest_Y))));
                   Display.Hidden_Buffer (1).Set_Pixel
                     (Pt => (X => Dest_X, Y => Dest_Y));
                end;
@@ -80,7 +84,10 @@ package body GUI.Images is
                then
                   Display.Hidden_Buffer (1).Set_Source
                     (ARGB =>
-                       Blend (Image (Row, Col), Current_Background_Color));
+                       Blend
+                         (Image (Row, Col),
+                          Display.Hidden_Buffer (1).Pixel
+                            ((X => Dest_X_Int, Y => Dest_Y_Int))));
 
                   Display.Hidden_Buffer (1).Set_Pixel
                     (Pt =>
