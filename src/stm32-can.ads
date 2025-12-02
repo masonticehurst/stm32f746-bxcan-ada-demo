@@ -1,3 +1,4 @@
+with Ada.Real_Time;      use Ada.Real_Time;
 with STM32_SVD;          use STM32_SVD;
 with STM32_SVD.CAN;      use STM32_SVD.CAN;
 with STM32.CAN_Internal; use STM32.CAN_Internal;
@@ -13,6 +14,8 @@ package STM32.CAN is
 
    CAN_1 : aliased CAN_Port (Internal_CAN_1'Access);
    CAN_2 : aliased CAN_Port (Internal_CAN_2'Access);
+
+   Last_RX_Time : Ada.Real_Time.Time := Ada.Real_Time.Time_First;
 
    type CAN_Speed is (CAN_1M, CAN_500K, CAN_250K, CAN_125K);
 
@@ -49,7 +52,7 @@ package STM32.CAN is
    type CAN_Data_8b is array (Natural range <>) of UInt8;
 
    type CAN_Frame (ID_Type : CAN_ID_Type := Standard) is record
-      DLC  : Uint4 range 0 .. 8;
+      DLC  : UInt4 range 0 .. 8;
       Data : CAN_Data_8b (1 .. 8);
       RTR  : Boolean;
       case ID_Type is
@@ -73,7 +76,7 @@ package STM32.CAN is
       end case;
    end record;
 
-   function "=" (L, R : Handler_Key) return Boolean;
+   overriding function "=" (L, R : Handler_Key) return Boolean;
    function Hash (K : Handler_Key) return Ada.Containers.Hash_Type;
 
    package Handler_Map is new Ada.Containers.Hashed_Maps
@@ -121,7 +124,7 @@ package STM32.CAN is
 
       -- Resolve a frame to a callback (if any)
       procedure Get_Callback
-        (Frame : in CAN_Frame; Found : out Boolean; CB : out CAN_Callback);
+        (Frame : CAN_Frame; Found : out Boolean; CB : out CAN_Callback);
    private
       procedure Interrupt_Handler;
 

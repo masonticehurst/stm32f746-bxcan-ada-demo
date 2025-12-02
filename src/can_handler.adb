@@ -1,5 +1,3 @@
-with GUI;        use GUI;
-with GUI.Images;
 with Interfaces; use Interfaces;
 
 package body CAN_Handler is
@@ -60,7 +58,7 @@ package body CAN_Handler is
       Scaled_SteeringAngle : constant Long_Float :=
         Long_Float (Raw_SteeringAngle) * 0.1 - 819.2;
    begin
-      Steering_Angle_Degrees := Scaled_SteeringAngle;
+      Steering_Angle_Degrees := Integer (Scaled_SteeringAngle);
    end On_SteeringAngle;
 
    --  BO_ 599 ID257DIspeed: 8 VehicleBus
@@ -157,19 +155,25 @@ package body CAN_Handler is
    --   SG_ VCFRONT_turnSignalLeftStatus : 50|2@1+ (1,0) [0|3] ""  Receiver
    --   SG_ VCFRONT_turnSignalRightStatus : 52|2@1+ (1,0) [0|3] ""  Receiver
    procedure On_Lighting (F : CAN_Frame) is
-      Raw_TurnSignalLeftStatus : constant Unsigned_32 :=
-        Extract_LE_Signal (Data => F.Data, StartBit => 50, Length => 2);
+      --  Raw_TurnSignalLeftStatus : constant Unsigned_32 :=
+      --    Extract_LE_Signal (Data => F.Data, StartBit => 50, Length => 2);
 
-      Raw_TurnSignalRightStatus : constant Unsigned_32 :=
-        Extract_LE_Signal (Data => F.Data, StartBit => 52, Length => 2);
+      --  Raw_TurnSignalRightStatus : constant Unsigned_32 :=
+      --    Extract_LE_Signal (Data => F.Data, StartBit => 52, Length => 2);
+
+      Raw_IndicatorLeftRequest  : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 2);
+      Raw_IndicatorRightRequest : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 2, Length => 2);
+
    begin
-      if Raw_TurnSignalLeftStatus = 1 then
+      if Raw_IndicatorLeftRequest = 2 or Raw_IndicatorLeftRequest = 1 then
          Left_Turn_Signal := True;
       else
          Left_Turn_Signal := False;
       end if;
 
-      if Raw_TurnSignalRightStatus = 1 then
+      if Raw_IndicatorRightRequest = 2 or Raw_IndicatorRightRequest = 1 then
          Right_Turn_Signal := True;
       else
          Right_Turn_Signal := False;
@@ -269,8 +273,9 @@ package body CAN_Handler is
       Raw_Rear_Power : constant Unsigned_32 :=
         Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 11);
 
-      Scaled_Rear_Power : Long_Float := Long_Float (Raw_Rear_Power) * 0.5;
+      Scaled_Rear_Power : constant Long_Float :=
+        Long_Float (Raw_Rear_Power) * 0.5;
    begin
-      Rear_Power_kW := Long_Float (Scaled_Rear_Power);
+      Rear_Power_kW := Integer (Scaled_Rear_Power);
    end On_RearInverterPower;
 end CAN_Handler;

@@ -1,6 +1,5 @@
 with STM32.Device;  use STM32.Device;
 with System;        use System;
-with GUI;           use GUI;
 with STM32_SVD.RCC; use STM32_SVD.RCC;
 with STM32.GPIO;
 
@@ -224,7 +223,7 @@ package body STM32.CAN is
       end case;
    end Hash;
 
-   function "=" (L, R : Handler_Key) return Boolean is
+   overriding function "=" (L, R : Handler_Key) return Boolean is
    begin
       if L.Kind /= R.Kind then
          return False;
@@ -258,7 +257,7 @@ package body STM32.CAN is
       end Wait_For_Frame;
 
       procedure Get_Callback
-        (Frame : in CAN_Frame; Found : out Boolean; CB : out CAN_Callback)
+        (Frame : CAN_Frame; Found : out Boolean; CB : out CAN_Callback)
       is
          Key : Handler_Key;
       begin
@@ -283,7 +282,7 @@ package body STM32.CAN is
       begin
          Status := Receive (CAN_1, Frame);
 
-         if Status = OK then
+         if Status = Ok then
             if Frame.ID_Type = Standard then
                Key := (Kind => Standard, SID => Frame.Standard_ID);
             else
@@ -291,7 +290,8 @@ package body STM32.CAN is
             end if;
 
             -- Only add frames to queue we care about
-            if Handlers.Contains (Key) and Count_Received < Buffer'Length then
+            if Handlers.Contains (Key) and then Count_Received < Buffer'Length
+            then
                Buffer (Tail)  := Frame;
                Tail           := (Tail + 1) mod Buffer'Length;
                Count_Received := Count_Received + 1;
@@ -370,6 +370,8 @@ package body STM32.CAN is
       end loop;
 
       CAN1_Periph.RF0R.RFOM0 := True;
+
+      Last_RX_Time := Clock;
 
       return Ok;
    end Receive;
@@ -621,17 +623,17 @@ package body STM32.CAN is
 
          if Filter.Use_32_Bit then
             -- 32-bit scale: FR1/FR2 are full 32-bit registers
-            Filter_Regs (FR1_Idx).Val := HAL.UInt32 (Id1_Reg);
+            Filter_Regs (FR1_Idx).Val := Id1_Reg;
 
             if Filter.Mode = Mask then
                -- Mask mode: FR1 = Id1, FR2 = Mask1
-               Filter_Regs (FR2_Idx).Val := HAL.UInt32 (Mask1_Reg);
+               Filter_Regs (FR2_Idx).Val := Mask1_Reg;
             else
                -- List mode: FR1 = Id1, FR2 = Id2
-               Filter_Regs (FR2_Idx).Val := HAL.UInt32 (Id2_Reg);
+               Filter_Regs (FR2_Idx).Val := Id2_Reg;
             end if;
          else
-            -- Dual 16-bit scale (not implemented here)
+            -- TODO: 16-bit scale not implemented
             null;
          end if;
       end;

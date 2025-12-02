@@ -1,13 +1,14 @@
 with HAL;        use HAL;
 with HAL.Bitmap; use HAL.Bitmap;
+with File_IO;
 
 package GUI.Bitmap is
    type Bitmap_Format is (Bmp_RGB_24, Bmp_ARGB_32, Bmp_Unknown);
 
    type Bitmap_Header is record
-      Signature   : Uint16;
-      File_Size   : Uint32;
-      Data_Offset : Uint32;
+      Signature   : UInt16;
+      File_Size   : UInt32;
+      Data_Offset : UInt32;
    end record;
 
    for Bitmap_Header use record
@@ -17,17 +18,17 @@ package GUI.Bitmap is
    end record;
 
    type Bitmap_Info_Header is record
-      Size             : Uint32;
-      Width            : Uint32;
-      Height           : Uint32;
-      Planes           : Uint16;
-      BitCount         : Uint16;
-      Compression      : Uint32;
-      Image_Size       : Uint32;
-      X_Pixels_Per_M   : Uint32;
-      Y_Pixels_Per_M   : Uint32;
-      Colors_Used      : Uint32;
-      Colors_Important : Uint32;
+      Size             : UInt32;
+      Width            : UInt32;
+      Height           : UInt32;
+      Planes           : UInt16;
+      BitCount         : UInt16;
+      Compression      : UInt32;
+      Image_Size       : UInt32;
+      X_Pixels_Per_M   : UInt32;
+      Y_Pixels_Per_M   : UInt32;
+      Colors_Used      : UInt32;
+      Colors_Important : UInt32;
    end record;
 
    for Bitmap_Info_Header use record
@@ -45,10 +46,10 @@ package GUI.Bitmap is
    end record;
 
    type Color_Table_Entry is record
-      B : Uint8;  -- Blue
-      G : Uint8;  -- Green
-      R : Uint8;  -- Red
-      A : Uint8;  -- Reserved / Alpha
+      B : UInt8;  -- Blue
+      G : UInt8;  -- Green
+      R : UInt8;  -- Red
+      A : UInt8;  -- Reserved / Alpha
    end record;
 
    for Color_Table_Entry use record
@@ -60,14 +61,14 @@ package GUI.Bitmap is
 
    for Color_Table_Entry'Size use 32;  -- 4 bytes * 8 bits
 
-   type Byte is new Uint8;
+   type Byte is new UInt8;
    type Byte_Array is array (Natural range <>) of aliased Byte;
 
    type Color_Table_Array is
      array (Natural range <>) of aliased Color_Table_Entry;
 
    type Pixel is record
-      B, G, R, A : Uint8;
+      B, G, R, A : UInt8;
    end record;
    for Pixel'Size use 32;
 

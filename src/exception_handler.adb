@@ -1,10 +1,6 @@
 with System;
-with GUI;                 use GUI;
-with Ada.Exceptions;      use Ada.Exceptions;
-with System.Machine_Code; use System.Machine_Code;
-with Partitions;          use Partitions;
-with File_Block_Drivers;  use File_Block_Drivers;
-with File_IO;             use File_IO;
+with GUI;            use GUI;
+with Ada.Exceptions; use Ada.Exceptions;
 
 package body Exception_Handler is
    procedure Last_Chance_Handler (E : Exception_Occurrence) is

@@ -1,4 +1,3 @@
-with GUI;         use GUI;
 with STM32.Board; use STM32.Board;
 with File_IO;     use File_IO;
 
@@ -39,6 +38,11 @@ package body GUI.Bitmap is
       Bytes_Read := Read (FD, BMP_Header'Address, Bitmap_Header'Size / 8);
       Bytes_Read :=
         Read (FD, BMP_Info_Header'Address, Bitmap_Info_Header'Size / 8);
+
+      if (Bytes_Read = 0) then
+         Put_Line ("Error reading image from SD Card!");
+         return;
+      end if;
 
       Width  := Natural (BMP_Info_Header.Width);
       Height := Natural (BMP_Info_Header.Height);
@@ -110,7 +114,7 @@ package body GUI.Bitmap is
                      Max_To_Read : constant File_IO.File_Size :=
                        File_IO.File_Size (Buffer'Length) -
                        Buf_Len;  -- 512 - Buf_Len
-                     To_Read     : File_IO.File_Size          := Max_To_Read;
+                     To_Read     : constant File_IO.File_Size := Max_To_Read;
                      Read_Len    : File_IO.File_Size;
                   begin
                      if To_Read > 0 then
@@ -141,10 +145,10 @@ package body GUI.Bitmap is
                   declare
                      Start : constant Natural := Natural (Buf_Pos);
                   begin
-                     P.B := Uint8 (Buffer (Start));
-                     P.G := Uint8 (Buffer (Start + 1));
-                     P.R := Uint8 (Buffer (Start + 2));
-                     P.A := Uint8 (Buffer (Start + 3));
+                     P.B := UInt8 (Buffer (Start));
+                     P.G := UInt8 (Buffer (Start + 1));
+                     P.R := UInt8 (Buffer (Start + 2));
+                     P.A := UInt8 (Buffer (Start + 3));
                   end;
 
                   Buf_Pos := Buf_Pos + 4;

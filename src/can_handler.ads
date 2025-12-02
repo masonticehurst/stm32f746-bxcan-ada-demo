@@ -18,7 +18,7 @@ package CAN_Handler is
    type Gear is (Invalid, Drive, Neutral, Park, Rev);
    function To_String (Value : Gear) return String;
 
-   Steering_Angle_Degrees             : Long_Float       := 0.0;
+   Steering_Angle_Degrees             : Integer          := 0;
    Vehicle_Speed_MPH                  : Natural          := 0;
    Vehicle_Gear                       : Gear             := Invalid;
    Accelerator_Pedal_Position_Percent : Natural          := 0;
@@ -29,5 +29,5 @@ package CAN_Handler is
    HV_Battery_Voltage                 : Long_Float       := 0.0;
    Humidity                           : Natural          := 0;
    Temperature                        : Long_Float       := 0.0;
-   Rear_Power_kW                      : Long_Float       := 0.0;
+   Rear_Power_kW                      : Integer          := 0;
 end CAN_Handler;
