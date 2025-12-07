@@ -2,9 +2,9 @@ with Ada.Real_Time; use Ada.Real_Time;
 with STM32.Board;   use STM32.Board;
 with GUI;           use GUI;
 
-package body LED_Blinker is
+package body Touch_Handler is
 
-   task body Blinker is
+   task body Handler is
       Blink_Period : constant Time_Span := Milliseconds (100);
       Next_Time    : Time               := Clock;
    begin
@@ -16,6 +16,6 @@ package body LED_Blinker is
          GUI.Check_Buttons;
          delay until Next_Time;
       end loop;
-   end Blinker;
+   end Handler;
 
-end LED_Blinker;
+end Touch_Handler;
