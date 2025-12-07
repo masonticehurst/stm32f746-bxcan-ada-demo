@@ -1,34 +1,3 @@
-------------------------------------------------------------------------------
---                                                                          --
---                     Copyright (C) 2015-2016, AdaCore                     --
---                                                                          --
---  Redistribution and use in source and binary forms, with or without      --
---  modification, are permitted provided that the following conditions are  --
---  met:                                                                    --
---     1. Redistributions of source code must retain the above copyright    --
---        notice, this list of conditions and the following disclaimer.     --
---     2. Redistributions in binary form must reproduce the above copyright --
---        notice, this list of conditions and the following disclaimer in   --
---        the documentation and/or other materials provided with the        --
---        distribution.                                                     --
---     3. Neither the name of the copyright holder nor the names of its     --
---        contributors may be used to endorse or promote products derived   --
---        from this software without specific prior written permission.     --
---                                                                          --
---   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS    --
---   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT      --
---   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR  --
---   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT   --
---   HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, --
---   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT       --
---   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,  --
---   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY  --
---   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT    --
---   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE  --
---   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   --
---                                                                          --
-------------------------------------------------------------------------------
-
 --  This package provides a set of convenience routines for putting characters
 --  and strings out to the LCD.
 
@@ -37,6 +6,7 @@ with BMP_Fonts; use BMP_Fonts;
 with CAN_Handler;
 with HAL.Bitmap;
 with HAL.Framebuffer;
+with HAL.Touch_Panel;
 with Ada.Containers.Vectors;
 
 package GUI is
@@ -46,18 +16,16 @@ package GUI is
       Height : Natural;
    end record;
 
-   type Access_String is access all String;
+   type Button_Callback is access procedure;
 
-   type Button is record
-      Rect  : HAL.Bitmap.Rect;
-      Color : HAL.Bitmap.Bitmap_Color;
-      Text  : Access_String;
+   type Button_Entry is record
+      Rect     : HAL.Bitmap.Rect;
+      Callback : Button_Callback;
+      Pressed  : Boolean := False;
    end record;
 
-   Max_Buttons : Natural := 16;
-
    package Button_Vectors is new Ada.Containers.Vectors
-     (Index_Type => Natural, Element_Type => Button);
+     (Index_Type => Natural, Element_Type => Button_Entry);
 
    Buttons : Button_Vectors.Vector;
 
@@ -96,62 +64,45 @@ package GUI is
    Last_Gear               : CAN_Handler.Gear := CAN_Handler.Invalid;
    Last_Left_Turn          : Boolean                               := False;
    Last_Right_Turn         : Boolean                               := False;
+   Last_Left_Turn_Request  : Boolean                               := False;
+   Last_Right_Turn_Request : Boolean                               := False;
    Steering_Angle_Filtered : Long_Float                            := 0.0;
    Last_Steering_Angle     : Integer                               := -1;
    Steering_Alpha          : constant Long_Float := 0.25;  -- smoothing
-   Steering_Threshold : constant Natural := 1;   -- redraw threshold in deg
+   Steering_Threshold : constant Natural := 2;   -- redraw threshold in deg
    Last_VIN : String (CAN_Handler.VIN_Number'Range) := (others => ' ');
 
-   procedure Set_Font (To : BMP_Font);
    --  Changes the current font setting so that subsequent output is in the
    --  specified font.
-
+   procedure Set_Font (To : BMP_Font);
    procedure Set_Orientation (To : HAL.Framebuffer.Display_Orientation);
-   --  Configures the screen orientation and fills the screen with the current
-   --  background color. All previously displayed content is lost.
 
    procedure Clear_Screen;
-
-   ----------------------------------------------------------------------------
 
    --  These routines maintain a logical line and column, such that text will
    --  wrap around to the next "line" when necessary, as determined by the
    --  current orientation of the screen.
-
    procedure Put_Line
      (Msg : String; Color : HAL.Bitmap.Bitmap_Color := Default_Text_Color);
-   --  Note: wraps around to the next line if necessary.
-   --  Always calls procedure New_Line automatically after printing the string.
 
    procedure Put (Msg : String);
-   --  Note: wraps around to the next line if necessary.
 
    procedure Put (Msg : Character);
 
-   procedure New_Line;
    --  A subsequent call to Put or Put_Line will start printing characters at
    --  the beginning of the next line, wrapping around to the top of the LCD
    --  screen if necessary.
+   procedure New_Line;
 
-   ----------------------------------------------------------------------------
-
-   --  These routines are provided for convenience, as an alternative to
-   --  using both this package and an instance of Bitmnapped_Drawing directly,
-   --  when wanting both the wrap-around semantics and direct X/Y coordinate
-   --  control. You can combine calls to these routines with the ones above but
-   --  these do not update the logical line/column state, so more likely you
-   --  will use one set or the other. If you only need X/Y coordinate control,
-   --  consider directly using an instance of HAL.Bitmap.
-
-   procedure Put (X, Y : Natural; Msg : Character);
    --  Prints the character at the specified location. Has no other effect
    --  whatsoever, especially none on the state of the current logical line
    --  or logical column.
+   procedure Put (X, Y : Natural; Msg : Character);
 
-   procedure Put (X, Y : Natural; Msg : String);
    --  Prints the string, starting at the specified location. Has no other
    --  effect whatsoever, especially none on the state of the current logical
    --  line or logical column. Does not wrap around.
+   procedure Put (X, Y : Natural; Msg : String);
 
    procedure Draw_Filled_Circle
      (Point : HAL.Bitmap.Point; Radius : Natural;
@@ -172,9 +123,12 @@ package GUI is
    procedure Fill_Rounded_Rectangle
      (Rect   : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
       Radius : Natural);
-   procedure Add_Button
-     (Rect : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
-      T    : Access_String);
+
+   procedure Draw_Button
+     (Rect : HAL.Bitmap.Rect; Text : String; On_Press : Button_Callback);
+
+   procedure Check_Buttons;
+
    function MeasureText (Text : String; Font : BMP_Fonts.BMP_Font) return Size;
 
    procedure Draw_Static_UI;
@@ -187,4 +141,8 @@ package GUI is
    procedure Update_Steering_Wheel_If_Changed;
    procedure Update_VIN_If_Completed;
    procedure Update_Link_Status;
+
+   function Has_Touch_Within_Area
+     (P : HAL.Bitmap.Point; S : Size) return Boolean;
+
 end GUI;

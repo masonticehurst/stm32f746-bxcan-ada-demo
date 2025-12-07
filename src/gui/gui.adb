@@ -302,14 +302,79 @@ package body GUI is
          Radius => Radius);
    end Fill_Rounded_Rectangle;
 
-   procedure Add_Button
-     (Rect : HAL.Bitmap.Rect; Color : HAL.Bitmap.Bitmap_Color;
-      T    : Access_String)
+   procedure Draw_Button
+     (Rect : HAL.Bitmap.Rect; Text : String; On_Press : Button_Callback)
    is
-      Btn : constant Button := (Rect, Color, T);
+      Text_Size : Size;
+      Text_Pos  : HAL.Bitmap.Point;
+      Button    : Button_Entry;
    begin
-      Buttons.Append (Btn);
-   end Add_Button;
+      -- Draw filled rounded rectangle (button background)
+      Fill_Rounded_Rectangle
+        (Rect   => Rect,
+         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
+         Radius => 8);
+
+      Text_Size := MeasureText (Text, Font8x8);
+
+      Text_Pos :=
+        (X => Rect.Position.X + Integer (Rect.Width) / 2 - Text_Size.Width / 2,
+         Y =>
+           Rect.Position.Y + Integer (Rect.Height) / 2 - Text_Size.Height / 2);
+
+      Put (X => Text_Pos.X, Y => Text_Pos.Y, Msg => Text);
+
+      -- Create button struct and register it
+      Button := (Rect => Rect, Callback => On_Press, Pressed => False);
+
+      Buttons.Append (Button);
+   end Draw_Button;
+
+   procedure Check_Buttons is
+      State     : constant HAL.Touch_Panel.TP_State :=
+        STM32.Board.Touch_Panel.Get_All_Touch_Points;
+      Has_Touch : constant Boolean                  := (State'Length > 0);
+   begin
+      if not Has_Touch then
+         if not Buttons.Is_Empty then
+            for I in Buttons.First_Index .. Buttons.Last_Index loop
+               Buttons (I).Pressed := False;
+            end loop;
+         end if;
+
+         return;
+      end if;
+
+      declare
+         P : constant HAL.Bitmap.Point := (X => State (1).X, Y => State (1).Y);
+      begin
+         if not Buttons.Is_Empty then
+            for I in Buttons.First_Index .. Buttons.Last_Index loop
+               declare
+                  B : Button_Entry renames Buttons (I);
+                  R : HAL.Bitmap.Rect renames B.Rect;
+               begin
+                  if P.X >= R.Position.X
+                    and then P.X <= R.Position.X + Integer (R.Width)
+                    and then P.Y >= R.Position.Y
+                    and then P.Y <= R.Position.Y + Integer (R.Height)
+                  then
+                     -- Press is inside this button...
+                     if not B.Pressed then
+                        B.Pressed := True;
+                        if B.Callback /= null then
+                           B.Callback.all;
+                        end if;
+                     end if;
+                  else
+                     -- Button not being pressed...
+                     B.Pressed := False;
+                  end if;
+               end;
+            end loop;
+         end if;
+      end;
+   end Check_Buttons;
 
    procedure Draw_Info
      (Point : HAL.Bitmap.Point; Text : String; Val : String := "")
@@ -370,10 +435,8 @@ package body GUI is
    procedure Draw_Static_UI is
    begin
       Put (X => 173, Y => 9, Msg => "Make:");
-      Put (X => 228, Y => 9, Msg => "Tesla");
 
       Put (X => 173, Y => 19, Msg => "Model:");
-      Put (X => 228, Y => 19, Msg => "Model 3");
 
       Put (X => 173, Y => 29, Msg => "VIN:");
 
@@ -461,9 +524,9 @@ package body GUI is
 
    procedure Update_Turn_Signals_If_Changed is
    begin
-      --  Left turn signal
-      if CAN_Handler.Left_Turn_Signal /= Last_Left_Turn then
-         if CAN_Handler.Left_Turn_Signal then
+      --  Left turn signal request
+      if CAN_Handler.Left_Turn_Signal_Request /= Last_Left_Turn_Request then
+         if CAN_Handler.Left_Turn_Signal_Request then
             GUI.Images.Draw_Image
               (X0            => 190, Y0 => 65, Image => GUI.Images.Arrow,
                Angle_Degrees => 0);
@@ -473,12 +536,12 @@ package body GUI is
                Color => GUI.Default_Background_Color);
          end if;
 
-         Last_Left_Turn := CAN_Handler.Left_Turn_Signal;
+         Last_Left_Turn_Request := CAN_Handler.Left_Turn_Signal_Request;
       end if;
 
-      --  Right turn signal
-      if CAN_Handler.Right_Turn_Signal /= Last_Right_Turn then
-         if CAN_Handler.Right_Turn_Signal then
+      --  Right turn signal request
+      if CAN_Handler.Right_Turn_Signal_Request /= Last_Right_Turn_Request then
+         if CAN_Handler.Right_Turn_Signal_Request then
             GUI.Images.Draw_Image
               (X0            => 310, Y0 => 65, Image => GUI.Images.Arrow,
                Angle_Degrees => 180);
@@ -488,7 +551,7 @@ package body GUI is
                Color => GUI.Default_Background_Color);
          end if;
 
-         Last_Right_Turn := CAN_Handler.Right_Turn_Signal;
+         Last_Right_Turn_Request := CAN_Handler.Right_Turn_Signal_Request;
       end if;
    end Update_Turn_Signals_If_Changed;
 
@@ -517,7 +580,8 @@ package body GUI is
       if VIN_Complete (Curr_VIN) and then Curr_VIN /= Last_VIN then
          --  We assume labels "VIN:" and static Make/Model were already drawn
          GUI.Put (X => 228, Y => 29, Msg => Curr_VIN);
-
+         GUI.Put (X => 228, Y => 9, Msg => "Tesla");
+         GUI.Put (X => 228, Y => 19, Msg => "Model 3");
          Last_VIN := Curr_VIN;
       end if;
    end Update_VIN_If_Completed;
@@ -563,4 +627,22 @@ package body GUI is
       Current_Text_Color       := Default_Text_Color;
       Current_Background_Color := Default_Background_Color;
    end Update_Link_Status;
+
+   function Has_Touch_Within_Area
+     (P : HAL.Bitmap.Point; S : Size) return Boolean
+   is
+      State : constant HAL.Touch_Panel.TP_State :=
+        STM32.Board.Touch_Panel.Get_All_Touch_Points;
+   begin
+      if State'Length > 0 then
+         if State (1).X >= P.X and State (1).X <= P.X + S.Width and
+           State (1).Y >= P.Y and State (1).Y <= P.Y + S.Height
+         then
+            return True;
+         end if;
+      end if;
+
+      return False;
+   end Has_Touch_Within_Area;
+
 end GUI;
