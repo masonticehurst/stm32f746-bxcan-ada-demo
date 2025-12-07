@@ -1,5 +1,7 @@
+with CAN_Handler;
 with Interfaces; use Interfaces;
 with HAL;        use HAL;
+with GUI;        use GUI;
 
 package body CAN_Handler is
    function Extract_LE_Signal
@@ -222,8 +224,13 @@ package body CAN_Handler is
    procedure On_RangeSOC (F : CAN_Frame) is
       Raw_Range : constant Unsigned_32 :=
         Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 10);
+
+      Raw_SOC : constant Unsigned_32 :=
+        Extract_LE_Signal (Data => F.Data, StartBit => 48, Length => 7);
    begin
-      Range_Miles := Natural (Raw_Range);
+      Range_Miles             := Natural (Raw_Range);
+      State_Of_Charge_Percent :=
+        100 - Natural (Long_Float (Raw_SOC) / 127.0 * 100.0);
    end On_RangeSOC;
 
    --  BO_ 306 ID132HVBattAmpVolt: 8 VehicleBus
@@ -286,18 +293,20 @@ package body CAN_Handler is
       end if;
    end On_VehicleControl;
 
-   procedure Capture_Button_Callback is
+   procedure Control_Button_Callback is
       New_Frame : STM32.CAN.CAN_Frame (STM32.CAN.Standard) := (others => <>);
       RC        : STM32.CAN.CAN_Status := Transmission_Error;
    begin
       if (Clock - CAN_Handler.Last_Vehicle_Control_Time) < Milliseconds (1_000)
       then
-         New_Frame.DLC  := CAN_Handler.Last_Vehicle_Control.DLC;
-         New_Frame.RTR  := CAN_Handler.Last_Vehicle_Control.RTR;
-         New_Frame.Data := CAN_Handler.Last_Vehicle_Control.Data;
+         New_Frame.DLC         := CAN_Handler.Last_Vehicle_Control.DLC;
+         New_Frame.RTR         := CAN_Handler.Last_Vehicle_Control.RTR;
+         New_Frame.Standard_ID := CAN_Handler.Last_Vehicle_Control.Standard_ID;
+         New_Frame.Data        := CAN_Handler.Last_Vehicle_Control.Data;
 
          declare
-            Byte_Index : constant Natural := 0; -- bit 5 lives in byte 0
+            -- bit 5 lives in first byte (1-indexed)
+            Byte_Index : constant Natural := 1;
             Bit_Mask   : constant UInt8   := 2#0010_0000#;
          begin
             New_Frame.Data (Byte_Index) :=
@@ -305,7 +314,8 @@ package body CAN_Handler is
          end;
 
          RC := STM32.CAN.Transmit (CAN_1, New_Frame);
-
+         GUI.Put_Line (RC'Image);
       end if;
-   end Capture_Button_Callback;
+   end Control_Button_Callback;
+
 end CAN_Handler;

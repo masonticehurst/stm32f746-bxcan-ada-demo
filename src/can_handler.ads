@@ -17,7 +17,7 @@ package CAN_Handler is
    procedure On_RearInverterPower (F : CAN_Frame);
    procedure On_VehicleControl (F : CAN_Frame);
 
-   procedure Capture_Button_Callback;
+   procedure Control_Button_Callback;
 
    type Gear is (Invalid, Drive, Neutral, Park, Rev);
    function To_String (Value : Gear) return String;
@@ -26,6 +26,7 @@ package CAN_Handler is
    Vehicle_Speed_MPH                  : Natural          := 0;
    Vehicle_Gear                       : Gear             := Invalid;
    Accelerator_Pedal_Position_Percent : Natural          := 0;
+   State_Of_Charge_Percent            : Natural          := 0;
    Left_Turn_Signal_Request           : Boolean          := False;
    Right_Turn_Signal_Request          : Boolean          := False;
    VIN_Number                         : String (1 .. 17) := (others => ' ');

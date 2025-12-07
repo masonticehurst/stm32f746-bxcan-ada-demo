@@ -1,4 +1,4 @@
-with LED_Blinker;
+with Touch_Handler;
 with Cortex_M.Cache;
 with Exception_Handler;
 with SDCard;
@@ -25,13 +25,13 @@ procedure bxcan is
    SDMMC_Status : HAL.SDMMC.SD_Error;
    FS_Status    : File_IO.Status_Code := Disk_Error;
    FD           : File_IO.File_Descriptor;
-   Period       : constant Time_Span  := Microseconds (20_000);
+   Period       : constant Time_Span  := Microseconds (33_333);
    Next_Release : Time                := Clock;
    --  RTC :
    --    aliased DS3231_Device
    --      (I2C_Port => I2C_3'Access, I2C_Address => 16#68# * 2);
 begin
-   --  Cortex_M.Cache.Disable_D_Cache;
+   Cortex_M.Cache.Disable_D_Cache;
 
    -- Misc initialization
    Initialize_SDRAM;
@@ -95,21 +95,12 @@ begin
 
    SDMMC_Status := STM32.SDMMC.Initialize (SDMMC_1);
    FS_Status    := Mount_Drive ("sdcard", SDCard_Device'Access);
-   FS_Status    := File_IO.Open (FD, "/sdcard/m3.bmp", File_IO.Read_Write);
 
-   if (FS_Status = OK) then
-      GUI.Current_Background_Color :=
-        (Alpha => 255, Red => 26, Green => 36, Blue => 46);
-
-      Fill_Rounded_Rectangle
-        (Rect   => (Position => (7, 6), Width => 161, Height => 82),
-         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-         Radius => 8);
-
-      GUI.Bitmap.Draw_Image_From_File (FD);
+   if FS_Status /= Ok then
+      raise Program_Error with "Unable to mount SD Card";
    end if;
 
-   Draw_Static_UI;
+   GUI.Status_Page_Init;
 
    GUI.Current_Background_Color := Default_Background_Color;
    GUI.Current_Text_Color       := Default_Text_Color;
@@ -149,20 +140,10 @@ begin
      (ID => CAN_Standard_ID (16#273#),
       CB => CAN_Handler.On_VehicleControl'Access);
 
-   GUI.Draw_Button
-     (Rect     => (Position => (X => 400, Y => 5), Width => 80, Height => 50),
-      Text     => "Capture",
-      On_Press => CAN_Handler.Capture_Button_Callback'Access);
-
    loop
-      GUI.Update_Range_If_Changed;
-      GUI.Update_Speed_If_Changed;
-      GUI.Update_Gear_If_Changed;
-      GUI.Update_Power_If_Changed;
-      GUI.Update_Turn_Signals_If_Changed;
-      GUI.Update_Steering_Wheel_If_Changed;
-      GUI.Update_VIN_If_Completed;
-      GUI.Update_Link_Status;
+      if GUI.Current_Page = Status_Page then
+         GUI.Status_Page_Tick;
+      end if;
 
       Display.Update_Layer (1, True);
 
