@@ -21,7 +21,7 @@ with CAN_Handler;
 with STM32.DS3231;        use STM32.DS3231;
 with HAL.Real_Time_Clock; use HAL.Real_Time_Clock;
 with HAL.Touch_Panel;     use HAL.Touch_Panel;
-procedure bxcan is
+procedure can_ada is
    SDMMC_Status : HAL.SDMMC.SD_Error;
    FS_Status    : File_IO.Status_Code := Disk_Error;
    FD           : File_IO.File_Descriptor;
@@ -151,4 +151,4 @@ begin
       delay until Next_Release;
    end loop;
    -- Close (FD);
-end bxcan;
+end can_ada;

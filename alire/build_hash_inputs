@@ -2,7 +2,7 @@ dependency:adl_middleware=0.4.0-dev=87b6dd78e138808b47184b1830296bfa656ac1d02350
 dependency:stm32_gui=0.1.0=3a0cbf88b259ba6634b15b79d0f885af4ea87ca542848780c4b9585a2c94b5e3
 dependency:stm32_hal=0.1.0=9365bd0b59e4ce8fed1b6175e7596cbed5a388e06c0af3e4442ea783acff84d0
 dependency:stm32f746disco=0.1.0=17b60f470989596bfb2765e7c02c79bf901d4978c88e5f48825751d68019b94b
-external:BXCAN_LIBRARY_TYPE=default
+external:CAN_ADA_LIBRARY_TYPE=default
 external:LIBRARY_TYPE=default
-profile:bxcan=DEVELOPMENT
-switches:bxcan=-O0,-g,-gnatVa,-gnatW8,-gnatw.X,-gnatwa,-gnaty-d,-gnaty3,-gnatyA,-gnatyB,-gnatyI,-gnatyO,-gnatyS,-gnatya,-gnatyb,-gnatyc,-gnatye,-gnatyf,-gnatyh,-gnatyi,-gnatyk,-gnatyl,-gnatym,-gnatyn,-gnatyp,-gnatyr,-gnatyt,-gnatyu,-gnatyx
+profile:can_ada=DEVELOPMENT
+switches:can_ada=-O0,-g,-gnatVa,-gnatW8,-gnatw.X,-gnatwa,-gnaty-d,-gnaty3,-gnatyA,-gnatyB,-gnatyI,-gnatyO,-gnatyS,-gnatya,-gnatyb,-gnatyc,-gnatye,-gnatyf,-gnatyh,-gnatyi,-gnatyk,-gnatyl,-gnatym,-gnatyn,-gnatyp,-gnatyr,-gnatyt,-gnatyu,-gnatyx
