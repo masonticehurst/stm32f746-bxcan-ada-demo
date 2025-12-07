@@ -20,34 +20,30 @@ with GUI.Images;          use GUI.Images;
 with CAN_Handler;
 with STM32.DS3231;        use STM32.DS3231;
 with HAL.Real_Time_Clock; use HAL.Real_Time_Clock;
-
+with HAL.Touch_Panel;     use HAL.Touch_Panel;
 procedure bxcan is
    SDMMC_Status : HAL.SDMMC.SD_Error;
    FS_Status    : File_IO.Status_Code := Disk_Error;
    FD           : File_IO.File_Descriptor;
-   Period       : constant Time_Span  := Microseconds (33_333);
+   Period       : constant Time_Span  := Microseconds (20_000);
    Next_Release : Time                := Clock;
-
-   My_RTC :
-     aliased DS3231_Device
-       (I2C_Port => I2C_3'Access, I2C_Address => 16#68# * 2);
+   --  RTC :
+   --    aliased DS3231_Device
+   --      (I2C_Port => I2C_3'Access, I2C_Address => 16#68# * 2);
 begin
-   Cortex_M.Cache.Disable_D_Cache;
+   --  Cortex_M.Cache.Disable_D_Cache;
 
    -- Misc initialization
    Initialize_SDRAM;
+   STM32.Board.Touch_Panel.Initialize;
 
    -- Stuff for LCD initialization
    Clear_Screen;
    Set_Font (Font8x8);
 
-   -- Setting up I2C for DS3231 + Touch Screen
-   STM32.Board.Setup_I2C_Master
-     (Port   => I2C_3, SDA => PH7, SCL => PH8, SDA_AF => GPIO_AF_I2C3_4,
-      SCL_AF => GPIO_AF_I2C3_4, Clock_Speed => 100_000);
-
    -- CAN Bus Initialization
-   STM32.CAN.Initialize (STM32.CAN.CAN_1, STM32.CAN.CAN_500K);
+   STM32.CAN.Initialize
+     (This => STM32.CAN.CAN_1, Speed => STM32.CAN.CAN_500K, Loopback => False);
 
    declare
       -- 0x118 = 280 = ID118DriveSystemStatus
@@ -78,25 +74,27 @@ begin
          Id1        => 16#383#, Id2 => 16#33A#, Mask1 => 0, Mask2 => 0,
          Use_32_Bit => True);
 
-      --  Filter4 : constant CAN_Filter_Config :=
-      --    (Bank => 4, FIFO => 0, Mode => List, ID_Type => STM32.CAN.Standard,
-      --     Id1        => 16#132#, Id2 => 16#000#, Mask1 => 0, Mask2 => 0,
-      --     Use_32_Bit => True);
+      -- 0x273 = 627 = ID273UI_vehicleControl
+      -- 0xFFF = N/A
+      Filter4 : constant CAN_Filter_Config :=
+        (Bank => 4, FIFO => 0, Mode => List, ID_Type => STM32.CAN.Standard,
+         Id1        => 16#273#, Id2 => 16#0FF#, Mask1 => 0, Mask2 => 0,
+         Use_32_Bit => True);
    begin
       Configure_Filter (CAN_1, Filter0);
       Configure_Filter (CAN_1, Filter1);
       Configure_Filter (CAN_1, Filter2);
       Configure_Filter (CAN_1, Filter3);
-      --  Configure_Filter (CAN_1, Filter4);
+      Configure_Filter (CAN_1, Filter4);
    end;
 
    -- SD Card initialization
-   STM32.Board.SDCard_Device.Initialize;
+   SDCard_Device.Initialize;
 
    delay 0.5;
 
-   SDMMC_Status := STM32.SDMMC.Initialize (STM32.Device.SDMMC_1);
-   FS_Status    := Mount_Drive ("sdcard", STM32.Board.SDCard_Device'Access);
+   SDMMC_Status := STM32.SDMMC.Initialize (SDMMC_1);
+   FS_Status    := Mount_Drive ("sdcard", SDCard_Device'Access);
    FS_Status    := File_IO.Open (FD, "/sdcard/m3.bmp", File_IO.Read_Write);
 
    if (FS_Status = OK) then
@@ -146,6 +144,15 @@ begin
    STM32.CAN.Receiver.Register_Handler
      (ID => CAN_Standard_ID (16#266#),
       CB => CAN_Handler.On_RearInverterPower'Access);
+
+   STM32.CAN.Receiver.Register_Handler
+     (ID => CAN_Standard_ID (16#273#),
+      CB => CAN_Handler.On_VehicleControl'Access);
+
+   GUI.Draw_Button
+     (Rect     => (Position => (X => 400, Y => 5), Width => 80, Height => 50),
+      Text     => "Capture",
+      On_Press => CAN_Handler.Capture_Button_Callback'Access);
 
    loop
       GUI.Update_Range_If_Changed;

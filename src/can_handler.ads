@@ -1,4 +1,5 @@
-with STM32.CAN; use STM32.CAN;
+with STM32.CAN;     use STM32.CAN;
+with Ada.Real_Time; use Ada.Real_Time;
 
 package CAN_Handler is
 
@@ -14,6 +15,9 @@ package CAN_Handler is
    procedure On_HVBattAmpVolt (F : CAN_Frame);
    procedure On_THSStatus (F : CAN_Frame);
    procedure On_RearInverterPower (F : CAN_Frame);
+   procedure On_VehicleControl (F : CAN_Frame);
+
+   procedure Capture_Button_Callback;
 
    type Gear is (Invalid, Drive, Neutral, Park, Rev);
    function To_String (Value : Gear) return String;
@@ -22,12 +26,16 @@ package CAN_Handler is
    Vehicle_Speed_MPH                  : Natural          := 0;
    Vehicle_Gear                       : Gear             := Invalid;
    Accelerator_Pedal_Position_Percent : Natural          := 0;
-   Left_Turn_Signal                   : Boolean          := False;
-   Right_Turn_Signal                  : Boolean          := False;
+   Left_Turn_Signal_Request           : Boolean          := False;
+   Right_Turn_Signal_Request          : Boolean          := False;
    VIN_Number                         : String (1 .. 17) := (others => ' ');
    Range_Miles                        : Natural          := 0;
    HV_Battery_Voltage                 : Long_Float       := 0.0;
    Humidity                           : Natural          := 0;
    Temperature                        : Long_Float       := 0.0;
    Rear_Power_kW                      : Integer          := 0;
+
+   Last_Vehicle_Control : CAN_Frame (ID_Type => STM32.CAN.Standard) :=
+     (others => <>);
+   Last_Vehicle_Control_Time          : Time             := Time_First;
 end CAN_Handler;

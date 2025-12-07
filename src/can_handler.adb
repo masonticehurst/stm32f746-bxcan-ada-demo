@@ -1,4 +1,5 @@
 with Interfaces; use Interfaces;
+with HAL;        use HAL;
 
 package body CAN_Handler is
    function Extract_LE_Signal
@@ -155,12 +156,10 @@ package body CAN_Handler is
    --   SG_ VCFRONT_turnSignalLeftStatus : 50|2@1+ (1,0) [0|3] ""  Receiver
    --   SG_ VCFRONT_turnSignalRightStatus : 52|2@1+ (1,0) [0|3] ""  Receiver
    procedure On_Lighting (F : CAN_Frame) is
-      --  Raw_TurnSignalLeftStatus : constant Unsigned_32 :=
+      --  Raw_TurnSignalLeftStatus  : constant Unsigned_32 :=
       --    Extract_LE_Signal (Data => F.Data, StartBit => 50, Length => 2);
-
       --  Raw_TurnSignalRightStatus : constant Unsigned_32 :=
       --    Extract_LE_Signal (Data => F.Data, StartBit => 52, Length => 2);
-
       Raw_IndicatorLeftRequest  : constant Unsigned_32 :=
         Extract_LE_Signal (Data => F.Data, StartBit => 0, Length => 2);
       Raw_IndicatorRightRequest : constant Unsigned_32 :=
@@ -168,15 +167,15 @@ package body CAN_Handler is
 
    begin
       if Raw_IndicatorLeftRequest = 2 or Raw_IndicatorLeftRequest = 1 then
-         Left_Turn_Signal := True;
+         Left_Turn_Signal_Request := True;
       else
-         Left_Turn_Signal := False;
+         Left_Turn_Signal_Request := False;
       end if;
 
       if Raw_IndicatorRightRequest = 2 or Raw_IndicatorRightRequest = 1 then
-         Right_Turn_Signal := True;
+         Right_Turn_Signal_Request := True;
       else
-         Right_Turn_Signal := False;
+         Right_Turn_Signal_Request := False;
       end if;
    end On_Lighting;
 
@@ -278,4 +277,35 @@ package body CAN_Handler is
    begin
       Rear_Power_kW := Integer (Scaled_Rear_Power);
    end On_RearInverterPower;
+
+   procedure On_VehicleControl (F : CAN_Frame) is
+   begin
+      if (F.Standard_ID = 627) then
+         Last_Vehicle_Control      := F;
+         Last_Vehicle_Control_Time := Clock;
+      end if;
+   end On_VehicleControl;
+
+   procedure Capture_Button_Callback is
+      New_Frame : STM32.CAN.CAN_Frame (STM32.CAN.Standard) := (others => <>);
+      RC        : STM32.CAN.CAN_Status := Transmission_Error;
+   begin
+      if (Clock - CAN_Handler.Last_Vehicle_Control_Time) < Milliseconds (1_000)
+      then
+         New_Frame.DLC  := CAN_Handler.Last_Vehicle_Control.DLC;
+         New_Frame.RTR  := CAN_Handler.Last_Vehicle_Control.RTR;
+         New_Frame.Data := CAN_Handler.Last_Vehicle_Control.Data;
+
+         declare
+            Byte_Index : constant Natural := 0; -- bit 5 lives in byte 0
+            Bit_Mask   : constant UInt8   := 2#0010_0000#;
+         begin
+            New_Frame.Data (Byte_Index) :=
+              New_Frame.Data (Byte_Index) or Bit_Mask;
+         end;
+
+         RC := STM32.CAN.Transmit (CAN_1, New_Frame);
+
+      end if;
+   end Capture_Button_Callback;
 end CAN_Handler;
