@@ -85,7 +85,7 @@ package body STM32.DS3231 is
          Date.Day_Of_Week := RTC_Day_Of_Week'Val (N);
       end if;
 
-      N := Integer (Val (16#05#) and 16#7F#);
+      N := Integer (To_Integer (Val (16#05#) and 16#7F#));
       if N not in 1 .. 31 then
          Date.Month := RTC_Month'First;
       else
