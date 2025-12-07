@@ -36,7 +36,8 @@ package body STM32.CAN is
    end Get_Timing;
 
    procedure Initialize
-     (This : aliased in out CAN_Port'Class; Speed : CAN_Speed)
+     (This     : aliased in out CAN_Port'Class; Speed : CAN_Speed;
+      Loopback :                Boolean)
    is
       Bus_Timing : constant CAN_Timing := Get_Timing (Speed);
    begin
@@ -100,11 +101,10 @@ package body STM32.CAN is
          CAN1_Periph.BTR.TS2 := UInt3 (Bus_Timing.TS2);
          CAN1_Periph.BTR.BRP := UInt10 (Bus_Timing.BRP);
 
-         -- Temp enabling loopback
-         -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         -- !!!!!!!REMOVE ME LATER!!!!!!!
-         -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         -- CAN1_Periph.BTR.LBKM := True;
+         -- Enabling loopback
+         if Loopback then
+            CAN1_Periph.BTR.LBKM := True;
+         end if;
 
          -- Enable FIFO 0 message pending Interrupt
          CAN1_Periph.IER.FMPIE0 := True;

@@ -96,7 +96,8 @@ package STM32.CAN is
    procedure Reset (This : aliased in out CAN_Port'Class);
 
    procedure Initialize
-     (This : aliased in out CAN_Port'Class; Speed : CAN_Speed);
+     (This     : aliased in out CAN_Port'Class; Speed : CAN_Speed;
+      Loopback :                Boolean);
 
    procedure Configure_Filter
      (This : aliased in out CAN_Port'Class; Filter : CAN_Filter_Config);
