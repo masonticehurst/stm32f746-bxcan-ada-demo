@@ -75,10 +75,16 @@ begin
          Use_32_Bit => True);
 
       -- 0x273 = 627 = ID273UI_vehicleControl
-      -- 0xFFF = N/A
+      -- 0x3B3 = 947 = ID3B3UI_vehicleControl2
       Filter4 : constant CAN_Filter_Config :=
         (Bank => 4, FIFO => 0, Mode => List, ID_Type => STM32.CAN.Standard,
-         Id1        => 16#273#, Id2 => 16#0FF#, Mask1 => 0, Mask2 => 0,
+         Id1        => 16#273#, Id2 => 16#3B3#, Mask1 => 0, Mask2 => 0,
+         Use_32_Bit => True);
+
+      -- 0x2F3 = 755 = ID2F3UI_hvacRequest
+      Filter5 : constant CAN_Filter_Config :=
+        (Bank => 4, FIFO => 0, Mode => List, ID_Type => STM32.CAN.Standard,
+         Id1        => 16#2F3#, Id2 => 16#0FF#, Mask1 => 0, Mask2 => 0,
          Use_32_Bit => True);
    begin
       Configure_Filter (CAN_1, Filter0);
@@ -86,6 +92,7 @@ begin
       Configure_Filter (CAN_1, Filter2);
       Configure_Filter (CAN_1, Filter3);
       Configure_Filter (CAN_1, Filter4);
+      Configure_Filter (CAN_1, Filter5);
    end;
 
    -- SD Card initialization
@@ -98,6 +105,18 @@ begin
 
    if FS_Status /= Ok then
       raise Program_Error with "Unable to mount SD Card";
+   end if;
+
+   FS_Status := Open (FD, "/sdcard/m3.bmp", Read_Write);
+
+   if (FS_Status = OK) then
+      GUI.Current_Background_Color := Button_color;
+
+      Fill_Rounded_Rectangle
+        (Rect  => (Position => (7, 6), Width => 161, Height => 82),
+         Color => Button_Color, Radius => 8);
+
+      GUI.Bitmap.Draw_Image_From_File (FD);
    end if;
 
    GUI.Status_Page_Init;
@@ -138,14 +157,25 @@ begin
 
    STM32.CAN.Receiver.Register_Handler
      (ID => CAN_Standard_ID (16#273#),
-      CB => CAN_Handler.On_VehicleControl'Access);
+      CB => CAN_Handler.On_VehicleControl1'Access);
+
+   STM32.CAN.Receiver.Register_Handler
+     (ID => CAN_Standard_ID (16#3B3#),
+      CB => CAN_Handler.On_VehicleControl2'Access);
+
+   STM32.CAN.Receiver.Register_Handler
+     (ID => CAN_Standard_ID (16#2F3#),
+      CB => CAN_Handler.On_HVACRequest'Access);
 
    loop
-      if GUI.Current_Page = Status_Page then
-         GUI.Status_Page_Tick;
-      end if;
-
-      Display.Update_Layer (1, True);
+      case GUI.Current_Page is
+         when Status_Page =>
+            GUI.Status_Page_Tick;
+         when Control_Page =>
+            GUI.Control_Page_Tick;
+         when Capture_Page =>
+            null;
+      end case;
 
       Next_Release := Next_Release + Period;
       delay until Next_Release;
