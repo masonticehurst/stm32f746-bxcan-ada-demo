@@ -10,7 +10,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/bin/bxcan",
+            "executable": "${workspaceRoot}/bin/can_ada",
             "device": "STM32F746NG",
             "configFiles": [
                 "/home/dev/Downloads/OpenOCD/tcl/board/stm32f746g-disco.cfg"

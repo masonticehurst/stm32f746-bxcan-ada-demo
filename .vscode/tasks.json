@@ -30,7 +30,7 @@
             "command": "openocd",
             "args": [
                 "-f", "/home/dev/Downloads/OpenOCD/tcl/board/stm32f746g-disco.cfg",
-                "-c", "program bin/bxcan verify reset exit"
+                "-c", "program bin/can_ada verify reset exit"
             ],
             "group": "build",
             "problemMatcher": [],
