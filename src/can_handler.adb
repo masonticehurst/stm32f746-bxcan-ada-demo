@@ -285,24 +285,48 @@ package body CAN_Handler is
       Rear_Power_kW := Integer (Scaled_Rear_Power);
    end On_RearInverterPower;
 
-   procedure On_VehicleControl (F : CAN_Frame) is
+   procedure On_VehicleControl1 (F : CAN_Frame) is
    begin
       if (F.Standard_ID = 627) then
-         Last_Vehicle_Control      := F;
-         Last_Vehicle_Control_Time := Clock;
+         Last_Vehicle_Control1      := F;
+         Last_Vehicle_Control1_Time := Clock;
       end if;
-   end On_VehicleControl;
+   end On_VehicleControl1;
 
-   procedure Control_Button_Callback is
+   procedure On_VehicleControl2 (F : CAN_Frame) is
+   begin
+      if (F.Standard_ID = 947) then
+         Last_Vehicle_Control2      := F;
+         Last_Vehicle_Control2_Time := Clock;
+      end if;
+   end On_VehicleControl2;
+
+   procedure On_HVACRequest (F : CAN_Frame) is
+   begin
+      if (F.Standard_ID = 755) then
+         Last_HVAC_Request      := F;
+         Last_HVAC_Request_Time := Clock;
+      end if;
+   end On_HVACRequest;
+
+   procedure Capture_Callback is
+   begin
+      Capture_Enabled := not Capture_Enabled;
+      Control_Page_Init;
+   end Capture_Callback;
+
+   procedure Frunk_Callback is
       New_Frame : STM32.CAN.CAN_Frame (STM32.CAN.Standard) := (others => <>);
       RC        : STM32.CAN.CAN_Status := Transmission_Error;
    begin
-      if (Clock - CAN_Handler.Last_Vehicle_Control_Time) < Milliseconds (1_000)
+      if (Clock - CAN_Handler.Last_Vehicle_Control1_Time) <
+        Milliseconds (1_000)
       then
-         New_Frame.DLC         := CAN_Handler.Last_Vehicle_Control.DLC;
-         New_Frame.RTR         := CAN_Handler.Last_Vehicle_Control.RTR;
-         New_Frame.Standard_ID := CAN_Handler.Last_Vehicle_Control.Standard_ID;
-         New_Frame.Data        := CAN_Handler.Last_Vehicle_Control.Data;
+         New_Frame.DLC         := CAN_Handler.Last_Vehicle_Control1.DLC;
+         New_Frame.RTR         := CAN_Handler.Last_Vehicle_Control1.RTR;
+         New_Frame.Standard_ID :=
+           CAN_Handler.Last_Vehicle_Control1.Standard_ID;
+         New_Frame.Data        := CAN_Handler.Last_Vehicle_Control1.Data;
 
          declare
             -- bit 5 lives in first byte (1-indexed)
@@ -316,6 +340,94 @@ package body CAN_Handler is
          RC := STM32.CAN.Transmit (CAN_1, New_Frame);
          GUI.Put_Line (RC'Image);
       end if;
-   end Control_Button_Callback;
+   end Frunk_Callback;
 
+   procedure Trunk_Callback is
+      New_Frame : STM32.CAN.CAN_Frame (STM32.CAN.Standard) := (others => <>);
+      RC        : STM32.CAN.CAN_Status := Transmission_Error;
+   begin
+      if (Clock - CAN_Handler.Last_Vehicle_Control2_Time) <
+        Milliseconds (1_000)
+      then
+         New_Frame.DLC         := CAN_Handler.Last_Vehicle_Control2.DLC;
+         New_Frame.RTR         := CAN_Handler.Last_Vehicle_Control2.RTR;
+         New_Frame.Standard_ID :=
+           CAN_Handler.Last_Vehicle_Control2.Standard_ID;
+         New_Frame.Data        := CAN_Handler.Last_Vehicle_Control2.Data;
+
+         declare
+            -- bit 1 lives in first byte (1-indexed)
+            Byte_Index : constant Natural := 1;
+            Bit_Mask   : constant UInt8   := 2#0000_0010#;
+         begin
+            New_Frame.Data (Byte_Index) :=
+              New_Frame.Data (Byte_Index) or Bit_Mask;
+         end;
+
+         RC := STM32.CAN.Transmit (CAN_1, New_Frame);
+         GUI.Put_Line (RC'Image);
+      end if;
+   end Trunk_Callback;
+
+   procedure Glovebox_Callback is
+      New_Frame : STM32.CAN.CAN_Frame (STM32.CAN.Standard) := (others => <>);
+      RC        : STM32.CAN.CAN_Status := Transmission_Error;
+   begin
+      if (Clock - CAN_Handler.Last_Vehicle_Control2_Time) <
+        Milliseconds (1_000)
+      then
+         New_Frame.DLC         := CAN_Handler.Last_Vehicle_Control2.DLC;
+         New_Frame.RTR         := CAN_Handler.Last_Vehicle_Control2.RTR;
+         New_Frame.Standard_ID :=
+           CAN_Handler.Last_Vehicle_Control2.Standard_ID;
+         New_Frame.Data        := CAN_Handler.Last_Vehicle_Control2.Data;
+
+         declare
+            -- bit 0 lives in first byte (1-indexed)
+            Byte_Index : constant Natural := 1;
+            Bit_Mask   : constant UInt8   := 2#0000_0001#;
+         begin
+            New_Frame.Data (Byte_Index) :=
+              New_Frame.Data (Byte_Index) or Bit_Mask;
+         end;
+
+         RC := STM32.CAN.Transmit (CAN_1, New_Frame);
+         GUI.Put_Line (RC'Image);
+      end if;
+   end Glovebox_Callback;
+
+   procedure Heat_Callback is
+      New_Frame : STM32.CAN.CAN_Frame (STM32.CAN.Standard) := (others => <>);
+      RC        : STM32.CAN.CAN_Status := Transmission_Error;
+   begin
+      if (Clock - CAN_Handler.Last_HVAC_Request_Time) < Milliseconds (1_000)
+      then
+         New_Frame.DLC         := CAN_Handler.Last_HVAC_Request.DLC;
+         New_Frame.RTR         := CAN_Handler.Last_HVAC_Request.RTR;
+         New_Frame.Standard_ID := CAN_Handler.Last_HVAC_Request.Standard_ID;
+         New_Frame.Data        := CAN_Handler.Last_HVAC_Request.Data;
+
+         declare
+            Byte_Index : constant Natural := 1;                  -- first byte
+            Temp_Mask  : constant UInt8   := 2#0001_1111#;       -- 5 LSBs
+
+            Old_Byte : UInt8   := New_Frame.Data (Byte_Index);
+            Old_Raw  : Integer := Integer (Old_Byte and Temp_Mask);
+            New_Raw : Integer := Old_Raw + 2;
+         begin
+            declare
+               -- clear out the lower 5 bits, keep the upper 3 bits as-is
+               Cleared_Lows : constant UInt8 := Old_Byte and not Temp_Mask;
+
+               -- new 5-bit temperature
+               New_Lows : constant UInt8 := UInt8 (New_Raw) and Temp_Mask;
+            begin
+               New_Frame.Data (Byte_Index) := Cleared_Lows or New_Lows;
+            end;
+         end;
+
+         RC := STM32.CAN.Transmit (CAN_1, New_Frame);
+         GUI.Put_Line (RC'Image);
+      end if;
+   end Heat_Callback;
 end CAN_Handler;

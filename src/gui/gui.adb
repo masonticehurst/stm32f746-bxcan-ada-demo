@@ -366,17 +366,15 @@ package body GUI is
 
       -- Draw_Button can stay as you already have it
       procedure Draw_Button
-        (Rect : HAL.Bitmap.Rect; Text : String; On_Press : Button_Callback)
+        (Rect  : HAL.Bitmap.Rect; Text : String;
+         Color : HAL.Bitmap.Bitmap_Color; On_Press : Button_Callback)
       is
          Text_Size : Size;
          Text_Pos  : HAL.Bitmap.Point;
          Button    : Button_Entry;
       begin
          -- Draw filled rounded rectangle (button background)
-         Fill_Rounded_Rectangle
-           (Rect   => Rect,
-            Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-            Radius => 8);
+         Fill_Rounded_Rectangle (Rect => Rect, Color => Color, Radius => 8);
 
          Text_Size := MeasureText (Text, Font8x8);
 
@@ -432,10 +430,11 @@ package body GUI is
    end Clear_Buttons;
 
    procedure Draw_Button
-     (Rect : HAL.Bitmap.Rect; Text : String; On_Press : Button_Callback)
+     (Rect : HAL.Bitmap.Rect; Text : String; Color : HAL.Bitmap.Bitmap_Color;
+      On_Press : Button_Callback)
    is
    begin
-      Buttons_Manager.Draw_Button (Rect, Text, On_Press);
+      Buttons_Manager.Draw_Button (Rect, Text, Color, On_Press);
    end Draw_Button;
 
    procedure Draw_Info
@@ -445,8 +444,7 @@ package body GUI is
       Text_Pos  : HAL.Bitmap.Point := (0, 0);
    begin
       if Val /= "" then
-         Current_Background_Color :=
-           (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+         Current_Background_Color := Button_Color;
 
          -- Measuring font so we can center it properly using midpoint formula
          Set_Font (Font16x24);
@@ -459,7 +457,7 @@ package body GUI is
            (Rect  =>
               (Position => (Point.X, Point.Y + 20), Width => 103,
                Height   => 24),
-            Color => (Alpha => 255, Red => 26, Green => 36, Blue => 46));
+            Color => Button_Color);
 
          -- Put value on screen
          Put (X => Text_Pos.X, Y => Text_Pos.Y, Msg => Val);
@@ -471,10 +469,9 @@ package body GUI is
       else
          -- Draw info box
          Fill_Rounded_Rectangle
-           (Rect   =>
+           (Rect  =>
               (Position => (Point.X, Point.Y), Width => 103, Height => 66),
-            Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-            Radius => 8);
+            Color => Button_Color, Radius => 8);
 
          -- Measure text size so we can center it properly using midpoint formula
          Text_Size := MeasureText (Text, Font8x8);
@@ -494,14 +491,36 @@ package body GUI is
          BMP_Fonts.Char_Height (Font));
    end MeasureText;
 
+   procedure Draw_Static_Buttons is
+   begin
+      Buttons_Manager.Clear_Buttons;
+
+      if Current_Page = Control_Page then
+         Draw_Button
+           (Rect     =>
+              (Position => (X => 367, Y => 5), Width => 103, Height => 50),
+            Text     => "Controls", Color => Selected_Button_Color,
+            On_Press => Control_Button_Callback'Access);
+      else
+         Draw_Button
+           (Rect     =>
+              (Position => (X => 367, Y => 5), Width => 103, Height => 50),
+            Text     => "Controls", Color => Button_Color,
+            On_Press => Control_Button_Callback'Access);
+      end if;
+
+   end Draw_Static_Buttons;
+
    procedure Draw_Static_UI is
       FS_Status : Status_Code := Disk_Error;
       FD        : File_Descriptor;
    begin
+      Draw_Rectangle
+        (Rect => (Position => (X => 0, Y => 121), Width => 480, Height => 151),
+         Color => Default_Background_Color);
+
       Put (X => 173, Y => 9, Msg => "Make:");
-
       Put (X => 173, Y => 19, Msg => "Model:");
-
       Put (X => 173, Y => 29, Msg => "VIN:");
 
       -- Top Row
@@ -518,27 +537,20 @@ package body GUI is
 
       Current_Background_Color := Default_Background_Color;
 
-      Current_Background_Color :=
-        (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+      Current_Background_Color := Button_Color;
 
-      Draw_Button
-        (Rect => (Position => (X => 390, Y => 5), Width => 80, Height => 50),
-         Text     => "Controls",
-         On_Press => CAN_Handler.Control_Button_Callback'Access);
+      Update_Range_If_Changed (Force_Redraw => True);
+      Update_Speed_If_Changed (Force_Redraw => True);
+      Update_Gear_If_Changed (Force_Redraw => True);
+      Update_Power_If_Changed (Force_Redraw => True);
+      Update_Temperature_If_Changed (Force_Redraw => True);
+      Update_Humidity_If_Changed (Force_Redraw => True);
+      Update_Turn_Signals_If_Changed (Force_Redraw => True);
+      Update_Steering_Wheel_If_Changed (Force_Redraw => True);
+      Update_Acceleration_Pedal_Pos_If_Changed (Force_Redraw => True);
+      Update_SOC_If_Changed (Force_Redraw => True);
 
-      FS_Status := Open (FD, "/sdcard/m3.bmp", Read_Write);
-
-      if (FS_Status = OK) then
-         GUI.Current_Background_Color :=
-           (Alpha => 255, Red => 26, Green => 36, Blue => 46);
-
-         Fill_Rounded_Rectangle
-           (Rect   => (Position => (7, 6), Width => 161, Height => 82),
-            Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-            Radius => 8);
-
-         GUI.Bitmap.Draw_Image_From_File (FD);
-      end if;
+      Draw_Static_Buttons;
 
       Display.Update_Layer (1, True);
    end Draw_Static_UI;
@@ -554,12 +566,12 @@ package body GUI is
       return True;
    end VIN_Complete;
 
-   procedure Update_Range_If_Changed is
+   procedure Update_Range_If_Changed (Force_Redraw : Boolean := False) is
       Curr     : constant Natural := CAN_Handler.Range_Miles;
       Str      : constant String  := Curr'Image;
       Str_Trim : constant String  := Str (Str'First + 1 .. Str'Last);
    begin
-      if Curr /= Last_Range_Miles then
+      if Curr /= Last_Range_Miles or Force_Redraw then
          Draw_Info
            (Point => (X => 9, Y => 135), Text => "Range",
             Val   => Str_Trim & "mi");
@@ -568,10 +580,10 @@ package body GUI is
       end if;
    end Update_Range_If_Changed;
 
-   procedure Update_Speed_If_Changed is
+   procedure Update_Speed_If_Changed (Force_Redraw : Boolean := False) is
       Curr : constant Natural := CAN_Handler.Vehicle_Speed_MPH;
    begin
-      if Curr /= Last_Speed_MPH then
+      if Curr /= Last_Speed_MPH or Force_Redraw then
          Draw_Info
            (Point => (X => 9, Y => 206), Text => "Speed (MPH)",
             Val   => Curr'Image & " ");
@@ -580,11 +592,11 @@ package body GUI is
       end if;
    end Update_Speed_If_Changed;
 
-   procedure Update_Gear_If_Changed is
+   procedure Update_Gear_If_Changed (Force_Redraw : Boolean := False) is
       Curr : constant CAN_Handler.Gear := CAN_Handler.Vehicle_Gear;
       use type CAN_Handler.Gear;
    begin
-      if Curr /= Last_Gear then
+      if Curr /= Last_Gear or Force_Redraw then
          Draw_Info
            (Point => (X => 248, Y => 206), Text => "Gear",
             Val   => CAN_Handler.To_String (Curr));
@@ -593,10 +605,10 @@ package body GUI is
       end if;
    end Update_Gear_If_Changed;
 
-   procedure Update_Power_If_Changed is
+   procedure Update_Power_If_Changed (Force_Redraw : Boolean := False) is
       Curr : constant Integer := CAN_Handler.Rear_Power_kW;
    begin
-      if abs (Curr - Last_Rear_Power_kW) > 1 then
+      if abs (Curr - Last_Rear_Power_kW) > 1 or Force_Redraw then
          Draw_Info
            (Point => (X => 367, Y => 206), Text => "Power (kW)",
             Val   => Curr'Image & " ");
@@ -605,10 +617,11 @@ package body GUI is
       end if;
    end Update_Power_If_Changed;
 
-   procedure Update_Temperature_If_Changed is
+   procedure Update_Temperature_If_Changed (Force_Redraw : Boolean := False) is
       Curr : constant Long_Float := CAN_Handler.Temperature;
    begin
-      if abs (Curr - Long_Float (Last_Temperature_C)) > 1.0 then
+      if abs (Curr - Long_Float (Last_Temperature_C)) > 1.0 or Force_Redraw
+      then
          Draw_Info
            (Point => (X => 248, Y => 135), Text => "Temperature",
             Val   => Integer (Curr)'Image & "C ");
@@ -617,10 +630,10 @@ package body GUI is
       end if;
    end Update_Temperature_If_Changed;
 
-   procedure Update_Humidity_If_Changed is
+   procedure Update_Humidity_If_Changed (Force_Redraw : Boolean := False) is
       Curr : constant Natural := CAN_Handler.Humidity;
    begin
-      if abs (Curr - Last_Humidity_Pct) > 1 then
+      if abs (Curr - Last_Humidity_Pct) > 1 or Force_Redraw then
          Draw_Info
            (Point => (X => 367, Y => 135), Text => "Humidity",
             Val   => Curr'Image & "% ");
@@ -629,10 +642,13 @@ package body GUI is
       end if;
    end Update_Humidity_If_Changed;
 
-   procedure Update_Turn_Signals_If_Changed is
+   procedure Update_Turn_Signals_If_Changed (Force_Redraw : Boolean := False)
+   is
    begin
       --  Left turn signal request
-      if CAN_Handler.Left_Turn_Signal_Request /= Last_Left_Turn_Request then
+      if CAN_Handler.Left_Turn_Signal_Request /= Last_Left_Turn_Request or
+        Force_Redraw
+      then
          if CAN_Handler.Left_Turn_Signal_Request then
             Draw_Image
               (X0 => 190, Y0 => 65, Image => Arrow, Angle_Degrees => 0);
@@ -646,7 +662,9 @@ package body GUI is
       end if;
 
       --  Right turn signal request
-      if CAN_Handler.Right_Turn_Signal_Request /= Last_Right_Turn_Request then
+      if CAN_Handler.Right_Turn_Signal_Request /= Last_Right_Turn_Request or
+        Force_Redraw
+      then
          if CAN_Handler.Right_Turn_Signal_Request then
             Draw_Image
               (X0 => 310, Y0 => 65, Image => Arrow, Angle_Degrees => 180);
@@ -660,10 +678,12 @@ package body GUI is
       end if;
    end Update_Turn_Signals_If_Changed;
 
-   procedure Update_Steering_Wheel_If_Changed is
+   procedure Update_Steering_Wheel_If_Changed (Force_Redraw : Boolean := False)
+   is
    begin
       if abs (CAN_Handler.Steering_Angle_Degrees - Last_Steering_Angle) >=
-        Steering_Threshold
+        Steering_Threshold or
+        Force_Redraw
       then
          Draw_Filled_Circle
            (Point => (X => 258, Y => 80), Radius => 27,
@@ -678,11 +698,14 @@ package body GUI is
       end if;
    end Update_Steering_Wheel_If_Changed;
 
-   procedure Update_Acceleration_Pedal_Pos_If_Changed is
+   procedure Update_Acceleration_Pedal_Pos_If_Changed
+     (Force_Redraw : Boolean := False)
+   is
       Curr : constant Natural :=
         CAN_Handler.Accelerator_Pedal_Position_Percent;
    begin
-      if abs (Curr - Last_Accel_Pedal_Position_Percent) > 1 then
+      if abs (Curr - Last_Accel_Pedal_Position_Percent) > 1 or Force_Redraw
+      then
          Draw_Info
            (Point => (X => 128, Y => 135), Text => "Accel Pedal",
             Val   => Curr'Image & "% ");
@@ -691,10 +714,10 @@ package body GUI is
       end if;
    end Update_Acceleration_Pedal_Pos_If_Changed;
 
-   procedure Update_SOC_If_Changed is
+   procedure Update_SOC_If_Changed (Force_Redraw : Boolean := False) is
       Curr : constant Natural := CAN_Handler.State_Of_Charge_Percent;
    begin
-      if abs (Curr - Last_State_Of_Charge_Percent) > 1 then
+      if abs (Curr - Last_State_Of_Charge_Percent) > 1 or Force_Redraw then
          Draw_Info
            (Point => (X => 128, Y => 206), Text => "SOC (%)",
             Val   => Curr'Image & "% ");
@@ -720,13 +743,11 @@ package body GUI is
       CAN_Connected    : constant String := "CAN Connected";
       CAN_Disconnected : constant String := "CAN Disconnected";
    begin
-      Current_Background_Color :=
-        (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+      Current_Background_Color := Button_Color;
 
       Fill_Rounded_Rectangle
-        (Rect   => (Position => (7, 92), Width => 161, Height => 20),
-         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-         Radius => 4);
+        (Rect  => (Position => (7, 92), Width => 161, Height => 20),
+         Color => Button_Color, Radius => 4);
 
       if Clock - STM32.CAN.Last_RX_Time > Seconds (5) then
          Current_Text_Color :=
@@ -773,6 +794,73 @@ package body GUI is
       return False;
    end Has_Touch_Within_Area;
 
+   procedure Draw_Control_Buttons is
+   begin
+      -- Capture Button
+      if CAN_Handler.Capture_Enabled then
+         Draw_Button
+           (Rect     =>
+              (Position => (X => 9, Y => 122), Width => 461, Height => 66),
+            Text     => "Stop Capturing", Color => Selected_Button_Color,
+            On_Press => CAN_Handler.Capture_Callback'Access);
+      else
+         Draw_Button
+           (Rect     =>
+              (Position => (X => 9, Y => 122), Width => 461, Height => 66),
+            Text     => "Start Capturing", Color => Button_Color,
+            On_Press => CAN_Handler.Capture_Callback'Access);
+      end if;
+
+      -- Frunk
+      Draw_Button
+        (Rect => (Position => (X => 9, Y => 198), Width => 103, Height => 66),
+         Text     => "", Color => Button_Color,
+         On_Press => CAN_Handler.Frunk_Callback'Access);
+
+      Draw_Info (Point => (X => 9, Y => 198), Text => "Frunk");
+
+      Draw_Image
+        (X0 => 9 + 30, Y0 => 198 + 15, Image => Frunk, Angle_Degrees => 0);
+
+      -- Trunk
+      Draw_Button
+        (Rect     =>
+           (Position => (X => 128, Y => 198), Width => 103, Height => 66),
+         Text     => "", Color => Button_Color,
+         On_Press => CAN_Handler.Trunk_Callback'Access);
+
+      Draw_Info (Point => (X => 128, Y => 198), Text => "Trunk");
+
+      Draw_Image
+        (X0 => 128 + 30, Y0 => 198 + 15, Image => Trunk, Angle_Degrees => 0);
+
+      -- Glovebox
+      Draw_Button
+        (Rect     =>
+           (Position => (X => 248, Y => 198), Width => 103, Height => 66),
+         Text     => "", Color => Button_Color,
+         On_Press => CAN_Handler.Glovebox_Callback'Access);
+
+      Draw_Info (Point => (X => 248, Y => 198), Text => "Glovebox");
+
+      Draw_Image
+        (X0            => 248 + 30, Y0 => 198 + 17, Image => Glovebox,
+         Angle_Degrees => 0);
+
+      -- Heat
+      Draw_Button
+        (Rect     =>
+           (Position => (X => 367, Y => 198), Width => 103, Height => 66),
+         Text     => "", Color => Button_Color,
+         On_Press => CAN_Handler.Heat_Callback'Access);
+
+      Draw_Info (Point => (X => 367, Y => 198), Text => "Heat");
+
+      Draw_Image
+        (X0 => 367 + 37, Y0 => 198 + 23, Image => Heat, Angle_Degrees => 0);
+
+   end Draw_Control_Buttons;
+
    procedure Status_Page_Init is
    begin
       Draw_Static_UI;
@@ -792,32 +880,29 @@ package body GUI is
       Update_SOC_If_Changed;
       Update_VIN_If_Completed;
       Update_Link_Status;
+      Display.Update_Layer (1, True);
    end Status_Page_Tick;
 
    procedure Control_Page_Tick is
    begin
-      Put (X => 438, Y => 253, Msg => "Exit");
+      Update_Turn_Signals_If_Changed;
+      Update_Steering_Wheel_If_Changed;
+      Update_VIN_If_Completed;
+      Update_Link_Status;
+
+      Display.Update_Layer (1, True);
    end Control_Page_Tick;
 
    procedure Control_Page_Init is
    begin
-      Draw_Button
-        (Rect => (Position => (X => 431, Y => 216), Width => 44, Height => 51),
-         Text => "", On_Press => Status_Button_Callback'Access);
+      Draw_Rectangle
+        (Rect => (Position => (X => 0, Y => 121), Width => 480, Height => 151),
+         Color => Default_Background_Color);
 
-      Put (X => 438, Y => 253, Msg => "Exit");
+      Draw_Static_Buttons;
+      Draw_Control_Buttons;
 
-      Draw_Image
-        (X0 => 437, Y0 => 219, Image => Exit_Page, Angle_Degrees => 0);
-
-      Fill_Rounded_Rectangle
-        (Rect => (Position => (X => 12, Y => 15), Width => 150, Height => 73),
-         Color  => (Alpha => 255, Red => 26, Green => 36, Blue => 46),
-         Radius => 4);
-
-      Draw_Image (X0 => 55, Y0 => 15, Image => Frunk, Angle_Degrees => 0);
-
-      Put (X => 66, Y => 74, Msg => "Frunk");
+      Display.Update_Layer (1, True);
    end Control_Page_Init;
 
    procedure Change_Page (Page : Pages) is
@@ -827,15 +912,13 @@ package body GUI is
       end if;
 
       if (Page = Status_Page) then
-         Clear_Screen;
-         Status_Page_Init;
          Current_Page := Status_Page;
+         Status_Page_Init;
       end if;
 
       if (Page = Control_Page) then
-         Clear_Screen;
-         Control_Page_Init;
          Current_Page := Control_Page;
+         Control_Page_Init;
       end if;
    end Change_Page;
 
@@ -843,4 +926,13 @@ package body GUI is
    begin
       Change_Page (Status_Page);
    end Status_Button_Callback;
+
+   procedure Control_Button_Callback is
+   begin
+      if Current_Page = Control_Page then
+         Change_Page (Status_Page);
+      else
+         Change_Page (Control_Page);
+      end if;
+   end Control_Button_Callback;
 end GUI;

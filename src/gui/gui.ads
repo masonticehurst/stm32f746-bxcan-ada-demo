@@ -50,6 +50,12 @@ package GUI is
      (Alpha => 255, Red => 16, Green => 25, Blue => 34);
    Default_Font             : constant BMP_Font                := Font16x24;
 
+   Button_Color : constant HAL.Bitmap.Bitmap_Color :=
+     (Alpha => 255, Red => 26, Green => 36, Blue => 46);
+
+   Selected_Button_Color : constant HAL.Bitmap.Bitmap_Color :=
+     (Alpha => 255, Red => 21, Green => 31, Blue => 41);
+
    Current_Page : Pages := Status_Page;
 
    --  Changes to these current values will appear on subsequent calls to the
@@ -130,7 +136,8 @@ package GUI is
       Radius : Natural);
 
    procedure Draw_Button
-     (Rect : HAL.Bitmap.Rect; Text : String; On_Press : Button_Callback);
+     (Rect : HAL.Bitmap.Rect; Text : String; Color : HAL.Bitmap.Bitmap_Color;
+      On_Press : Button_Callback);
 
    function MeasureText (Text : String; Font : BMP_Fonts.BMP_Font) return Size;
 
@@ -145,17 +152,20 @@ package GUI is
 
    procedure Control_Page_Tick;
    procedure Control_Page_Init;
+   procedure Control_Button_Callback;
 
-   procedure Update_Range_If_Changed;
-   procedure Update_Speed_If_Changed;
-   procedure Update_Gear_If_Changed;
-   procedure Update_Power_If_Changed;
-   procedure Update_Temperature_If_Changed;
-   procedure Update_Humidity_If_Changed;
-   procedure Update_Turn_Signals_If_Changed;
-   procedure Update_Steering_Wheel_If_Changed;
-   procedure Update_Acceleration_Pedal_Pos_If_Changed;
-   procedure Update_SOC_If_Changed;
+   procedure Update_Range_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Speed_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Gear_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Power_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Temperature_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Humidity_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Turn_Signals_If_Changed (Force_Redraw : Boolean := False);
+   procedure Update_Steering_Wheel_If_Changed
+     (Force_Redraw : Boolean := False);
+   procedure Update_Acceleration_Pedal_Pos_If_Changed
+     (Force_Redraw : Boolean := False);
+   procedure Update_SOC_If_Changed (Force_Redraw : Boolean := False);
    procedure Update_VIN_If_Completed;
    procedure Update_Link_Status;
 
@@ -170,7 +180,8 @@ private
          Callbacks_Count :    out Natural);
       procedure Clear_Buttons;
       procedure Draw_Button
-        (Rect : HAL.Bitmap.Rect; Text : String; On_Press : Button_Callback);
+        (Rect  : HAL.Bitmap.Rect; Text : String;
+         Color : HAL.Bitmap.Bitmap_Color; On_Press : Button_Callback);
    private
       Buttons : Button_Vectors.Vector;
    end Buttons_Manager;
